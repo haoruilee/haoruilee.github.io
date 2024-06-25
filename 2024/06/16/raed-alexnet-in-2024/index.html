@@ -142,11 +142,9 @@
 <li>Our results show that a large, deep convolutional neural network is capable of achieving recordbreaking results on a highly challenging dataset using purely supervised learning.</li>
 </ul>
 <p>This start a new subject called ‘Deep Learning’. And finally we got ‘Scaling Law’ which bring us LLMs.</p>
-<p>- </p>
 <pre><code>It is notable that our network’s performance degrades if a single convolutional layer is removed. For example, removing any of the middle layers results in a loss of about 2% for the top-1 performance of the network. So the depth really is important for achieving our results.
 </code></pre>
 <p>But this part is a little bit not making sense, cuz you compare different network’s depth but didnt control their params, some how you can still reach better results if you have larger ‘width’ but smaller ‘depth’.</p>
-<p>- </p>
 <pre><code>To simplify our experiments, we did not use any unsupervised pre-training even though we expect that it will help, especially if we obtain enough computational power to significantly increase the size of the network without obtaining a corresponding increase in the amount of labeled data.
 </code></pre>
 <p>As we know scaling law now, this is not really true, after the model become much more larger, without significant amount of data, you will finally reach threshold.</p>
@@ -159,7 +157,7 @@
 <li>Overlapping Pooling</li>
 </ul>
 <h2 id="ReLU"><a href="#ReLU" class="headerlink" title="ReLU"></a>ReLU</h2><p>At that point, the main track of nn uses tanh and sigmoid. Alex use ReLU which is proposed from Abien Fred M. Agarap</p>
-<p>sigmoid: $f(x) &#x3D; 1 &#x2F; {1 - e^{-x}}$  In deep networks, the gradients of the sigmoid function can become very small, especially for neurons in the early layers. </p>
+<p>sigmoid: $f(x) &#x3D; 1 &#x2F; {1 - e^{-x}}$  In deep networks, the gradients of the sigmoid function can become very small, especially for neurons in the early layers.</p>
 <p>tanh: $f(x) &#x3D; \frac{e^x - e^{-x}} {e^x + e^{-x}}$. The gradients are larger compared to the sigmoid function, which can help with the learning process.</p>
 <p>Rectified Linear Units(ReLU): $f(x) &#x3D; max(0, x)$. ReLU does not suffer from the vanishing gradient problem. Gradients are preserved better during backpropagation, which helps in training deep networks. ReLU introduces sparsity in the network by outputting zero for negative input values, which can lead to more efficient and faster computations. Also it is really easy to differentiate.</p>
 <h2 id="Train-on-multiple-GPUs"><a href="#Train-on-multiple-GPUs" class="headerlink" title="Train on multiple GPUs"></a>Train on multiple GPUs</h2><p>Nowadays we call it “Distributed Training”, torch.distributed give us more efficient tools nowadays.</p>
@@ -264,8 +262,8 @@ $('.btn_click_load').click(function() {
 -->
 <script type="text/javascript">
     var disqus_config = function () {
-        this.page.url = 'https://li_haor.gitee.io/2021/02/16/raed-alexnet-in-2024/';  // Replace PAGE_URL with your page's canonical URL variable
-        this.page.identifier = 'https://li_haor.gitee.io/2021/02/16/raed-alexnet-in-2024/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+        this.page.url = 'https://li_haor.gitee.io/2024/06/16/raed-alexnet-in-2024/';  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = 'https://li_haor.gitee.io/2024/06/16/raed-alexnet-in-2024/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
     };
 </script>
 
