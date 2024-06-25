@@ -1,0 +1,249 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+	<link rel="bookmark"  type="image/x-icon"  href="/img/logo_miccall.webp"/>
+	<link rel="shortcut icon" href="/img/logo_miccall.webp">
+	
+			    <title>
+    RÉSUMÉ
+    </title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="/css/mic_main.css" />
+    <link rel="stylesheet" href="/css/dropdownMenu.css" />
+    <meta name="keywords" content="haoruilee" />
+    
+    <noscript>
+        <link rel="stylesheet" href="/css/noscript.css" />
+    </noscript>
+    <style type="text/css">
+        body:before {
+          content: ' ';
+          position: fixed;
+          top: 0;
+          background: url('https://chatgpt5.oss-rg-china-mainland.aliyuncs.com/share_50dark.jpg') center 0 no-repeat;
+          right: 0;
+          bottom: 0;
+          left: 0;
+          background-size: cover; 
+        }
+    </style>
+
+			    
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script async type="text/javascript" src="//cdn.bootcdn.net/ajax/libs/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+    <script src="https://cdnjs.loli.net/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.loli.net/ajax/libs/jquery.scrollex/0.2.1/jquery.scrollex.min.js"></script>
+    <script src="https://cdnjs.loli.net/ajax/libs/skel/3.0.1/skel.min.js"></script>
+    <script src="/js/util.js"></script>
+    <script src="/js/main.js"></script>
+	
+<meta name="generator" content="Hexo 7.2.0"></head>
+    
+		
+<!-- Layouts -->
+
+
+
+<!--  代码渲染  -->
+<link rel="stylesheet" href="/css/prism_coy.css" />
+<link rel="stylesheet" href="/css/typo.css" />
+<!-- 文章页 -->
+<body class="is-loading">
+    <!-- Wrapper 外包 s-->
+    <div id="wrapper" class="fade-in">
+        <!-- Intro 头部显示 s -->
+        <!-- Intro 头部显示 e -->
+        <!-- Header 头部logo start -->
+        <header id="header">
+    <a href="mailto:haoruili@seu.edu.cn" class="logo">Mail Me for offical CV</a>
+</header>
+        <!-- Nav 导航条 start -->
+        <nav id="nav" class="special" >
+            <ul class="menu links" >
+			<!-- Homepage  主页  --> 
+			<li >
+	            <a href="/" rel="nofollow">主页</a>
+	        </li>
+			<!-- categories_name  分类   --> 
+	        
+	        <!-- archives  归档   --> 
+	        
+	        
+		        <!-- Pages 自定义   -->
+		        
+		        <li>
+		            <a href="/life/" title="CV">
+		                CV
+		            </a>
+		        </li>
+		        
+		        <li>
+		            <a href="/tag/" title="Contact">
+		                Contact
+		            </a>
+		        </li>
+		        
+
+
+            </ul>
+            <!-- icons 图标   -->
+			<ul class="icons">
+                    
+                    <li>
+                        <a title="github" href="https://github.com/haoruilee" target="_blank" rel="noopener">
+                            <i class="icon fa fa-github"></i>
+                        </a>
+                    </li>
+                    
+			</ul>
+</nav>
+
+        <div id="main" >
+            <div class ="post_page_title_img" style="height: 25rem;background-image: url(https://chatgpt5.oss-rg-china-mainland.aliyuncs.com/CSF-Images.6.1.png);background-position: center; background-repeat:no-repeat; background-size:cover;-moz-background-size:cover;overflow:hidden;" >
+                <a href="#" style="padding: 4rem 4rem 2rem 4rem ;"><h2 >Threads and Processes</h2></a>
+            </div>
+            <!-- Post -->
+            <div class="typo" style="padding: 3rem;">
+                <p><em><strong>Robert Love on Quora:</strong></em></p>
+<p>Here is the analogy I use in  <em>Linux Kernel Development.</em>  <strong>Processes are the abstraction of running programs</strong> : A binary image, virtualized memory, various kernel resources, an associated security context, and so on.  <strong>Threads are the unit of execution in a process</strong> : A virtualized processor, a stack, and program state. Put another way, processes are running binaries and threads are the smallest unit of execution schedulable by an operating system’s process scheduler.</p>
+<p>A process <em>contains</em> one or more threads. In single-threaded processes, the process contains one thread. You can say the thread <em>is</em> the process—there is one thing going on. In multithreaded processes, the process contains more than one thread—there’s more than one thing going on.</p>
+<p>The two primary virtualized abstractions in modern operating systems are virtualized memory and a virtualized processor. Both afford the illusion to running processes that they alone consume the machine’s resources. Virtualized memory gives processes a unique view of memory that seamlessly maps back to physical RAM or on-disk storage (swap space). A virtualized processor lets processes act as if they alone run on a processor, when in fact multiple processes are multitasking across multiple processors.</p>
+<p>Virtualized memory is associated with the process and not the thread. Thus, threads share one memory address space. Conversely, a distinct virtualized processor is associated with each thread. Each thread is an independent schedulable entity.</p>
+<p>What’s the point? We obviously need processes. But why introduce the separate concept of a thread and allow multithreaded processes? There are four primary benefits to multithreading:</p>
+<ul>
+<li><strong>Programming abstraction</strong> . Dividing up work and assigning each division to a unit of execution (a thread) is a natural approach to many problems. Programming patterns that utilize this approach include the  <em>reactor</em> ,  <em>thread-per-connection</em> , and <em>thread pool</em> patterns. Some, however, view threads as an anti-pattern. The inimitable Alan Cox summed this up well with the quote, “threads are for people who can’t program state machines.”</li>
+<li><strong>Parallelism</strong> . In machines with multiple processors, threads provide an efficient way to achieve  <em>true parallelism</em> . As each thread receives its own virtualized processor and is an independently-schedulable entity, multiple threads may run on multiple processors at the same time, improving a system’s throughput. To the extent that threads are used to achieve parallelism—that is, there are no more threads than processors—the “threads are for people who can’t program state machines” quote does not apply.</li>
+<li><strong>Blocking I&#x2F;O</strong> . Without threads, blocking I&#x2F;O halts the whole process. This can be detrimental to both throughput and latency. In a multithreaded process, individual threads may block, waiting on I&#x2F;O, while other threads make forward progress. Asynchronous &amp; non-blocking I&#x2F;O are alternative solutions to threads for this issue.</li>
+<li><strong>Memory savings</strong> . Threads provide an efficient way to share memory yet utilize multiple units of execution. In this manner they are an alternative to multiple processes.</li>
+</ul>
+<p>The cost of these benefits of threading are increased complexity in the form of needing to manage concurrency through mechanisms such as mutexes and condition variables. Given the growing trend toward processors sporting multiple cores and systems sporting multiple processors, threading is only going to become a more important tool in system programming.</p>
+
+            </div>
+
+            <!-- Post Comments -->
+            
+    <!-- 使用 DISQUS_CLICK -->
+<div id="disqus-comment">
+    <div id="disqus_thread"></div>
+
+<!-- add animation -->
+<style>
+	.disqus_click_btn {
+            line-height: 30px;
+            margin: 0;
+            min-width: 50px;
+            padding: 0 14px;
+            display: inline-block;
+            font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+            font-size: 14px;
+            font-weight: 400;
+            text-transform: uppercase;
+            letter-spacing: 0;
+            overflow: hidden;
+            will-change: box-shadow;
+            transition: box-shadow .2s cubic-bezier(.4, 0, 1, 1), background-color .2s cubic-bezier(.4, 0, .2, 1), color .2s cubic-bezier(.4, 0, .2, 1);
+            outline: 0;
+            cursor: pointer;
+            text-decoration: none;
+            text-align: center;
+            vertical-align: middle;
+            border: 0;
+            background: rgba(158, 158, 158, .2);
+            box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14), 0 3px 1px -2px rgba(0, 0, 0, .2), 0 1px 5px 0 rgba(0, 0, 0, .12);
+            color: #fff;
+            background-color: #7EC0EE;
+            text-shadow: 0
+        }
+</style>
+	
+<div class="btn_click_load" id="disqus_bt"> 
+    <button class="disqus_click_btn">点击查看评论</button>
+</div>
+
+<!--
+<script type="text/javascript">
+$('.btn_click_load').click(function() {
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = 'lee'; // required: replace example with your forum shortname
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+
+    document.getElementById('disqus_bt').style.display = "none";
+});
+</script>
+-->
+<script type="text/javascript">
+    var disqus_config = function () {
+        this.page.url = 'https://li_haor.gitee.io/2024/06/26/ThreadsAndProcesses/';  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = 'https://li_haor.gitee.io/2024/06/26/ThreadsAndProcesses/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+</script>
+
+<script type="text/javascript">
+    $('.btn_click_load').click(function() {  //click to load comments
+        (function() { // DON'T EDIT BELOW THIS LINE
+            var d = document;
+            var s = d.createElement('script');
+            s.src = '//lee.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', + new Date());
+            (d.head || d.body).appendChild(s);
+        })();
+        $('.btn_click_load').css('display','none');
+    });
+</script>
+</div>
+<style>
+    #disqus-comment{
+        background-color: #eee;
+        padding: 2pc;
+    }
+</style>
+
+
+        </div>
+        <!-- Copyright 版权 start -->
+                <div id="copyright">
+            <ul>
+                <li>&copy;Powered By <a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/" style="border-bottom: none;">hexo</a></li>
+                <li>Author  <a target="_blank" rel="noopener" href="https://github.com/haoruilee" style="border-bottom: none;">haoruilee</a></li>
+				<li><a target="_blank" rel="noopener" href="https://beian.miit.gov.cn/" style="border-bottom: none;">苏ICP备2020050362号</a></li>
+            </ul>
+            
+				<span id="busuanzi_container_site_pv"> 2024 </span> 
+			
+        </div>
+    </div>
+</body>
+
+
+
+ 	
+</html>
