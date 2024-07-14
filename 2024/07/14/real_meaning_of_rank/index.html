@@ -135,14 +135,14 @@
 <p>Where ( V ) is a vector, ( V \times V ) represents an ordered pair of vectors, and ( f ) is the value of the area.</p>
 <p>Next, we will show that this mapping is a linear one.</p>
 <p>Starting with the simplest example: If the first vector is (1,0) and the second vector is (0,1), meaning the two vectors are unit vectors on the X and Y axes respectively, then the parallelogram formed by these two vectors is a square. According to the definition, its area is length multiplied by width &#x3D; 1*1 &#x3D; 1.</p>
-<p><img src="/image/real_meaning_of_rank/1720928890761.png" alt="1720928890761"></p>
+<p><img src="https://chatgpt5.oss-rg-china-mainland.aliyuncs.com/image/real_meaning_of_rank/image/real_meaning_of_rank/1720928890761.png" alt="1720928890761"></p>
 <p>Therefore:</p>
 <p>$$<br>\varphi((1,0),(0,1))&#x3D;1<br>$$</p>
 <p>If we “scale” the first vector by a factor of ( a ), the area will correspondingly be ( a ) times the original; if we “scale” the second vector by a factor of ( b ), the area will also become ( b ) times the original. If both vectors are scaled, it is obvious that the area will become ( ab ) times the original area. This shows that the area mapping is linear with respect to the scalar multiplication of its two operands (vectors), as follows:</p>
 <p>$$<br>\begin{aligned}<br>&amp; \varphi(a(1,0),(0,1))&#x3D;a \varphi((1,0),(0,1)) \<br>&amp; \varphi((1,0), b(0,1))&#x3D;b \varphi((1,0),(0,1))<br>\end{aligned} \Rightarrow \varphi(a(1,0), b(0,1))&#x3D;a b \varphi((1,0),(0,1))&#x3D;a b<br>$$</p>
 <p>Finally, we must show that the area mapping is also linear with respect to the vector addition of its operands. Since the operation of vector addition is itself linear, its area mapping should naturally be a linear mapping. Here we intend to illustrate the consequences of the linearity of the mapping’s addition through several practical examples.</p>
 <p>It is evident that the parallelogram formed by two collinear vectors is still a line, and therefore the area is zero:</p>
-<p><img src="/image/real_meaning_of_rank/1720928989597.png" alt="1720928989597"></p>
+<p><img src="https://chatgpt5.oss-rg-china-mainland.aliyuncs.com/image/real_meaning_of_rank/image/real_meaning_of_rank/1720928989597.png" alt="1720928989597"></p>
 <p>Which means:</p>
 <p>$$<br>\varphi(a,a)&#x3D;0<br>$$</p>
 <p>Assuming the area mapping is a linear mapping concerning vector addition, we have:</p>
@@ -154,7 +154,7 @@
 <p>It is not difficult to see that the so-called area is the determinant of a 2x2 matrix:</p>
 <p>$$<br>\left|\begin{array}{ll}<br>a &amp; b \<br>c &amp; d<br>\end{array}\right|&#x3D;\left|\begin{array}{ll}<br>a &amp; c \<br>b &amp; d<br>\end{array}\right|&#x3D;a d-b c<br>$$</p>
 <p>As shown below:</p>
-<p><img src="/image/real_meaning_of_rank/1720929547070.png" alt="1720929547070"></p>
+<p><img src="https://chatgpt5.oss-rg-china-mainland.aliyuncs.com/image/real_meaning_of_rank/image/real_meaning_of_rank/1720929547070.png" alt="1720929547070"></p>
 <p>Where the first row is our first row vector ( (a, b) ); the second row is the second row vector ( (c, d) ). Or the first column is the first column vector ( (a, b)^T ), and the second column is the second column vector ( (c, d)^T ). This depends on whether we write the vector as a row vector (the former) or a column vector (the latter).</p>
 <p>From this, we can easily see that the value of the determinant is independent of whether the vectors are written as row vectors or column vectors. This is why we say that rows and columns are equal when calculating determinants. Additionally, note that from the above analysis, exchanging the order of vectors results in the area value taking a negative sign. This explains why exchanging row or column vectors in a determinant changes the sign. Other properties of determinant calculation are also reflected in the linearity of the area mapping.</p>
 <p>Thus, we see that the determinant is a generalization of “area.” It represents the volume of an N-dimensional generalized parallelepiped spanned by N vectors under a given set of bases. This is the essential meaning of the determinant.</p>
