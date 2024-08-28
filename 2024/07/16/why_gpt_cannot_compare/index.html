@@ -22,7 +22,7 @@
           content: ' ';
           position: fixed;
           top: 0;
-          background: url('https://chatgpt5.oss-rg-china-mainland.aliyuncs.com/share_50dark.jpg') center 0 no-repeat;
+          background: url('https://i.dawnlab.me/e6a2105d63e4438f288e4ae4d97f53f2.webp') center 0 no-repeat;
           right: 0;
           bottom: 0;
           left: 0;
@@ -78,7 +78,7 @@
         <!-- Intro 头部显示 e -->
         <!-- Header 头部logo start -->
         <header id="header">
-    <a href="mailto:haoruili@seu.edu.cn" class="logo">Mail Me for offical CV</a>
+    <a href="mailto:haoruili@seu.edu.cn" class="logo">Mail Me for offical  or Chat with me for fun</a>
 </header>
         <!-- Nav 导航条 start -->
         <nav id="nav" class="special" >
@@ -122,7 +122,7 @@
 </nav>
 
         <div id="main" >
-            <div class ="post_page_title_img" style="height: 25rem;background-image: url(https://chatgpt5.oss-rg-china-mainland.aliyuncs.com/why_gpt_cannot_compare/cover.png);background-position: center; background-repeat:no-repeat; background-size:cover;-moz-background-size:cover;overflow:hidden;" >
+            <div class ="post_page_title_img" style="height: 25rem;background-image: url(https://i.dawnlab.me/a5c8b78470ed8d370f6e709d5205a250.png);background-position: center; background-repeat:no-repeat; background-size:cover;-moz-background-size:cover;overflow:hidden;" >
                 <a href="#" style="padding: 4rem 4rem 2rem 4rem ;"><h2 >Why GPT cannt compare</h2></a>
             </div>
             <!-- Post -->
@@ -141,11 +141,11 @@
 <p><img src="https://chatgpt5.oss-rg-china-mainland.aliyuncs.com//why_gpt_cannot_compare/1721144781525.png" alt="1721144781525"></p>
 <p>文章指出：</p>
 <blockquote>
-<p>Models tend to perform better with explicit position tokens that clarify the significance of digits within numbers. However, standard decimal representations can cause confusion, particularly when numbers are not systematically broken down into consistent and recognizable tokens. This issue can lead models to fail at tasks involving large numbers due to the difficulty in accurately determining digit significance from inconsistent token embeddings​.</p>
+<p>Models tend to perform better with explicit position tokens that clarify the significance of digits within numbers. However, standard decimal representations can cause confusion, particularly when numbers are not systematically broken down into consistent and recognizable tokens. This issue can lead models to fail at tasks involving large numbers due to the difficulty in accurately determining digit significance from inconsistent token embeddings.</p>
 </blockquote>
 <p>也就是使用严格绝对位置结果会更好，考虑到Transformer使用的是相对位置编码：</p>
-<p>$$ P E(p o s, 2 i)&#x3D;\sin \left(p o s &#x2F; 10000^{2 i &#x2F; d_{\text {model }}}\right) $$</p>
-<p>$$ P E(\operatorname{pos}, 2 i+1)&#x3D;\cos \left(p o s &#x2F; 10000^{2 i &#x2F; d_{\text {model }}}\right) $$</p>
+<p>$$<br>P E(p o s, 2 i)&#x3D;\sin \left(p o s &#x2F; 10000^{2 i &#x2F; d_{\text {model }}}\right)<br>$$</p>
+<p>$$<br>P E(\operatorname{pos}, 2 i+1)&#x3D;\cos \left(p o s &#x2F; 10000^{2 i &#x2F; d_{\text {model }}}\right)<br>$$</p>
 <p>不难理解 pos 与 pos+1 对 Transformer 来说区分的难度还是太大了。</p>
 <p>文章还提出了一种绝对的数字编码方式，使用这种方式会提高 Transformer 对大量数学任务的处理能力。</p>
 <p>这个问题其实和 MLP 做奇数偶数判别器一样，可以让我们深入地思考为什么看似强大的模型还存在着诸多能力的缺陷，也更让我们对模型设计这门学问感到崇敬。</p>
@@ -162,11 +162,11 @@
 <p><img src="https://chatgpt5.oss-rg-china-mainland.aliyuncs.com//why_gpt_cannot_compare/1721144781525.png" alt="1721144781525"></p>
 <p>The article points out:</p>
 <blockquote>
-<p>Models tend to perform better with explicit position tokens that clarify the significance of digits within numbers. However, standard decimal representations can cause confusion, particularly when numbers are not systematically broken down into consistent and recognizable tokens. This issue can lead models to fail at tasks involving large numbers due to the difficulty in accurately determining digit significance from inconsistent token embeddings​.</p>
+<p>Models tend to perform better with explicit position tokens that clarify the significance of digits within numbers. However, standard decimal representations can cause confusion, particularly when numbers are not systematically broken down into consistent and recognizable tokens. This issue can lead models to fail at tasks involving large numbers due to the difficulty in accurately determining digit significance from inconsistent token embeddings.</p>
 </blockquote>
 <p>In other words, using strict absolute positioning yields better results. Considering that the Transformer uses relative positional encoding:</p>
-<p>$$ P E(p o s, 2 i)&#x3D;\sin \left(p o s &#x2F; 10000^{2 i &#x2F; d_{\text {model }}}\right) $$</p>
-<p>$$ P E(\operatorname{pos}, 2 i+1)&#x3D;\cos \left(p o s &#x2F; 10000^{2 i &#x2F; d_{\text {model }}}\right) $$</p>
+<p>$$<br>P E(p o s, 2 i)&#x3D;\sin \left(p o s &#x2F; 10000^{2 i &#x2F; d_{\text {model }}}\right)<br>$$</p>
+<p>$$<br>P E(\operatorname{pos}, 2 i+1)&#x3D;\cos \left(p o s &#x2F; 10000^{2 i &#x2F; d_{\text {model }}}\right)<br>$$</p>
 <p>It’s not hard to understand that distinguishing between pos and pos+1 is still too challenging for the Transformer.</p>
 <p>The article also proposes an absolute number encoding method, which improves the Transformer’s ability to handle many mathematical tasks.</p>
 <p>This issue is similar to using MLP as an odd-even discriminator. It allows us to delve deeply into why seemingly powerful models still have many capability shortcomings and further appreciate the complexity of model design.</p>
