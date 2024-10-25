@@ -1,0 +1,284 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+	<link rel="bookmark"  type="image/x-icon"  href="/img/logo_miccall.webp"/>
+	<link rel="shortcut icon" href="/img/logo_miccall.webp">
+	
+			    <title>
+    Haorui Li
+    </title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="/css/mic_main.css" />
+    <link rel="stylesheet" href="/css/dropdownMenu.css" />
+    <meta name="keywords" content="haoruilee" />
+    
+    <noscript>
+        <link rel="stylesheet" href="/css/noscript.css" />
+    </noscript>
+    <style type="text/css">
+        body:before {
+          content: ' ';
+          position: fixed;
+          top: 0;
+          background: url('https://i.dawnlab.me/e6a2105d63e4438f288e4ae4d97f53f2.webp') center 0 no-repeat;
+          right: 0;
+          bottom: 0;
+          left: 0;
+          background-size: cover; 
+        }
+    </style>
+
+			    
+  
+
+
+    <script src="https://cdnjs.loli.net/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.loli.net/ajax/libs/jquery.scrollex/0.2.1/jquery.scrollex.min.js"></script>
+    <script src="https://cdnjs.loli.net/ajax/libs/skel/3.0.1/skel.min.js"></script>
+    <script src="/js/util.js"></script>
+    <script src="/js/main.js"></script>
+	
+<meta name="generator" content="Hexo 7.2.0"></head>
+    
+		
+<!-- Layouts -->
+
+
+
+<!--  代码渲染  -->
+<link rel="stylesheet" href="/css/prism_coy.css" />
+<link rel="stylesheet" href="/css/typo.css" />
+<!-- 文章页 -->
+<body class="is-loading">
+    <!-- Wrapper 外包 s-->
+    <div id="wrapper" class="fade-in">
+        <!-- Intro 头部显示 s -->
+        <!-- Intro 头部显示 e -->
+        <!-- Header 头部logo start -->
+        <header id="header">
+    <a href="mailto:haoruili@seu.edu.cn" class="logo">Mail Me for offical  or Chat with me for fun</a>
+</header>
+        <!-- Nav 导航条 start -->
+        <nav id="nav" class="special" >
+            <ul class="menu links" >
+			<!-- Homepage  主页  --> 
+			<li >
+	            <a href="/" rel="nofollow">主页</a>
+	        </li>
+			<!-- categories_name  分类   --> 
+	        
+	        <!-- archives  归档   --> 
+	        
+	        
+		        <!-- Pages 自定义   -->
+		        
+		        <li>
+		            <a href="/life/" title="CV">
+		                CV
+		            </a>
+		        </li>
+		        
+		        <li>
+		            <a href="/tag/" title="Contact">
+		                Contact
+		            </a>
+		        </li>
+		        
+
+
+            </ul>
+            <!-- icons 图标   -->
+			<ul class="icons">
+                    
+                    <li>
+                        <a title="github" href="https://github.com/haoruilee" target="_blank" rel="noopener">
+                            <i class="icon fa fa-github"></i>
+                        </a>
+                    </li>
+                    
+			</ul>
+</nav>
+
+        <div id="main" >
+            <div class ="post_page_title_img" style="height: 25rem;background-image: url(https://i.dawnlab.me/cc0041adbacfae3c0fea386293404ecf.png);background-position: center; background-repeat:no-repeat; background-size:cover;-moz-background-size:cover;overflow:hidden;" >
+                <a href="#" style="padding: 4rem 4rem 2rem 4rem ;"><h2 >Mathematical Models and Life Choices</h2></a>
+            </div>
+            <!-- Post -->
+            <div class="typo" style="padding: 3rem;">
+                <h1 id="Mathematical-Models-and-Life-Choices"><a href="#Mathematical-Models-and-Life-Choices" class="headerlink" title="Mathematical Models and Life Choices"></a>Mathematical Models and Life Choices</h1><blockquote>
+<p>It has become a traditional behavior that when leaving Alibaba, employees will send a long post in the Alibaba blog. Here, I have prepared four short stories as a parting gift for Baba as I decided to leave industry and pursue my career in academia.</p>
+</blockquote>
+<p>There are many interesting mathematical models in the world that can, to some extent, offer us a lot of insights.</p>
+<p>Chinese Version: <a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/871793375">https://zhuanlan.zhihu.com/p/871793375</a></p>
+<h1 id="Career-Journey"><a href="#Career-Journey" class="headerlink" title="Career Journey"></a>Career Journey</h1><p><strong>Keywords:</strong> Markov Decision Process</p>
+<p>Students who have studied probability theory are likely familiar with the Markov process. In the field of reinforcement learning, this theory is extended to the Markov Decision Process (MDP), where an Agent’s behavior optimization within this process is fascinating and offers valuable insights for our career paths.</p>
+<p>In a classic Markov process, state transitions are random. For example, a student might currently be in a lecture with a 50% chance of transitioning to a “playing on phone” state and a 50% chance of going to the next lecture, represented as follows:</p>
+<p><img src="https://xsearchlogo.oss-us-west-1.aliyuncs.com/image.png" alt="image.png"></p>
+<p>We can extend this process: the Agent can earn certain rewards throughout the process. Attending lectures has a negative reward (since it’s challenging), while hanging out at the bar has a positive reward (since it’s enjoyable), as illustrated below:</p>
+<p><img src="https://xsearchlogo.oss-us-west-1.aliyuncs.com/image%201.png" alt="image.png"></p>
+<p>Markov Decision Theory aims to calculate the optimal strategy for the Agent. If one only focuses on the reward of hanging out (+1), they might avoid attending lectures with a reward of -2 and eventually fail to achieve a higher reward like passing exams (+10).</p>
+<p>The MDP is defined as follows:</p>
+<p>MDP &#x3D; (S, A, P, R, γ)</p>
+<p>Where:</p>
+<ul>
+<li><strong>State Space (S)</strong>: The set of all possible states, covering lecture attendance, hanging out, passing exams, etc.</li>
+<li><strong>Action Space (A)</strong>: The set of actions available in each state.</li>
+<li><strong>Transition Probability (P)</strong>: The state transition function.</li>
+<li><strong>Reward Function (R)</strong>: The immediate reward obtained after transitioning to another state.</li>
+<li><strong>Discount Factor (\( \gamma \))</strong>: Used to discount future rewards, reflecting the degree of emphasis on long-term gains.</li>
+</ul>
+<p>For a specific MDP, an Agent can have a policy \( \pi \), representing the probability of choosing action \( a \) in state \( s \):</p>
+<p>\[ \pi(a | s) &#x3D; P[A_t &#x3D; a | S_t &#x3D; s] \]</p>
+<p>A policy fully defines an individual’s behavior, specifying all possible actions in various states along with their probabilities.</p>
+<p>Given a particular policy \( \pi \), the value of the policy can be calculated using the Bellman equation. The value of each state is:</p>
+<p><img src="https://xsearchlogo.oss-us-west-1.aliyuncs.com/image%202.png" alt="image.png"></p>
+<p>The value for each state-action pair is:</p>
+<p><img src="https://xsearchlogo.oss-us-west-1.aliyuncs.com/image%203.png" alt="image.png"></p>
+<p>As we can see, the value of each state not only includes its own reward but also the rewards of “all states that can be reached from this state.” The gamma factor determines how much we value future rewards.</p>
+<p>Returning to the student example, let’s assume that in the third lecture, the probabilities of hanging out and studying are both 0.5 (a fixed policy) and the decay factor γ is 1. It turns out that although the reward for attending the third lecture seems like -2, its actual value can be as high as 7.4:</p>
+<p><img src="https://xsearchlogo.oss-us-west-1.aliyuncs.com/image%204.png" alt="image.png"></p>
+<h1 id="Influence"><a href="#Influence" class="headerlink" title="Influence"></a>Influence</h1><p><strong>Keywords:</strong> Social Network</p>
+<p>Some people reach the friend limit on WeChat, while others have only a few friends. A report from a few years ago indicated that 4% of people have over 1000 WeChat friends, while 59% have between 50 and 500 friends. So, does having more WeChat friends equate to greater influence?</p>
+<p>In networks, there’s a concept called “centrality,” which measures a node’s importance within a network. Centrality can be calculated in several ways, but the core idea is to look at the node’s connections. In other words, in a social circle, your value is not determined by you but by how those around you perceive you.</p>
+<p>The three most common methods for calculating centrality are degree centrality, betweenness centrality, and closeness centrality.</p>
+<p>Degree centrality is intuitive—the more connections, the higher the degree centrality:</p>
+<p><img src="https://xsearchlogo.oss-us-west-1.aliyuncs.com/%25E5%25BA%25A6%25E4%25B8%25AD%25E5%25BF%2583%25E6%2580%25A7.jpg" alt="Degree Centrality.jpg"></p>
+<p>Betweenness centrality is different. It measures the “key intermediary”:</p>
+<p>\[ g(v) &#x3D; \sum_{s \neq v \neq t} \frac{\sigma_{s t}(v)}{\sigma_{s t}} \]</p>
+<p>where \( \sigma_{s t} \) represents the total number of shortest paths between nodes \( s \) and \( t \), and \( \sigma_{s t}(v) \) represents the number of those paths that pass through \( v \).</p>
+<p><img src="https://xsearchlogo.oss-us-west-1.aliyuncs.com/image%205.png" alt="image.png"></p>
+<p>This means that besides the number of links, another dimension for measuring a node’s importance emphasizes a node’s intermediary role within the network. It evaluates whether information or resources among other people in the network must necessarily pass through you.</p>
+<p>In social circles, instead of adding thousands of friends, it may be more effective to become a “key person” in an intersectional field, acting as a bridge between two or more domains.</p>
+<p>Closeness centrality resembles geometric centrality. It’s calculated based on the shortest path between all node pairs, as well as the sum of distances from each node to all others. This value is then inverted to determine the node’s closeness centrality score:</p>
+<p>\[ C(u) &#x3D; \frac{1}{\sum_{v-1}^{n-1} d(u, v)} \]</p>
+<p>This means that if a node has very short shortest-path distances to other nodes, its closeness centrality is high.</p>
+<p>In an organization with a flat reporting structure, the boss would have high closeness centrality, as they are near every node. Conversely, adding layers and departments reduces this value—one reason why NVIDIA’s CEO wants to hear as many reports as possible.</p>
+<p>As for us, it’s challenging to change an entire network structure to make oneself the geometric center. A more achievable strategy might be to pursue a high betweenness centrality score by becoming a “key intermediary” in overlapping fields.</p>
+<h1 id="Path-Dependence"><a href="#Path-Dependence" class="headerlink" title="Path Dependence"></a>Path Dependence</h1><p><strong>Keywords:</strong> Stationarity</p>
+<p>In a box with black and white balls, the more you draw, the better you can estimate their distribution. This is classical probability from centuries ago.</p>
+<p>However, modern mathematics reveals the concept of stationarity. Imagine if, after each draw, a machine in the box produces or destroys black and white balls at random. Regardless of how many draws are taken, you can never estimate the distribution of balls in the box.</p>
+<p>This concept tells us not to rely on “path dependence” in life or trust any calm surface. Real life is far trickier than a ball-drawing game—draw 100 times for white balls, and next might be a golden egg or even a python.</p>
+<p>Jean-Manuel Rozan, founder of DeepL, once worked as a banker. He wrote: “I often played tennis with George Soros on Long Island and sometimes talked about the financial market. One weekend, Soros expressed his deep bearish view, explaining it with complex reasoning that I couldn’t follow. Soros had clearly shorted the market.”</p>
+<p>A few days later, the market surged. Concerned, I asked him if he lost money. “We made a fortune,” he said. “I changed my mind and took a long position.”</p>
+<p>True speculators like Soros are unique—they lack path dependence and treat each day as a blank slate. They never assume that the next draw will be a black ball just because the previous one was.</p>
+<p>This approach inspired Rozan to shift from finance to AI, founding Qwant and later DeepL.</p>
+<p>Many people hold on to their beliefs until they reach the grave.</p>
+<h1 id="Asymmetric-Opportunities"><a href="#Asymmetric-Opportunities" class="headerlink" title="Asymmetric Opportunities"></a>Asymmetric Opportunities</h1><p><strong>Keywords:</strong> Skewness</p>
+<p>There is often debate over bull and bear markets. A bull market is when most stocks likely rise, while a bear market sees most stocks likely fall.</p>
+<p>But a bull market doesn’t necessarily mean buying is optimal, because opportunities are often asymmetric.</p>
+<p>Consider the Peso Problem, a classic issue in economics. The Argentinian Peso remained stable against the dollar for a long time, but historically experienced occasional sharp devaluations.</p>
+<p><img src="https://xsearchlogo.oss-us-west-1.aliyuncs.com/image%206.png" alt="image.png"></p>
+<p>A skilled trader repeatedly trading Pesos might earn steady small gains. But if leverage is high, a sudden fluctuation could be devastating, as stable periods and major swings are asymmetric.</p>
+<p>Returning to the bull vs. bear market, a great trader might short a bull market due to these asymmetries. Although the market has a 70% chance of rising by 1%, there’s a 10% chance of a 10% drop. A great trader will profit from betting on rare events, incurring small losses but ultimately winning big.</p>
+<p>This asymmetry is why most retail investors lose money in bull markets. Although Bitcoin’s price has surged to $60,000, most speculators lose. They may profit for weeks but eventually capitulate during an unexpected crash.</p>
+<p>Another asymmetric opportunity is right before you—adding me on WeChat. You’ll spend only a few minutes, but this small time investment could yield significant returns.</p>
+<p><img src="https://xsearchlogo.oss-us-west-1.aliyuncs.com/IMG_6394.jpeg" alt="IMG_6394.jpeg"></p>
+
+            </div>
+
+            <!-- Post Comments -->
+            
+    <!-- 使用 DISQUS_CLICK -->
+<div id="disqus-comment">
+    <div id="disqus_thread"></div>
+
+<!-- add animation -->
+<style>
+	.disqus_click_btn {
+            line-height: 30px;
+            margin: 0;
+            min-width: 50px;
+            padding: 0 14px;
+            display: inline-block;
+            font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+            font-size: 14px;
+            font-weight: 400;
+            text-transform: uppercase;
+            letter-spacing: 0;
+            overflow: hidden;
+            will-change: box-shadow;
+            transition: box-shadow .2s cubic-bezier(.4, 0, 1, 1), background-color .2s cubic-bezier(.4, 0, .2, 1), color .2s cubic-bezier(.4, 0, .2, 1);
+            outline: 0;
+            cursor: pointer;
+            text-decoration: none;
+            text-align: center;
+            vertical-align: middle;
+            border: 0;
+            background: rgba(158, 158, 158, .2);
+            box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14), 0 3px 1px -2px rgba(0, 0, 0, .2), 0 1px 5px 0 rgba(0, 0, 0, .12);
+            color: #fff;
+            background-color: #7EC0EE;
+            text-shadow: 0
+        }
+</style>
+	
+<div class="btn_click_load" id="disqus_bt"> 
+    <button class="disqus_click_btn">点击查看评论</button>
+</div>
+
+<!--
+<script type="text/javascript">
+$('.btn_click_load').click(function() {
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = 'lee'; // required: replace example with your forum shortname
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+
+    document.getElementById('disqus_bt').style.display = "none";
+});
+</script>
+-->
+<script type="text/javascript">
+    var disqus_config = function () {
+        this.page.url = 'https://li_haor.gitee.io/2024/10/25/life_choice/';  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = 'https://li_haor.gitee.io/2024/10/25/life_choice/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+</script>
+
+<script type="text/javascript">
+    $('.btn_click_load').click(function() {  //click to load comments
+        (function() { // DON'T EDIT BELOW THIS LINE
+            var d = document;
+            var s = d.createElement('script');
+            s.src = '//lee.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', + new Date());
+            (d.head || d.body).appendChild(s);
+        })();
+        $('.btn_click_load').css('display','none');
+    });
+</script>
+</div>
+<style>
+    #disqus-comment{
+        background-color: #eee;
+        padding: 2pc;
+    }
+</style>
+
+
+        </div>
+        <!-- Copyright 版权 start -->
+                <div id="copyright">
+            <ul>
+                <li>&copy;Powered By <a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/" style="border-bottom: none;">hexo</a></li>
+                <li>Author  <a target="_blank" rel="noopener" href="https://github.com/haoruilee" style="border-bottom: none;">haoruilee</a></li>
+				<li><a target="_blank" rel="noopener" href="https://beian.miit.gov.cn/" style="border-bottom: none;">苏ICP备2020050362号</a></li>
+            </ul>
+            
+				<span id="busuanzi_container_site_pv"> 2024 </span> 
+			
+        </div>
+    </div>
+</body>
+
+
+
+ 	
+</html>
