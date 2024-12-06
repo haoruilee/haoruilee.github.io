@@ -1,0 +1,286 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+	<link rel="bookmark"  type="image/x-icon"  href="/img/logo_miccall.webp"/>
+	<link rel="shortcut icon" href="/img/logo_miccall.webp">
+	
+			    <title>
+    Haorui Li
+    </title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="/css/mic_main.css" />
+    <link rel="stylesheet" href="/css/dropdownMenu.css" />
+    <meta name="keywords" content="haoruilee" />
+    
+    <noscript>
+        <link rel="stylesheet" href="/css/noscript.css" />
+    </noscript>
+    <style type="text/css">
+        body:before {
+          content: ' ';
+          position: fixed;
+          top: 0;
+          background: url('https://i.dawnlab.me/e6a2105d63e4438f288e4ae4d97f53f2.webp') center 0 no-repeat;
+          right: 0;
+          bottom: 0;
+          left: 0;
+          background-size: cover; 
+        }
+    </style>
+
+			    
+  
+
+
+    <script src="https://cdnjs.loli.net/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.loli.net/ajax/libs/jquery.scrollex/0.2.1/jquery.scrollex.min.js"></script>
+    <script src="https://cdnjs.loli.net/ajax/libs/skel/3.0.1/skel.min.js"></script>
+    <script src="/js/util.js"></script>
+    <script src="/js/main.js"></script>
+	
+<meta name="generator" content="Hexo 7.2.0"></head>
+    
+		
+<!-- Layouts -->
+
+
+
+<!--  代码渲染  -->
+<link rel="stylesheet" href="/css/prism_coy.css" />
+<link rel="stylesheet" href="/css/typo.css" />
+<!-- 文章页 -->
+<body class="is-loading">
+    <!-- Wrapper 外包 s-->
+    <div id="wrapper" class="fade-in">
+        <!-- Intro 头部显示 s -->
+        <!-- Intro 头部显示 e -->
+        <!-- Header 头部logo start -->
+        <header id="header">
+    <a href="mailto:haoruili@seu.edu.cn" class="logo">Mail Me for offical  or Chat with me for fun</a>
+</header>
+        <!-- Nav 导航条 start -->
+        <nav id="nav" class="special" >
+            <ul class="menu links" >
+			<!-- Homepage  主页  --> 
+			<li >
+	            <a href="/" rel="nofollow">主页</a>
+	        </li>
+			<!-- categories_name  分类   --> 
+	        
+	        <!-- archives  归档   --> 
+	        
+	        
+		        <!-- Pages 自定义   -->
+		        
+		        <li>
+		            <a href="/life/" title="CV">
+		                CV
+		            </a>
+		        </li>
+		        
+		        <li>
+		            <a href="/tag/" title="Contact">
+		                Contact
+		            </a>
+		        </li>
+		        
+
+
+            </ul>
+            <!-- icons 图标   -->
+			<ul class="icons">
+                    
+                    <li>
+                        <a title="github" href="https://github.com/haoruilee" target="_blank" rel="noopener">
+                            <i class="icon fa fa-github"></i>
+                        </a>
+                    </li>
+                    
+			</ul>
+</nav>
+
+        <div id="main" >
+            <div class ="post_page_title_img" style="height: 25rem;background-image: url(https://i.dawnlab.me/a3e988db210ef45c4b7faecb5d08cffa.png);background-position: center; background-repeat:no-repeat; background-size:cover;-moz-background-size:cover;overflow:hidden;" >
+                <a href="#" style="padding: 4rem 4rem 2rem 4rem ;"><h2 >Paper reading Online Learning</h2></a>
+            </div>
+            <!-- Post -->
+            <div class="typo" style="padding: 3rem;">
+                <h1 id="Online-Learning-From-Incomplete-and-Imbalanced-Data-Streams"><a href="#Online-Learning-From-Incomplete-and-Imbalanced-Data-Streams" class="headerlink" title="Online Learning From Incomplete and Imbalanced Data Streams"></a>Online Learning From Incomplete and Imbalanced Data Streams</h1><p>Interesting online learning paper that solve the whole problem using pure math.</p>
+<p>Nice intro to the whole field.</p>
+<p><a target="_blank" rel="noopener" href="https://ieeexplore.ieee.org/document/10058539">Paper</a></p>
+<h1 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h1><ol>
+<li>For incompelet features: divied x_t to x_t^v (vanished), x_t^c (common), x_t^n (new) , update their weights w_t^v, w_t^c, w_t^n and confidence p_t^c … …</li>
+<li>For imbalanced data streams: use dynamically adjusting param c_t to avoid bias toward the majority class</li>
+<li>For model sparsity: use L1 ball projecting</li>
+</ol>
+<h1 id="Definitions"><a href="#Definitions" class="headerlink" title="Definitions"></a>Definitions</h1><p>Data stream $D&#x3D;\left{\left(x_t, y_t\right) \mid t \in{1,2, \ldots, T}\right}$, $x_t \in \mathbb{R}^{d_t}$ is a vector of $d_t$ dimensions, $y_t \in{-1,+1}$ is the true label of $x_t$. <strong>Each time step you can only observe one pair</strong></p>
+<p>For incomplete data stream D,  define $F_t&#x3D;\left{f_1, f_2, \ldots, f_{d_t}\right}, F_t \in \mathbb{R}^{d_t}$ be the feature set that is carried by $x_t$.<br> Let $U_t&#x3D;\left{F_1 \cup F_2 \cup \cdots \cup F_t\right}, U_t \in \mathbb{R}^{u_t}$ be the universal feature set till iteration $t$. Some $x_t$, the missing feature ratio  $\varphi &#x3D; 1-d_t &#x2F; u_t &gt;0$.</p>
+<h1 id="Solutions-for-Incomplete-Feature-Spaces"><a href="#Solutions-for-Incomplete-Feature-Spaces" class="headerlink" title="Solutions for Incomplete Feature Spaces"></a>Solutions for Incomplete Feature Spaces</h1><p>For imbalanced data stream, define $n_{-}$ as the number of majority class instances of y, $n_{+}$ for minority class. D has $n_{-} \gg n_{+}$.</p>
+<p>Optimize Object:</p>
+<p>$\begin{aligned} &amp; \min <em>{\Phi_1, \ldots, \Phi_T} \frac{1}{T} \sum</em>{t&#x3D;1}^T \ell\left(y_t ; \Phi\left(z_t\right)\right)+\Omega\left(\Phi_t\right),  \text { s.t. } \prod\left(x_t ; \mathbb{R}^c, \mathbb{R}^n\right) \stackrel{\text { i.i.d }}{\sim} z_t,\end{aligned}$</p>
+<p>Here $\Phi\left(z_t\right)&#x3D;w_t \cdot z_t$ represents learner, $w_t$ is learner’s weight, $\ell$ as loss function,  $\Omega$ as regularization term. $z_t$ is the latent representations of $x_t$.</p>
+<p>Define confidence $p_t^c$  on a common feature space  $p_t^c&#x3D;\sum_{i&#x3D;1}^{d_t^c} \frac{h_t^i}{\sum_{j&#x3D;1}^{d_t} h_t^j}$, $h_t^i$ as informativeness of the $i$-th feature, calculate by Var.</p>
+<p>Use hinge loss $\ell_t&#x3D;\ell\left(y_t ; \hat{y}_t\right)&#x3D;\max \left{0,1-y_t\left(p_t^c \cdot w_t^c \cdot x_t^c+p_t^n \cdot w_t^n \cdot x_t^n\right)\right}$.</p>
+<h2 id="Use-KKT-method"><a href="#Use-KKT-method" class="headerlink" title="Use KKT method"></a>Use KKT method</h2><p>To keep model change slightly, use a soft-margin:</p>
+<p>$w_{t+1} &#x3D; \operatorname*{arg,min}_{w : \ell_t \leq \xi} \left( \frac{1}{2} |w - w_t|^2 + C \xi \right) &#x3D;  \underset{\substack{w&#x3D;\left[w^v, w^c, w^n\right]: \<br>\ell_t \leq \xi, \xi \geq 0}}{\arg \min } \frac{1}{2}\left|w^v-w_t^v\right|^2<br> +\frac{1}{2}\left|w^c-w_t^c\right|^2+\frac{1}{2}\left|w^n\right|^2+C \xi<br>$. Here $\xi$ is soft margin.</p>
+<p>Define Lagrangian function</p>
+<p>$$<br>\begin{aligned}<br>L(w, \xi, \tau, \eta)&#x3D; &amp; \frac{1}{2}\left|w^v-w_t^v\right|^2+\frac{1}{2}\left|w^c-w_t^c\right|^2 \<br>&amp; +\frac{1}{2}\left|w^n\right|^2+C \xi+\tau\left(\ell_t-\xi\right)-\eta \xi<br>\end{aligned}<br>$$</p>
+<p>Solve it to get:</p>
+<p>$$<br>\begin{aligned}<br>&amp; w_{t+1}&#x3D;\left[w_{t+1}^v, w_{t+1}^c, w_{t+1}^n\right] \<br>&amp; &#x3D;\left[w_t^v, w_t^c+\min \left{C p_t^c y_t x_t^c, \frac{\ell_t p_t^c y_t x_t^c}{\left(p_t^c\right)^2\left|x_t^c\right|^2+\left(p_t^n\right)^2\left|x_t^n\right|^2}\right}\right. \<br>&amp; \left.\quad \min \left{C p_t^n y_t x_t^n, \frac{\ell_t p_t^n y_t x_t^n}{\left(p_t^c\right)^2\left|x_t^c\right|^2+\left(p_t^n\right)^2\left|x_t^n\right|^2}\right}\right] .<br>\end{aligned}<br>$$</p>
+<h1 id="Solutions-for-Imbalanced-Data-Stream"><a href="#Solutions-for-Imbalanced-Data-Stream" class="headerlink" title="Solutions for Imbalanced Data Stream"></a>Solutions for Imbalanced Data Stream</h1><p>Create a dynamic cost c_t</p>
+<p>$c_t&#x3D;\frac{\theta}{\left(\frac{n_{+}}{n_{-}}\right){\phi\left(y_t\right)}+\left(\frac{n_{-}}{n_{+}}\right){\left(1-\phi\left(y_t\right)\right)}}$ Here $\theta$ is scaling param. $\phi\left(y_t\right)&#x3D; \begin{cases}1, &amp; \text { if } y_t&#x3D;+1 \ 0, &amp; \text { if } y_t&#x3D;-1\end{cases}$</p>
+<p>Apply $c_t$ to loss function, we finnally get:</p>
+<p>$$<br>\begin{aligned}<br>&amp; w_{t+1}&#x3D;\left[w_{t+1}^v, w_{t+1}^c, w_{t+1}^n\right] \<br>&amp; &#x3D;\left[w_t^v, w_t^c+\min \left{C c_t p_t^c y_t x_t^c, \frac{\ell_t p_t^c y_t x_t^c}{\left(p_t^c\right)^2\left|x_t^c\right|^2+\left(p_t^n\right)^2\left|x_t^n\right|^2}\right}\right. \<br>&amp; \left.\quad \min \left{C c_t p_t^n y_t x_t^n, \frac{\ell_t p_t^n y_t x_t^n}{\left(p_t^c\right)^2\left|x_t^c\right|^2+\left(p_t^n\right)^2\left|x_t^n\right|^2}\right}\right]<br>\end{aligned}<br>$$</p>
+<h1 id="Solutions-for-Model-Sparsity"><a href="#Solutions-for-Model-Sparsity" class="headerlink" title="Solutions for Model Sparsity"></a>Solutions for Model Sparsity</h1><p>L1 ball projection, dot product weight and  uncertainty </p>
+<p>$$<br>w_t&#x3D;\min \left{1, \frac{\lambda}{\left\langle w_t \cdot H_t\right\rangle}\right} w_t \quad\left\langle w_t, H_t\right\rangle&#x3D;\sum_{i&#x3D;1}^n w_{t, i} H_{t, i}<br>$$</p>
+<p>$H_t&#x3D;\left[h_t^1, h_t^2, h_t^3, \ldots, h_t^{u_t}\right] \in R^{u_t}$ denotes the relative uncertainty vector of the universal feature space at the $t$ th iteration, which is composed of the informativeness of all the features that have been observed. $\lambda&gt;0$ is a regularization parameter.</p>
+<h1 id="Concepts-Conclusion"><a href="#Concepts-Conclusion" class="headerlink" title="Concepts Conclusion"></a>Concepts Conclusion</h1><h2 id="1-Concept-Drift"><a href="#1-Concept-Drift" class="headerlink" title="1. Concept Drift"></a>1. Concept Drift</h2><ul>
+<li><strong>Definition</strong>: Concept drift refers to the change in data distribution or the target variable over time.</li>
+<li><strong>Explanation</strong>: In online learning, when data evolves, models trained on older data may become outdated. Models need to adapt to changing data distributions.</li>
+</ul>
+<h2 id="2-Online-Learning"><a href="#2-Online-Learning" class="headerlink" title="2. Online Learning"></a>2. Online Learning</h2><ul>
+<li><strong>Definition</strong>: Online learning is a machine learning paradigm where the model learns incrementally from incoming data points, rather than from a fixed dataset.</li>
+<li><strong>Explanation</strong>: Suitable for large, continuous, and evolving data streams. The model updates continuously as new data arrives.</li>
+</ul>
+<h2 id="3-Imbalanced-Dataset"><a href="#3-Imbalanced-Dataset" class="headerlink" title="3. Imbalanced Dataset"></a>3. Imbalanced Dataset</h2><ul>
+<li><strong>Definition</strong>: A dataset where the classes have significantly different numbers of samples.</li>
+<li><strong>Explanation</strong>: In imbalanced datasets, models may favor the majority class, neglecting the minority class. Solutions include weighted loss functions and resampling techniques.</li>
+</ul>
+<h2 id="4-Hinge-Loss"><a href="#4-Hinge-Loss" class="headerlink" title="4. Hinge Loss"></a>4. Hinge Loss</h2><ul>
+<li><strong>Definition</strong>: A loss function used in classification tasks, especially in Support Vector Machines (SVM), that encourages correct classification with a margin.</li>
+<li><strong>Formula</strong>:<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">L(y, <span class="keyword">\hat</span>&#123;y&#125;) = <span class="keyword">\max</span>(0, 1 - y <span class="keyword">\hat</span>&#123;y&#125;)</span><br></pre></td></tr></table></figure></li>
+<li><strong>Explanation</strong>: Ensures that samples are correctly classified and also that the distance to the decision boundary is maximized. It penalizes misclassifications and small margins.</li>
+</ul>
+<h2 id="5-Lagrange-Multipliers"><a href="#5-Lagrange-Multipliers" class="headerlink" title="5. Lagrange Multipliers"></a>5. Lagrange Multipliers</h2><ul>
+<li><strong>Definition</strong>: A method used to solve optimization problems with constraints by incorporating the constraints into the objective function.</li>
+<li><strong>Formula</strong>: <figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">\mathcal</span>&#123;L&#125;(x, <span class="keyword">\lambda</span>) = f(x) + <span class="keyword">\lambda</span> g(x)</span><br></pre></td></tr></table></figure></li>
+<li><strong>Explanation</strong>: By introducing a new term (Lagrange multiplier ( \lambda )), it turns a constrained optimization problem into an unconstrained one, making it easier to solve.</li>
+</ul>
+<h2 id="6-Hessian-Matrix"><a href="#6-Hessian-Matrix" class="headerlink" title="6. Hessian Matrix"></a>6. Hessian Matrix</h2><ul>
+<li><strong>Definition</strong>: A matrix of second-order partial derivatives that describes the curvature of a function.</li>
+<li><strong>Formula</strong>:<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">H(f) = <span class="keyword">\left</span>[ <span class="keyword">\frac</span>&#123;<span class="keyword">\partial</span><span class="built_in">^</span>2 f&#125;&#123;<span class="keyword">\partial</span> x<span class="built_in">_</span>i <span class="keyword">\partial</span> x<span class="built_in">_</span>j&#125; <span class="keyword">\right</span>]</span><br></pre></td></tr></table></figure></li>
+<li><strong>Explanation</strong>: Used to understand the shape of a function. A positive definite Hessian indicates a local minimum, while a negative definite Hessian indicates a local maximum.</li>
+</ul>
+<h2 id="7-G-Mean-Geometric-Mean"><a href="#7-G-Mean-Geometric-Mean" class="headerlink" title="7. G-Mean (Geometric Mean)"></a>7. G-Mean (Geometric Mean)</h2><ul>
+<li><strong>Definition</strong>: A metric used to evaluate classification performance, particularly in imbalanced datasets. It is the geometric mean of sensitivity and specificity.</li>
+<li><strong>Formula</strong>:<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">\text</span>&#123;G-Mean&#125; = <span class="keyword">\sqrt</span>&#123;<span class="keyword">\text</span>&#123;Sensitivity&#125; <span class="keyword">\times</span> <span class="keyword">\text</span>&#123;Specificity&#125;&#125;</span><br></pre></td></tr></table></figure></li>
+<li><strong>Explanation</strong>: G-Mean balances performance on both positive and negative classes, making it ideal for imbalanced data where both types of classification errors are important.</li>
+</ul>
+<h2 id="8-Dynamic-Cost"><a href="#8-Dynamic-Cost" class="headerlink" title="8. Dynamic Cost"></a>8. Dynamic Cost</h2><ul>
+<li><strong>Definition</strong>: A cost that is adjusted dynamically based on the distribution of classes in the data stream.</li>
+<li><strong>Formula</strong>:<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">c<span class="built_in">_</span>t = <span class="keyword">\frac</span>&#123;n<span class="built_in">_</span>+&#125;&#123;n<span class="built_in">_</span>-&#125; <span class="keyword">\phi</span>(y<span class="built_in">_</span>t)</span><br></pre></td></tr></table></figure></li>
+<li><strong>Explanation</strong>: The dynamic cost is used to adjust the weight of different classes during learning. For imbalanced data, the cost for minority class samples is increased to ensure they receive adequate attention.</li>
+</ul>
+<h2 id="9-Feature-Evolvable"><a href="#9-Feature-Evolvable" class="headerlink" title="9. Feature Evolvable"></a>9. Feature Evolvable</h2><ul>
+<li><strong>Definition</strong>: The concept that the feature space may evolve over time, with new features emerging or old features becoming irrelevant.</li>
+<li><strong>Explanation</strong>: In real-world scenarios, feature distributions may change, requiring the model to adapt and select the most relevant features dynamically.</li>
+</ul>
+
+            </div>
+
+            <!-- Post Comments -->
+            
+    <!-- 使用 DISQUS_CLICK -->
+<div id="disqus-comment">
+    <div id="disqus_thread"></div>
+
+<!-- add animation -->
+<style>
+	.disqus_click_btn {
+            line-height: 30px;
+            margin: 0;
+            min-width: 50px;
+            padding: 0 14px;
+            display: inline-block;
+            font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+            font-size: 14px;
+            font-weight: 400;
+            text-transform: uppercase;
+            letter-spacing: 0;
+            overflow: hidden;
+            will-change: box-shadow;
+            transition: box-shadow .2s cubic-bezier(.4, 0, 1, 1), background-color .2s cubic-bezier(.4, 0, .2, 1), color .2s cubic-bezier(.4, 0, .2, 1);
+            outline: 0;
+            cursor: pointer;
+            text-decoration: none;
+            text-align: center;
+            vertical-align: middle;
+            border: 0;
+            background: rgba(158, 158, 158, .2);
+            box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14), 0 3px 1px -2px rgba(0, 0, 0, .2), 0 1px 5px 0 rgba(0, 0, 0, .12);
+            color: #fff;
+            background-color: #7EC0EE;
+            text-shadow: 0
+        }
+</style>
+	
+<div class="btn_click_load" id="disqus_bt"> 
+    <button class="disqus_click_btn">点击查看评论</button>
+</div>
+
+<!--
+<script type="text/javascript">
+$('.btn_click_load').click(function() {
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = 'lee'; // required: replace example with your forum shortname
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+
+    document.getElementById('disqus_bt').style.display = "none";
+});
+</script>
+-->
+<script type="text/javascript">
+    var disqus_config = function () {
+        this.page.url = 'https://li_haor.gitee.io/2024/12/08/paper_reading/';  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = 'https://li_haor.gitee.io/2024/12/08/paper_reading/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+</script>
+
+<script type="text/javascript">
+    $('.btn_click_load').click(function() {  //click to load comments
+        (function() { // DON'T EDIT BELOW THIS LINE
+            var d = document;
+            var s = d.createElement('script');
+            s.src = '//lee.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', + new Date());
+            (d.head || d.body).appendChild(s);
+        })();
+        $('.btn_click_load').css('display','none');
+    });
+</script>
+</div>
+<style>
+    #disqus-comment{
+        background-color: #eee;
+        padding: 2pc;
+    }
+</style>
+
+
+        </div>
+        <!-- Copyright 版权 start -->
+                <div id="copyright">
+            <ul>
+                <li>&copy;Powered By <a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/" style="border-bottom: none;">hexo</a></li>
+                <li>Author  <a target="_blank" rel="noopener" href="https://github.com/haoruilee" style="border-bottom: none;">haoruilee</a></li>
+				<li><a target="_blank" rel="noopener" href="https://beian.miit.gov.cn/" style="border-bottom: none;">苏ICP备2020050362号</a></li>
+            </ul>
+            
+				<span id="busuanzi_container_site_pv"> 2024 </span> 
+			
+        </div>
+    </div>
+</body>
+
+
+
+ 	
+</html>
