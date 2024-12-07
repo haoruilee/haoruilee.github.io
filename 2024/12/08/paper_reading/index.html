@@ -40,7 +40,7 @@
     <script src="/js/util.js"></script>
     <script src="/js/main.js"></script>
 	
-<meta name="generator" content="Hexo 7.2.0"></head>
+<meta name="generator" content="Hexo 7.2.0"><link href="https://cdn.bootcss.com/KaTeX/0.11.1/katex.min.css" rel="stylesheet" /></head>
     
 		
 <!-- Layouts -->
@@ -150,27 +150,27 @@
 </ul>
 <h2 id="4-Hinge-Loss"><a href="#4-Hinge-Loss" class="headerlink" title="4. Hinge Loss"></a>4. Hinge Loss</h2><ul>
 <li><strong>Definition</strong>: A loss function used in classification tasks, especially in Support Vector Machines (SVM), that encourages correct classification with a margin.</li>
-<li><strong>Formula</strong>:<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">L(y, <span class="keyword">\hat</span>&#123;y&#125;) = <span class="keyword">\max</span>(0, 1 - y <span class="keyword">\hat</span>&#123;y&#125;)</span><br></pre></td></tr></table></figure></li>
+<li><strong>Formula</strong>:<br>$$<br>L(y, \hat{y}) &#x3D; \max(0, 1 - y \hat{y})<br>$$</li>
 <li><strong>Explanation</strong>: Ensures that samples are correctly classified and also that the distance to the decision boundary is maximized. It penalizes misclassifications and small margins.</li>
 </ul>
 <h2 id="5-Lagrange-Multipliers"><a href="#5-Lagrange-Multipliers" class="headerlink" title="5. Lagrange Multipliers"></a>5. Lagrange Multipliers</h2><ul>
 <li><strong>Definition</strong>: A method used to solve optimization problems with constraints by incorporating the constraints into the objective function.</li>
-<li><strong>Formula</strong>: <figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">\mathcal</span>&#123;L&#125;(x, <span class="keyword">\lambda</span>) = f(x) + <span class="keyword">\lambda</span> g(x)</span><br></pre></td></tr></table></figure></li>
+<li><strong>Formula</strong>:<br>$$<br>\mathcal{L}(x, \lambda) &#x3D; f(x) + \lambda g(x)<br>$$</li>
 <li><strong>Explanation</strong>: By introducing a new term (Lagrange multiplier ( \lambda )), it turns a constrained optimization problem into an unconstrained one, making it easier to solve.</li>
 </ul>
 <h2 id="6-Hessian-Matrix"><a href="#6-Hessian-Matrix" class="headerlink" title="6. Hessian Matrix"></a>6. Hessian Matrix</h2><ul>
 <li><strong>Definition</strong>: A matrix of second-order partial derivatives that describes the curvature of a function.</li>
-<li><strong>Formula</strong>:<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">H(f) = <span class="keyword">\left</span>[ <span class="keyword">\frac</span>&#123;<span class="keyword">\partial</span><span class="built_in">^</span>2 f&#125;&#123;<span class="keyword">\partial</span> x<span class="built_in">_</span>i <span class="keyword">\partial</span> x<span class="built_in">_</span>j&#125; <span class="keyword">\right</span>]</span><br></pre></td></tr></table></figure></li>
+<li><strong>Formula</strong>:<br>$$<br>H(f) &#x3D; \left[ \frac{\partial^2 f}{\partial x_i \partial x_j} \right]<br>$$</li>
 <li><strong>Explanation</strong>: Used to understand the shape of a function. A positive definite Hessian indicates a local minimum, while a negative definite Hessian indicates a local maximum.</li>
 </ul>
 <h2 id="7-G-Mean-Geometric-Mean"><a href="#7-G-Mean-Geometric-Mean" class="headerlink" title="7. G-Mean (Geometric Mean)"></a>7. G-Mean (Geometric Mean)</h2><ul>
 <li><strong>Definition</strong>: A metric used to evaluate classification performance, particularly in imbalanced datasets. It is the geometric mean of sensitivity and specificity.</li>
-<li><strong>Formula</strong>:<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">\text</span>&#123;G-Mean&#125; = <span class="keyword">\sqrt</span>&#123;<span class="keyword">\text</span>&#123;Sensitivity&#125; <span class="keyword">\times</span> <span class="keyword">\text</span>&#123;Specificity&#125;&#125;</span><br></pre></td></tr></table></figure></li>
+<li><strong>Formula</strong>:<br>$$<br>\text{G-Mean} &#x3D; \sqrt{\text{Sensitivity} \times \text{Specificity}}<br>$$</li>
 <li><strong>Explanation</strong>: G-Mean balances performance on both positive and negative classes, making it ideal for imbalanced data where both types of classification errors are important.</li>
 </ul>
 <h2 id="8-Dynamic-Cost"><a href="#8-Dynamic-Cost" class="headerlink" title="8. Dynamic Cost"></a>8. Dynamic Cost</h2><ul>
 <li><strong>Definition</strong>: A cost that is adjusted dynamically based on the distribution of classes in the data stream.</li>
-<li><strong>Formula</strong>:<figure class="highlight latex"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">c<span class="built_in">_</span>t = <span class="keyword">\frac</span>&#123;n<span class="built_in">_</span>+&#125;&#123;n<span class="built_in">_</span>-&#125; <span class="keyword">\phi</span>(y<span class="built_in">_</span>t)</span><br></pre></td></tr></table></figure></li>
+<li><strong>Formula</strong>:<br>$$<br>c_t &#x3D; \frac{n_+}{n_-} \phi(y_t)<br>$$</li>
 <li><strong>Explanation</strong>: The dynamic cost is used to adjust the weight of different classes during learning. For imbalanced data, the cost for minority class samples is increased to ensure they receive adequate attention.</li>
 </ul>
 <h2 id="9-Feature-Evolvable"><a href="#9-Feature-Evolvable" class="headerlink" title="9. Feature Evolvable"></a>9. Feature Evolvable</h2><ul>
