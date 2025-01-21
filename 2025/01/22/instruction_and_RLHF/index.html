@@ -32,6 +32,26 @@
 
 			    
   
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script async type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
 
 
     <script src="https://cdnjs.loli.net/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
@@ -124,14 +144,14 @@
 <li>Explicit vs. Implicit Models  </li>
 <li>Pointwise vs. Pairwise Preference Models  </li>
 <li>Response-Level vs. Token-Level Rewards  </li>
-<li>Negative Preference Optimization  </li>
+<li>Negative Preference Optimization</li>
 </ul>
 </li>
 <li><p><strong>Feedback</strong>  </p>
 <ul>
 <li>Preference Feedback vs. Binary Feedback  </li>
 <li>Pairwise vs. Listwise Feedback  </li>
-<li>Human Feedback vs. AI Feedback  </li>
+<li>Human Feedback vs. AI Feedback</li>
 </ul>
 </li>
 <li><p><strong>Reinforcement Learning (RL)</strong>  </p>
@@ -139,13 +159,13 @@
 <li>Reference-Based RL vs. Reference-Free RL  </li>
 <li>Length-Controlled RL  </li>
 <li>Online vs. Offline RL Strategies  </li>
-<li>Subfields of RL Techniques  </li>
+<li>Subfields of RL Techniques</li>
 </ul>
 </li>
 <li><p><strong>Optimization</strong>  </p>
 <ul>
 <li>Iterative (Online) vs. Non-Iterative (Offline) Preference Optimization  </li>
-<li>Separate vs. Combined SFT (Supervised Fine-Tuning) and Alignment  </li>
+<li>Separate vs. Combined SFT (Supervised Fine-Tuning) and Alignment</li>
 </ul>
 </li>
 </ol>
@@ -153,77 +173,80 @@
 <li><strong>RLHF (Reinforcement Learning from Human Feedback):</strong> Aligns LLMs with user intent using human-labeled rewards and policies.  </li>
 <li><strong>RLAIF (Reinforcement Learning from AI Feedback):</strong> Utilizes AI-generated feedback to enhance alignment.  </li>
 <li><strong>Direct Preference Optimization (DPO):</strong> Aligns LLMs by directly optimizing preferences rather than modeling reward signals.  </li>
-<li><strong>Iterative/Online Methods:</strong> Enables dynamic fine-tuning for out-of-distribution tasks.  </li>
+<li><strong>Iterative&#x2F;Online Methods:</strong> Enables dynamic fine-tuning for out-of-distribution tasks.</li>
 </ul>
 <h3 id="Emerging-Trends"><a href="#Emerging-Trends" class="headerlink" title="Emerging Trends:"></a>Emerging Trends:</h3><ul>
 <li><strong>Token-Level Optimization</strong> for granular alignment.  </li>
 <li><strong>Binary Feedback Systems</strong> for scalability.  </li>
 <li><strong>Nash Learning Approaches</strong> to address inconsistencies in pairwise preferences.  </li>
-<li><strong>Combined SFT and Alignment</strong> to improve efficiency while mitigating catastrophic forgetting.  </li>
+<li><strong>Combined SFT and Alignment</strong> to improve efficiency while mitigating catastrophic forgetting.</li>
 </ul>
 <h1 id="Let’s-start-from-RL"><a href="#Let’s-start-from-RL" class="headerlink" title="Let’s start from RL"></a>Let’s start from RL</h1><p><em>Skipped all inference here</em></p>
 <p><strong>TL; DR</strong>: In RL, the Actor-Critic framework combines policy-based and value-based methods, where the actor updates the policy by choosing actions, and the critic evaluates the actions by estimating the value function, helping to reduce variance and improve learning efficiency.</p>
 <h3 id="Key-Concepts-and-Notations"><a href="#Key-Concepts-and-Notations" class="headerlink" title="Key Concepts and Notations"></a>Key Concepts and Notations</h3><ul>
-<li><strong>State ($s_t$)</strong>: The environment’s state at time step t.</li>
-<li><strong>Action ($a_t$)</strong>: The action taken by the agent at time step t.</li>
-<li><strong>Policy ($\pi_\theta(a_t | s_t)$)</strong>: A parameterized probability distribution over actions a_t given state s_t.</li>
-<li><strong>Reward ($r_t$)</strong>: The scalar feedback received after taking action a_t in state s_t.</li>
+<li><p><strong>State ($s_t$)</strong>: The environment’s state at time step t.</p>
+</li>
+<li><p><strong>Action ($a_t$)</strong>: The action taken by the agent at time step t.</p>
+</li>
+<li><p><strong>Policy ($\pi_\theta(a_t | s_t)$)</strong>: A parameterized probability distribution over actions a_t given state s_t.</p>
+</li>
+<li><p><strong>Reward ($r_t$)</strong>: The scalar feedback received after taking action a_t in state s_t.</p>
+</li>
 <li><p><strong>Return ($V_t$)</strong>: The cumulative reward starting from time step t:</p>
-<script type="math/tex; mode=display">
-V_t = \sum_{k=0}^\infty \gamma^k r_{t+k+1}</script><p>where $\gamma \in [0, 1)$ is the discount factor.</p>
+<p>$$<br>V_t &#x3D; \sum_{k&#x3D;0}^\infty \gamma^k r_{t+k+1}<br>$$</p>
+<p>where $\gamma \in [0, 1)$ is the discount factor.</p>
 </li>
 </ul>
 <hr>
 <h3 id="Objective-Function"><a href="#Objective-Function" class="headerlink" title="Objective Function"></a>Objective Function</h3><p>The goal is to <strong>maximize the expected cumulative reward</strong>:</p>
-<script type="math/tex; mode=display">
-J(\theta) = \mathbb{E}_{\pi_\theta} \left[ V_t \right] = \mathbb{E}_{\pi_\theta} \left[ \sum_{t=0}^\infty r_t \right]</script><p>Using the <strong>policy gradient theorem</strong>, the gradient of $J(\theta)$ is:</p>
-<script type="math/tex; mode=display">
-\nabla_\theta J(\theta) = \mathbb{E}_{\tau \sim \pi_\theta} \left[ \sum_{t=0}^\infty \nabla_\theta \log \pi_\theta(a_t | s_t) V_t \right]</script><hr>
+<p>$$<br>J(\theta) &#x3D; \mathbb{E}<em>{\pi_\theta} \left[ V_t \right] &#x3D; \mathbb{E}</em>{\pi_\theta} \left[ \sum_{t&#x3D;0}^\infty r_t \right]<br>$$</p>
+<p>Using the <strong>policy gradient theorem</strong>, the gradient of $J(\theta)$ is:</p>
+<p>$$<br>\nabla_\theta J(\theta) &#x3D; \mathbb{E}<em>{\tau \sim \pi_\theta} \left[ \sum</em>{t&#x3D;0}^\infty \nabla_\theta \log \pi_\theta(a_t | s_t) V_t \right]<br>$$</p>
+<hr>
 <h3 id="Advantage-Function"><a href="#Advantage-Function" class="headerlink" title="Advantage Function"></a>Advantage Function</h3><p>To reduce variance, the <strong>advantage function</strong> $A_t$ is often used instead of $V_t$:</p>
-<script type="math/tex; mode=display">
-A_t = Q^\pi(s_t, a_t) - V^\pi(s_t)</script><p>Definitions:</p>
+<p>$$<br>A_t &#x3D; Q^\pi(s_t, a_t) - V^\pi(s_t)<br>$$</p>
+<p>Definitions:</p>
 <ul>
 <li><strong>State-value function ($V^\pi(s_t)$)</strong>:</li>
 </ul>
-<script type="math/tex; mode=display">
-V^\pi(s_t) = \mathbb{E}_{a_t \sim \pi_\theta} \left[ V_t \mid s_t \right]</script><ul>
+<p>$$<br>V^\pi(s_t) &#x3D; \mathbb{E}_{a_t \sim \pi_\theta} \left[ V_t \mid s_t \right]<br>$$</p>
+<ul>
 <li><strong>Action-value function ($Q^\pi(s_t, a_t)$)</strong>:</li>
 </ul>
-<script type="math/tex; mode=display">
-Q^\pi(s_t, a_t) = \mathbb{E}_{\tau \sim \pi_\theta} \left[ V_t \mid s_t, a_t \right]</script><p>Using the advantage function, the gradient becomes:</p>
-<script type="math/tex; mode=display">
-\nabla_\theta J(\theta) = \mathbb{E}_{\tau \sim \pi_\theta} \left[ \sum_{t=0}^\infty \nabla_\theta \log \pi_\theta(a_t | s_t) A^\pi(s_t, a_t) \right]</script><hr>
+<p>$$<br>Q^\pi(s_t, a_t) &#x3D; \mathbb{E}_{\tau \sim \pi_\theta} \left[ V_t \mid s_t, a_t \right]<br>$$</p>
+<p>Using the advantage function, the gradient becomes:</p>
+<p>$$<br>\nabla_\theta J(\theta) &#x3D; \mathbb{E}<em>{\tau \sim \pi_\theta} \left[ \sum</em>{t&#x3D;0}^\infty \nabla_\theta \log \pi_\theta(a_t | s_t) A^\pi(s_t, a_t) \right]<br>$$</p>
+<hr>
 <h3 id="Actor-Critic-Framework"><a href="#Actor-Critic-Framework" class="headerlink" title="Actor-Critic Framework"></a>Actor-Critic Framework</h3><p>The <strong>Actor-Critic</strong> method combines policy-based and value-based approaches:</p>
 <ul>
 <li><strong>Actor</strong>: Represents the policy $\pi_\theta(a_t | s_t)$.</li>
 <li><strong>Critic</strong>: Estimates the value function $V^\pi(s_t)$ or $Q^\pi(s_t, a_t)$.</li>
 </ul>
 <p>The critic minimizes the <strong>Temporal Difference (TD) error</strong>:</p>
-<script type="math/tex; mode=display">
-\delta_t = r_t + \gamma V^\pi(s_{t+1}) - V^\pi(s_t)</script><p>The actor updates the policy using:</p>
-<script type="math/tex; mode=display">
-\nabla_\theta J(\theta) = \mathbb{E}_{\tau \sim \pi_\theta} \left[ \nabla_\theta \log \pi_\theta(a_t | s_t) \delta_t \right]</script><hr>
+<p>$$<br>\delta_t &#x3D; r_t + \gamma V^\pi(s_{t+1}) - V^\pi(s_t)<br>$$</p>
+<p>The actor updates the policy using:</p>
+<p>$$<br>\nabla_\theta J(\theta) &#x3D; \mathbb{E}_{\tau \sim \pi_\theta} \left[ \nabla_\theta \log \pi_\theta(a_t | s_t) \delta_t \right]<br>$$</p>
+<hr>
 <h3 id="Generalized-Advantage-Estimation-GAE"><a href="#Generalized-Advantage-Estimation-GAE" class="headerlink" title="Generalized Advantage Estimation (GAE)"></a>Generalized Advantage Estimation (GAE)</h3><p>The <strong>Generalized Advantage Estimation (GAE)</strong> smooths the advantage function for better bias-variance trade-off:</p>
-<script type="math/tex; mode=display">
-A_t^\text{GAE} = \sum_{k=0}^\infty (\gamma \lambda)^k \delta_{t+k}</script><p>where:</p>
+<p>$$<br>A_t^\text{GAE} &#x3D; \sum_{k&#x3D;0}^\infty (\gamma \lambda)^k \delta_{t+k}<br>$$</p>
+<p>where:</p>
 <ul>
 <li>$\lambda \in [0, 1]$: A smoothing parameter.</li>
-<li>$\delta<em>t = r_t + \gamma V^\pi(s</em>{t+1}) - V^\pi(s_t)$.</li>
+<li>$\delta_t &#x3D; r_t + \gamma V^\pi(s_{t+1}) - V^\pi(s_t)$.</li>
 </ul>
 <hr>
 <h3 id="Algorithm-Summary-Vanilla-Policy-Gradient"><a href="#Algorithm-Summary-Vanilla-Policy-Gradient" class="headerlink" title="Algorithm Summary (Vanilla Policy Gradient)"></a>Algorithm Summary (Vanilla Policy Gradient)</h3><ol>
-<li><strong>Sample Trajectories</strong>: Collect N trajectories ${\tau<em>i}</em>{i=1}^N$ using the current policy $\pi_\theta$.</li>
+<li><strong>Sample Trajectories</strong>: Collect N trajectories ${\tau_i}_{i&#x3D;1}^N$ using the current policy $\pi_\theta$.</li>
 <li><strong>Estimate Rewards</strong>: Compute $V_t$ or $A_t$ for each time step.</li>
 <li><strong>Compute Policy Gradient</strong>:</li>
 </ol>
-<script type="math/tex; mode=display">
-\nabla_\theta J(\theta) = \frac{1}{N} \sum_{i=1}^N \sum_{t=0}^{T_i} \nabla_\theta \log \pi_\theta(a_t^i | s_t^i) A_t^i</script><ol>
+<p>$$<br>\nabla_\theta J(\theta) &#x3D; \frac{1}{N} \sum_{i&#x3D;1}^N \sum_{t&#x3D;0}^{T_i} \nabla_\theta \log \pi_\theta(a_t^i | s_t^i) A_t^i<br>$$</p>
+<ol start="4">
 <li><strong>Update Policy</strong>:</li>
 </ol>
-<script type="math/tex; mode=display">
-\theta \gets \theta + \alpha \nabla_\theta J(\theta)</script><p>where $\alpha$ is the learning rate.</p>
-<h3 id="Comparison-Policy-based-vs-Value-based-RL"><a href="#Comparison-Policy-based-vs-Value-based-RL" class="headerlink" title="Comparison: Policy-based vs. Value-based RL"></a>Comparison: Policy-based vs. Value-based RL</h3><div class="table-container">
-<table>
+<p>$$<br>\theta \gets \theta + \alpha \nabla_\theta J(\theta)<br>$$</p>
+<p>where $\alpha$ is the learning rate.</p>
+<h3 id="Comparison-Policy-based-vs-Value-based-RL"><a href="#Comparison-Policy-based-vs-Value-based-RL" class="headerlink" title="Comparison: Policy-based vs. Value-based RL"></a>Comparison: Policy-based vs. Value-based RL</h3><table>
 <thead>
 <tr>
 <th><strong>Aspect</strong></th>
@@ -231,12 +254,10 @@ A_t^\text{GAE} = \sum_{k=0}^\infty (\gamma \lambda)^k \delta_{t+k}</script><p>wh
 <th><strong>Value-based RL</strong></th>
 </tr>
 </thead>
-<tbody>
-<tr>
+<tbody><tr>
 <td><strong>Core Objective</strong></td>
 <td>Directly learns the policy $\pi_\theta(a</td>
 <td>s)$.</td>
-<td>Learns value functions $Q^\pi(s, a)$ or $V^\pi(s)$.</td>
 </tr>
 <tr>
 <td><strong>Strategy</strong></td>
@@ -268,9 +289,7 @@ A_t^\text{GAE} = \sum_{k=0}^\infty (\gamma \lambda)^k \delta_{t+k}</script><p>wh
 <td>REINFORCE, PPO, TRPO, Actor-Critic.</td>
 <td>Q-Learning, DQN, SARSA.</td>
 </tr>
-</tbody>
-</table>
-</div>
+</tbody></table>
 <h1 id="From-Actor-Critic-to-LLM-RLHF"><a href="#From-Actor-Critic-to-LLM-RLHF" class="headerlink" title="From Actor-Critic to LLM RLHF"></a>From Actor-Critic to LLM RLHF</h1><p><img src="https://i.dawnlab.me/9f3e63e25cda387daeea097e6b0d8228.png" alt="9f3e63e25cda387daeea097e6b0d8228.png"></p>
 <p>So, how do we map this RL process to NLP tasks? In other words, what do the agent, environment, state, action, etc., represent in the context of NLP tasks?</p>
 <p>Recall the purpose of applying reinforcement learning (RLHF) to NLP tasks: we want to provide a model with a prompt, and the model should generate responses that align with human preferences. Now, recall the reasoning process of the GPT model: at each step, the model generates a single token, meaning tokens are produced one after another, with the current token relying on the previous token.</p>
@@ -292,20 +311,20 @@ A_t^\text{GAE} = \sum_{k=0}^\infty (\gamma \lambda)^k \delta_{t+k}</script><p>wh
 <li><strong>Reference Model</strong>: The reference model is used to impose constraints on the language model during the RLHF phase to prevent it from deviating too much (i.e., it prevents the model from updating in an uncontrolled manner, which could lead to worse performance).</li>
 </ul>
 <h3 id="Details-of-the-Models"><a href="#Details-of-the-Models" class="headerlink" title="Details of the Models"></a>Details of the Models</h3><ul>
-<li><strong>Actor/Critic Models</strong> need to be trained during the RLHF phase (these models are highlighted with thick borders in the diagram). On the other hand, the <strong>Reward/Reference Models</strong> have their parameters frozen.</li>
-<li>The <strong>Critic/Reward/Reference Models</strong> collectively form a “reward-loss” calculation system (a term I coined for better understanding), where we compute the loss by combining their results to update the Actor and Critic models.</li>
+<li><strong>Actor&#x2F;Critic Models</strong> need to be trained during the RLHF phase (these models are highlighted with thick borders in the diagram). On the other hand, the <strong>Reward&#x2F;Reference Models</strong> have their parameters frozen.</li>
+<li>The <strong>Critic&#x2F;Reward&#x2F;Reference Models</strong> collectively form a “reward-loss” calculation system (a term I coined for better understanding), where we compute the loss by combining their results to update the Actor and Critic models.</li>
 </ul>
 <p>Now, let’s break down each of these models in more detail:</p>
 <h3 id="Actor-Model"><a href="#Actor-Model" class="headerlink" title="Actor Model"></a>Actor Model</h3><p>As mentioned earlier, the <strong>Actor</strong> is the language model we aim to train. Typically, we initialize it using the model generated from the <strong>Supervised Fine-Tuning (SFT)</strong> stage.</p>
 <p><img src="https://i.dawnlab.me/9edb5299218035822b31597c4ceb5b49.png" alt="9edb5299218035822b31597c4ceb5b49.png"></p>
-<p>The goal is to train the Actor model to generate responses that align with human preferences. Our strategy is to first provide the Actor with a prompt (here we assume batch_size = 1, meaning a single prompt) and let it generate a corresponding response. Then, we feed the “prompt + response” into the “reward-loss” system to calculate the final loss, which will be used to update the Actor.</p>
+<p>The goal is to train the Actor model to generate responses that align with human preferences. Our strategy is to first provide the Actor with a prompt (here we assume batch_size &#x3D; 1, meaning a single prompt) and let it generate a corresponding response. Then, we feed the “prompt + response” into the “reward-loss” system to calculate the final loss, which will be used to update the Actor.</p>
 <h3 id="Reference-Model"><a href="#Reference-Model" class="headerlink" title="Reference Model"></a>Reference Model</h3><p><img src="https://i.dawnlab.me/f063d4393f5842b2071938c7554b821b.png" alt="f063d4393f5842b2071938c7554b821b.png"></p>
 <p>The <strong>Reference Model</strong> (abbreviated as <strong>Ref model</strong>) is also initialized using the model from the SFT stage, and its parameters are frozen during training. The primary function of the Ref model is to prevent the Actor model from “deviating.” But how exactly does it do this?</p>
 <p>A more detailed explanation of “preventing the model from deviating” is that we want the Actor model to generate human-preference-aligned responses, while also ensuring that its output does not diverge too much from the SFT model. In short, we want the output distributions of both models to be as similar as possible. To measure the similarity of the output distributions, we use the <strong>KL divergence</strong>.</p>
 <p>As shown in the diagram:</p>
 <ul>
 <li>For the Actor model, we feed it a prompt, and it generates the corresponding response. Each token in the response has an associated log probability, which we denote as <code>log_probs</code>.</li>
-<li>For the <strong>Ref model</strong>, we feed the <strong>prompt + response</strong> generated by the Actor model, and it also outputs the $log_prob$ for each token, which we call $ref_log_probs$.  </li>
+<li>For the <strong>Ref model</strong>, we feed the <strong>prompt + response</strong> generated by the Actor model, and it also outputs the $log_prob$ for each token, which we call $ref_log_probs$.</li>
 </ul>
 <p>The similarity between the output distributions of these two models can be measured by $ref_log_probs - log_probs$. This formula can be understood in two ways:</p>
 <ul>
@@ -316,8 +335,8 @@ A_t^\text{GAE} = \sum_{k=0}^\infty (\gamma \lambda)^k \delta_{t+k}</script><p>wh
 </ul>
 <p>In PPO, they often use a <strong>clipped</strong> surrogate objective, which includes this log probability difference, and sometimes a separate KL penalty term. The key is that the KL divergence is calculated over the entire distribution of actions, not just the action chosen by the actor.</p>
 <p>To be more precise, the KL divergence between the actor’s policy and the reference policy at a given state s would be:</p>
-<script type="math/tex; mode=display">
-KL(\pi_\theta(\cdot|s) || \pi_{ref}(\cdot|s)) = \sum_{a \in A} \pi_\theta(a|s) \log \frac{\pi_\theta(a|s)}{\pi_{ref}(a|s)}</script><p>Where A is the set of all possible actions (tokens).</p>
+<p>$$<br>KL(\pi_\theta(\cdot|s) || \pi_{ref}(\cdot|s)) &#x3D; \sum_{a \in A} \pi_\theta(a|s) \log \frac{\pi_\theta(a|s)}{\pi_{ref}(a|s)}<br>$$</p>
+<p>Where A is the set of all possible actions (tokens).</p>
 <p>Now, we know how to use the Ref model and KL divergence to prevent the Actor from deviating too much. KL divergence will be used in the loss calculation, which will be explained in more detail later.</p>
 <h3 id="Critic-Model"><a href="#Critic-Model" class="headerlink" title="Critic Model"></a>Critic Model</h3><p><img src="https://i.dawnlab.me/5087be090f6299634a66cbd932783cae.png" alt="5087be090f6299634a66cbd932783cae.png"></p>
 <p>The <strong>Critic Model</strong> is used to predict the expected total return $V_t$, and like the Actor model, it also requires parameter updates. In practice, the design and initialization of the Critic model vary, for example, it might share some parameters with the Actor model or be initialized from the Reward model trained during the RW stage. For consistency, we’ll assume here that it’s initialized from the Reward model of the RW stage.</p>
@@ -335,14 +354,14 @@ KL(\pi_\theta(\cdot|s) || \pi_{ref}(\cdot|s)) = \sum_{a \in A} \pi_\theta(a|s) \
 </ol>
 <p>You might also ask: I already have the Critic model predicting $V_t$, which includes both “immediate” and “future” rewards, so why do I need the Reward model, which only represents the “immediate” reward?</p>
 <p>To answer this question, let’s first review the value function:</p>
-<p>$V<em>t = R_t + \gamma V</em>{t+1}$</p>
+<p>$V_t &#x3D; R_t + \gamma V_{t+1}$</p>
 <p>This function tells us that the total reward at time $t$ can be represented by two results:</p>
 <ul>
 <li><strong>Result 1</strong>: The value predicted by the <strong>Critic model</strong> $V_t$</li>
-<li><strong>Result 2</strong>: The value predicted by the <strong>Reward model</strong> $R<em>t$ and the <strong>Critic model’s</strong> prediction for the next state $V</em>{t+1}$</li>
+<li><strong>Result 2</strong>: The value predicted by the <strong>Reward model</strong> $R_t$ and the <strong>Critic model’s</strong> prediction for the next state $V_{t+1}$</li>
 </ul>
 <p>Which of these two results is closer to the objective value from the “God’s eye perspective”? Of course, it is <strong>Result 2</strong>, because <strong>Result 1</strong> is purely based on prediction, while $R_t$ in <strong>Result 2</strong> is factual data.</p>
-<p>We know that the <strong>Critic model</strong> is also involved in parameter updates. We can use the <strong>Mean Squared Error (MSE)</strong> to measure its loss, where the loss is the difference between the <strong>God’s eye perspective</strong> (the true reward) and the <strong>Critic model’s</strong> predicted value. However, since we do not know the objective reward from the “God’s eye perspective,” we can only approximate it using known factual data. Therefore, we use $R<em>t + \gamma V</em>{t+1}$ as an approximation. This is the reason why both $R_t$ and $V_t$ exist together.</p>
+<p>We know that the <strong>Critic model</strong> is also involved in parameter updates. We can use the <strong>Mean Squared Error (MSE)</strong> to measure its loss, where the loss is the difference between the <strong>God’s eye perspective</strong> (the true reward) and the <strong>Critic model’s</strong> predicted value. However, since we do not know the objective reward from the “God’s eye perspective,” we can only approximate it using known factual data. Therefore, we use $R_t + \gamma V_{t+1}$ as an approximation. This is the reason why both $R_t$ and $V_t$ exist together.</p>
 <p>The Reward and Critic models are quite similar.</p>
 <h3 id="Summary-of-these-part"><a href="#Summary-of-these-part" class="headerlink" title="Summary of these part"></a>Summary of these part</h3><p><img src="https://i.dawnlab.me/2fe1fc912793db3afd36a8823daca1c5.png" alt="2fe1fc912793db3afd36a8823daca1c5.png"></p>
 <p>We can use this DeepSeppd Chat workflow to check our understading.</p>
@@ -352,7 +371,7 @@ KL(\pi_\theta(\cdot|s) || \pi_{ref}(\cdot|s)) = \sum_{a \in A} \pi_\theta(a|s) \
 <li><strong>Purpose</strong>: To generate responses that align with human preferences.<ul>
 <li><strong>Data</strong>: It is initialized using the SFT model (Supervised Fine-Tuned model) or other pre-trained models.</li>
 <li><strong>Feedback</strong>: The <strong>Actor</strong> is updated using the <strong>reward-loss</strong> computation, which includes feedback from the <strong>Critic</strong> and <strong>Reward models</strong>.</li>
-<li><strong>Frozen/Updated</strong>: <strong>Updated</strong> during RLHF.</li>
+<li><strong>Frozen&#x2F;Updated</strong>: <strong>Updated</strong> during RLHF.</li>
 </ul>
 </li>
 </ul>
@@ -361,27 +380,27 @@ KL(\pi_\theta(\cdot|s) || \pi_{ref}(\cdot|s)) = \sum_{a \in A} \pi_\theta(a|s) \
 <li><strong>Purpose</strong>: Predict the total future reward (both immediate and expected rewards) for the sequence generated by the Actor.<ul>
 <li><strong>Data</strong>: Typically initialized using the <strong>Reward Model</strong> from a previous phase (RW stage).</li>
 <li><strong>Feedback</strong>: The <strong>Critic</strong> is trained based on the rewards the Actor generates, and it predicts the expected return for each response. Its output helps improve the Actor.</li>
-<li><strong>Frozen/Updated</strong>: <strong>Updated</strong> during RLHF.</li>
+<li><strong>Frozen&#x2F;Updated</strong>: <strong>Updated</strong> during RLHF.</li>
 </ul>
 </li>
 </ul>
 <p><strong>Reward Model</strong> (The “Immediate Reward Provider”):</p>
 <ul>
 <li><strong>Purpose</strong>: Provides the <strong>immediate reward</strong> for each token generated by the Actor.</li>
-<li><p><strong>Training</strong>: </p>
-<ul>
+<li><strong>Training</strong>: <ul>
 <li><strong>Data</strong>: The Reward Model is trained during the <strong>RW phase</strong>, where it learns to evaluate how well a generated token aligns with human preferences. </li>
 <li><strong>Feedback</strong>: After training, the Reward Model gives immediate rewards to the Actor’s actions (tokens) during RLHF. This feedback is used to guide the Actor’s learning.</li>
-<li><strong>Frozen/Updated</strong>: <strong>Frozen</strong> during RLHF (no updates).</li>
+<li><strong>Frozen&#x2F;Updated</strong>: <strong>Frozen</strong> during RLHF (no updates).</li>
 </ul>
-<p><strong>Reference Model</strong> (The “Regulator”):</p>
 </li>
-<li><p><strong>Purpose</strong>: Prevents the Actor from straying too far from the SFT model’s behavior and ensures the output distribution remains similar.</p>
-</li>
+</ul>
+<p> <strong>Reference Model</strong> (The “Regulator”):</p>
+<ul>
+<li><strong>Purpose</strong>: Prevents the Actor from straying too far from the SFT model’s behavior and ensures the output distribution remains similar.</li>
 <li><strong>Training</strong>: <ul>
 <li><strong>Data</strong>: The Reference Model is also initialized using the <strong>SFT model</strong> and its parameters remain frozen during RLHF.</li>
 <li><strong>Feedback</strong>: It compares the output of the Actor with its own output and provides feedback to regulate the Actor’s learning. Specifically, it uses <strong>KL divergence</strong> to measure how similar the distributions are between the Actor and the Reference.</li>
-<li><strong>Frozen/Updated</strong>: <strong>Frozen</strong> during RLHF (no updates).</li>
+<li><strong>Frozen&#x2F;Updated</strong>: <strong>Frozen</strong> during RLHF (no updates).</li>
 </ul>
 </li>
 </ul>
@@ -404,7 +423,7 @@ KL(\pi_\theta(\cdot|s) || \pi_{ref}(\cdot|s)) = \sum_{a \in A} \pi_\theta(a|s) \
 </li>
 </ol>
 <hr>
-<ol>
+<ol start="2">
 <li><strong>“每次actor模型更新后，critic模型都要对这个新的actor模型重新打分，所以critic模型也要更新参数。”</strong><ul>
 <li><strong>Incorrect</strong>.<ul>
 <li><strong>Critic Model</strong> does not need to be updated after every update of the <strong>Actor</strong> model. In fact, in <strong>RLHF</strong> (Reinforcement Learning with Human Feedback), the <strong>Critic</strong> typically <strong>shares parameters</strong> with the <strong>Reward Model</strong> or is initialized from it, and only needs updates during training phases where its performance is evaluated against actual rewards.</li>
@@ -415,9 +434,9 @@ KL(\pi_\theta(\cdot|s) || \pi_{ref}(\cdot|s)) = \sum_{a \in A} \pi_\theta(a|s) \
 </li>
 </ol>
 <hr>
-<ol>
+<ol start="3">
 <li><strong>“critic模型对actor模型的整体预估得分，是根据reward模型的每一次实时打分来预估的。当critic模型的预估得分达到了一定的基准，就代表actor模型训练完成。”</strong><ul>
-<li><strong>Partially Correct/Incorrect</strong>.<ul>
+<li><strong>Partially Correct&#x2F;Incorrect</strong>.<ul>
 <li><strong>Correct</strong>: The <strong>Critic Model</strong> does estimate the overall future reward (the value of the entire action sequence) by considering the <strong>Reward Model’s</strong> immediate scores. The <strong>Critic</strong> aggregates the rewards over time, which are influenced by the <strong>Reward Model</strong>.</li>
 <li><strong>Incorrect</strong>: The <strong>Critic’s</strong> performance does not directly indicate when the <strong>Actor’s training is complete</strong>. The <strong>Critic</strong> serves to help the <strong>Actor</strong> learn by predicting the expected reward, but the <strong>Actor’s</strong> training completion is not directly tied to the <strong>Critic’s</strong> score reaching a specific threshold. In <strong>RLHF</strong>, the <strong>Actor</strong> continues to improve as long as there is a performance gap between the <strong>generated outputs</strong> and the <strong>desired outputs</strong> (aligned with human preferences).</li>
 </ul>
@@ -426,7 +445,7 @@ KL(\pi_\theta(\cdot|s) || \pi_{ref}(\cdot|s)) = \sum_{a \in A} \pi_\theta(a|s) \
 </li>
 </ol>
 <hr>
-<ol>
+<ol start="4">
 <li><strong>“我感觉好像reward是一个句子生成结束之后打分，critic是token粒度的打分”</strong><ul>
 <li><strong>Incorrect</strong>.<ul>
 <li><strong>Reward Model</strong> provides feedback for each token (or action) generated by the <strong>Actor</strong>, not just at the end of the sentence. It’s more about giving immediate rewards for each action taken (each token generated).</li>
@@ -437,7 +456,7 @@ KL(\pi_\theta(\cdot|s) || \pi_{ref}(\cdot|s)) = \sum_{a \in A} \pi_\theta(a|s) \
 </li>
 </ol>
 <hr>
-<ol>
+<ol start="5">
 <li><strong>“reward模型，它是在第一阶段sft时，通过人工介入方式训练的一个能量化‘人类偏好’的模型，在PPO中的优势函数，要评估当前动作的好坏（即是否对齐人类偏好），自然就要用到这第一阶段训练到的reward模型来得到这个好坏值。也因此，这个reward网络在此阶段是冻结参数的。”</strong><ul>
 <li><strong>Correct</strong>.<ul>
 <li>The <strong>Reward Model</strong> is trained in the <strong>SFT</strong> (Supervised Fine-Tuning) phase, where it quantifies <strong>human preferences</strong> by comparing different outputs. This model is then <strong>frozen</strong> during the <strong>RLHF</strong> phase, and the <strong>Actor</strong> uses it to evaluate its actions (tokens) based on how well they align with human preferences.</li>
@@ -447,7 +466,7 @@ KL(\pi_\theta(\cdot|s) || \pi_{ref}(\cdot|s)) = \sum_{a \in A} \pi_\theta(a|s) \
 </li>
 </ol>
 <hr>
-<ol>
+<ol start="6">
 <li><strong>“最后，就是ref模型，从最基础的概念看，它是无关紧要的，但在rlhf里被引入，只是为了保证actor网络不被训偏（通过kl损失来约束）”</strong><ul>
 <li><strong>Correct</strong>.<ul>
 <li>The <strong>Reference Model</strong> (Ref Model) is used in <strong>RLHF</strong> primarily to ensure that the <strong>Actor Model</strong> doesn’t diverge too far from the intended behavior (based on the <strong>SFT</strong> model). It does this by penalizing large differences in token generation distributions between the <strong>Actor</strong> and the <strong>Reference Model</strong> using <strong>KL Divergence</strong>.</li>
