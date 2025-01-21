@@ -107,14 +107,14 @@
             </div>
             <!-- Post -->
             <div class="typo" style="padding: 3rem;">
-                <h1 id="重读AlexNet"><a href="#重读AlexNet" class="headerlink" title="重读AlexNet"></a>重读AlexNet</h1><p><a target="_blank" rel="noopener" href="https://proceedings.neurips.cc/paper_files/paper/2012/file/c399862d3b9d6b76c8436e924a68c45b-Paper.pdf">https://proceedings.neurips.cc/paper_files&#x2F;paper&#x2F;2012&#x2F;file&#x2F;c399862d3b9d6b76c8436e924a68c45b-Paper.pdf</a></p>
-<p><a target="_blank" rel="noopener" href="https://proceedings.neurips.cc/paper_files/paper/2012/file/c399862d3b9d6b76c8436e924a68c45b-Paper.pdf">proceedings.neurips.cc&#x2F;paper_files&#x2F;paper&#x2F;2012&#x2F;file&#x2F;c399862d3b9d6b76c8436e924a68c45b-Paper.pdf</a></p>
+                <h1 id="重读AlexNet"><a href="#重读AlexNet" class="headerlink" title="重读AlexNet"></a>重读AlexNet</h1><p><a target="_blank" rel="noopener" href="https://proceedings.neurips.cc/paper_files/paper/2012/file/c399862d3b9d6b76c8436e924a68c45b-Paper.pdf">https://proceedings.neurips.cc/paper_files/paper/2012/file/c399862d3b9d6b76c8436e924a68c45b-Paper.pdf</a></p>
+<p><a target="_blank" rel="noopener" href="https://proceedings.neurips.cc/paper_files/paper/2012/file/c399862d3b9d6b76c8436e924a68c45b-Paper.pdf">proceedings.neurips.cc/paper_files/paper/2012/file/c399862d3b9d6b76c8436e924a68c45b-Paper.pdf</a></p>
 <h1 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h1><p>After 12 years, reading Alexnet again can still give us insights.</p>
 <p>This work comes from UoT, Alex Krizhevsky is first author, his others famous paper:</p>
 <ul>
-<li><a target="_blank" rel="noopener" href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user=xegzhJcAAAAJ&citation_for_view=xegzhJcAAAAJ:9yKSN-GCB0IC">https://scholar.google.com/citations?view_op=view_citation&amp;hl=en&amp;user=xegzhJcAAAAJ&amp;citation_for_view=xegzhJcAAAAJ:9yKSN-GCB0IC</a></li>
-<li><a target="_blank" rel="noopener" href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user=xegzhJcAAAAJ&citation_for_view=xegzhJcAAAAJ:d1gkVwhDpl0C">https://scholar.google.com/citations?view_op=view_citation&amp;hl=en&amp;user=xegzhJcAAAAJ&amp;citation_for_view=xegzhJcAAAAJ:d1gkVwhDpl0C</a></li>
-<li><a target="_blank" rel="noopener" href="https://scholar.google.com/citations?view_op=view_citation&hl=en&user=xegzhJcAAAAJ&citation_for_view=xegzhJcAAAAJ:u-x6o8ySG0sC">https://scholar.google.com/citations?view_op=view_citation&amp;hl=en&amp;user=xegzhJcAAAAJ&amp;citation_for_view=xegzhJcAAAAJ:u-x6o8ySG0sC</a></li>
+<li><a target="_blank" rel="noopener" href="https://scholar.google.com/citations?view_op=view_citation&amp;hl=en&amp;user=xegzhJcAAAAJ&amp;citation_for_view=xegzhJcAAAAJ:9yKSN-GCB0IC">https://scholar.google.com/citations?view_op=view_citation&amp;hl=en&amp;user=xegzhJcAAAAJ&amp;citation_for_view=xegzhJcAAAAJ:9yKSN-GCB0IC</a></li>
+<li><a target="_blank" rel="noopener" href="https://scholar.google.com/citations?view_op=view_citation&amp;hl=en&amp;user=xegzhJcAAAAJ&amp;citation_for_view=xegzhJcAAAAJ:d1gkVwhDpl0C">https://scholar.google.com/citations?view_op=view_citation&amp;hl=en&amp;user=xegzhJcAAAAJ&amp;citation_for_view=xegzhJcAAAAJ:d1gkVwhDpl0C</a></li>
+<li><a target="_blank" rel="noopener" href="https://scholar.google.com/citations?view_op=view_citation&amp;hl=en&amp;user=xegzhJcAAAAJ&amp;citation_for_view=xegzhJcAAAAJ:u-x6o8ySG0sC">https://scholar.google.com/citations?view_op=view_citation&amp;hl=en&amp;user=xegzhJcAAAAJ&amp;citation_for_view=xegzhJcAAAAJ:u-x6o8ySG0sC</a></li>
 </ul>
 <h1 id="Abstract-Part"><a href="#Abstract-Part" class="headerlink" title="Abstract Part"></a>Abstract Part</h1><p>Abstract part doesn’t really explain the network or any algorithms, but it points out AlexNet (In paper called ‘our network’) is much more better than the rank2 method in ImageNet competition, and it is a network with numerous params and trained on 2 GPUs, which are novel at 2012.</p>
 <h1 id="Conclusion-Part"><a href="#Conclusion-Part" class="headerlink" title="Conclusion Part"></a>Conclusion Part</h1><p>AlextNet paper doesnt have a namely ‘Conclusion’, instead it has a ‘Discussion’. These discussions are really smart even seen at today:</p>
@@ -122,13 +122,15 @@
 <li>Our results show that a large, deep convolutional neural network is capable of achieving recordbreaking results on a highly challenging dataset using purely supervised learning.</li>
 </ul>
 <p>This start a new subject called ‘Deep Learning’. And finally we got ‘Scaling Law’ which bring us LLMs.</p>
-<p>- </p>
-<pre><code>It is notable that our network’s performance degrades if a single convolutional layer is removed. For example, removing any of the middle layers results in a loss of about 2% for the top-1 performance of the network. So the depth really is important for achieving our results.
-</code></pre>
+<ul>
+<li><p>  It is notable that our network’s performance degrades if a single convolutional layer is removed. For example, removing any of the middle layers results in a loss of about 2% for the top-1 performance of the network. So the depth really is important for achieving our results.</p>
+</li>
+</ul>
 <p>But this part is a little bit not making sense, cuz you compare different network’s depth but didnt control their params, some how you can still reach better results if you have larger ‘width’ but smaller ‘depth’.</p>
-<p>- </p>
-<pre><code>To simplify our experiments, we did not use any unsupervised pre-training even though we expect that it will help, especially if we obtain enough computational power to significantly increase the size of the network without obtaining a corresponding increase in the amount of labeled data.
-</code></pre>
+<ul>
+<li><p>  To simplify our experiments, we did not use any unsupervised pre-training even though we expect that it will help, especially if we obtain enough computational power to significantly increase the size of the network without obtaining a corresponding increase in the amount of labeled data.</p>
+</li>
+</ul>
 <p>As we know scaling law now, this is not really true, after the model become much more larger, without significant amount of data, you will finally reach threshold.</p>
 <p>What’s more. after 12 years we finally find it is really hard to get large amount of high quality labeled data, so unsupervised learning is relatively more important in current machine learning area.</p>
 <h1 id="Architecture-Part"><a href="#Architecture-Part" class="headerlink" title="Architecture Part"></a>Architecture Part</h1><p>Architecture part first point out three novelty of this work:</p>
@@ -139,21 +141,21 @@
 <li>Overlapping Pooling</li>
 </ul>
 <h2 id="ReLU"><a href="#ReLU" class="headerlink" title="ReLU"></a>ReLU</h2><p>At that point, the main track of nn uses tanh and sigmoid. Alex use ReLU which is proposed from Abien Fred M. Agarap</p>
-<p>sigmoid: $f(x) &#x3D; 1 &#x2F; {1 - e^{-x}}$  In deep networks, the gradients of the sigmoid function can become very small, especially for neurons in the early layers. </p>
-<p>tanh: $f(x) &#x3D; \frac{e^x - e^{-x}} {e^x + e^{-x}}$. The gradients are larger compared to the sigmoid function, which can help with the learning process.</p>
-<p>Rectified Linear Units(ReLU): $f(x) &#x3D; max(0, x)$. ReLU does not suffer from the vanishing gradient problem. Gradients are preserved better during backpropagation, which helps in training deep networks. ReLU introduces sparsity in the network by outputting zero for negative input values, which can lead to more efficient and faster computations. Also it is really easy to differentiate.</p>
+<p>sigmoid: $f(x) = 1 / {1 - e^{-x}}$  In deep networks, the gradients of the sigmoid function can become very small, especially for neurons in the early layers. </p>
+<p>tanh: $f(x) = \frac{e^x - e^{-x}} {e^x + e^{-x}}$. The gradients are larger compared to the sigmoid function, which can help with the learning process.</p>
+<p>Rectified Linear Units(ReLU): $f(x) = max(0, x)$. ReLU does not suffer from the vanishing gradient problem. Gradients are preserved better during backpropagation, which helps in training deep networks. ReLU introduces sparsity in the network by outputting zero for negative input values, which can lead to more efficient and faster computations. Also it is really easy to differentiate.</p>
 <h2 id="Train-on-multiple-GPUs"><a href="#Train-on-multiple-GPUs" class="headerlink" title="Train on multiple GPUs"></a>Train on multiple GPUs</h2><p>Nowadays we call it ‘Distributed Training’, torch.distributed give us more efficient tools nowadays.</p>
 <h2 id="Local-Response-Normalization"><a href="#Local-Response-Normalization" class="headerlink" title="Local Response Normalization"></a>Local Response Normalization</h2><p>This part AlexNet design a complex function to do normalization, seems he want to add spatial messages to normalization, but now we know it is not very important to do normalization, but it is important to design a good network. And we have relatively better normalization nowadays like epoch  normalization and layer normalization.</p>
 <h2 id="Overlapping-Pooling"><a href="#Overlapping-Pooling" class="headerlink" title="Overlapping Pooling"></a>Overlapping Pooling</h2><p> This part this a tick, that AlexNet have overlapped pooling layers.</p>
-<h2 id="Overall-Architecture"><a href="#Overall-Architecture" class="headerlink" title="Overall Architecture"></a>Overall Architecture</h2><p><img src="/%E9%87%8D%E8%AF%BBAlexNet%20d8c02783f910445ba86a9c9702660af8/Untitled.png" alt="Untitled"></p>
+<h2 id="Overall-Architecture"><a href="#Overall-Architecture" class="headerlink" title="Overall Architecture"></a>Overall Architecture</h2><p><img src="%E9%87%8D%E8%AF%BBAlexNet%20d8c02783f910445ba86a9c9702660af8/Untitled.png" alt="Untitled"></p>
 <p>AlexNet is a type of CNN.</p>
 <ul>
 <li>The first convolutional layer filters the 224×224×3 input image with 96 kernels of size 11×11×3<br>with a stride of 4 pixels. (And with 2 padding)</li>
 </ul>
-<p>$\text { Output Size }&#x3D;\left\lfloor\frac{(\text { Input Size }- \text { Filter Size }+2 \times \text { Padding })}{\text { Stride }}\right\rfloor+1$</p>
+<p>$\text { Output Size }=\left\lfloor\frac{(\text { Input Size }- \text { Filter Size }+2 \times \text { Padding })}{\text { Stride }}\right\rfloor+1$</p>
 <p>So it will be:</p>
-<p>$\text { Output Size }&#x3D;\left\lfloor\frac{(\text { 224 }- \text { 11 }+2 \times \text { 2 })}{\text { 4 }}\right\rfloor+1 &#x3D; \lfloor \frac{217}{4} \rfloor +1 &#x3D;  54+1 &#x3D; 55$</p>
-<p>For the depth, it has two separate image so the depth is $\frac{96}{2} &#x3D; {48}$</p>
+<p>$\text { Output Size }=\left\lfloor\frac{(\text { 224 }- \text { 11 }+2 \times \text { 2 })}{\text { 4 }}\right\rfloor+1 = \lfloor \frac{217}{4} \rfloor +1 =  54+1 = 55$</p>
+<p>For the depth, it has two separate image so the depth is $\frac{96}{2} = {48}$</p>
 <p>So we have:</p>
 <ul>
 <li>The second convolutional layer takes as input the (response-normalized and pooled) output of the first convolutional layer and filters it with 256 kernels of size 5 × 5 × 48.</li>
@@ -177,7 +179,7 @@
 <h2 id="Dropout"><a href="#Dropout" class="headerlink" title="Dropout"></a>Dropout</h2><p>At that time scientists think with drop out we can get several different models. but now we know it is same to L2 norm.</p>
 <p>Dropout: A Simple Way to Prevent Neural Networks from Overfitting. By Nitish Srivastava, Geoffrey Hinton, Alex Krizhevsky, Ilya Sutskever, and Ruslan Salakhutdinov. UoT.</p>
 <h1 id="Results"><a href="#Results" class="headerlink" title="Results"></a>Results</h1><p>The results are unprecedented good. But what is really worth thinking is the 6.1 Quotative Evaluation part.</p>
-<p><img src="/%E9%87%8D%E8%AF%BBAlexNet%20d8c02783f910445ba86a9c9702660af8/Untitled%201.png" alt="Untitled"></p>
+<p><img src="%E9%87%8D%E8%AF%BBAlexNet%20d8c02783f910445ba86a9c9702660af8/Untitled%201.png" alt="Untitled"></p>
 <ul>
 <li>Five ILSVRC-2010 test images in the first column. The remaining columns show the six training images that produce feature vectors in the last hidden layer with the smallest Euclidean distance from the feature vector for the test image.</li>
 </ul>

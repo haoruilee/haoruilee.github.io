@@ -111,36 +111,54 @@
 <h2 id="Area-a-Type-of-Mapping"><a href="#Area-a-Type-of-Mapping" class="headerlink" title="Area, a Type of Mapping"></a>Area, a Type of Mapping</h2><p>You might say, area is just length multiplied by width, but that’s not entirely true. Let’s clarify that the area we’re discussing here is the basic unit of Euclidean geometric area: the area of a parallelogram. Geometrically, the area of a parallelogram is defined as the product of the lengths of two adjacent sides and the sine of the angle between them.</p>
 <p>However, to deal with more general situations and higher-dimensional mathematical problems, we need to extend the definition of area. Note the following fact:</p>
 <p>Area is a scalar, derived from two vectors (forming its adjacent sides). Therefore, we can view the area as a mapping:</p>
-<p>$$<br>\varphi: \mathfrak{X}(M) \times \mathfrak{X}(M) \rightarrow \mathfrak{F}(M), V \times V \mapsto f<br>$$</p>
-<p>Where ( V ) is a vector, ( V \times V ) represents an ordered pair of vectors, and ( f ) is the value of the area.</p>
+<script type="math/tex; mode=display">
+\varphi: \mathfrak{X}(M) \times \mathfrak{X}(M) \rightarrow \mathfrak{F}(M), V \times V \mapsto f</script><p>Where ( V ) is a vector, ( V \times V ) represents an ordered pair of vectors, and ( f ) is the value of the area.</p>
 <p>Next, we will show that this mapping is a linear one.</p>
-<p>Starting with the simplest example: If the first vector is (1,0) and the second vector is (0,1), meaning the two vectors are unit vectors on the X and Y axes respectively, then the parallelogram formed by these two vectors is a square. According to the definition, its area is length multiplied by width &#x3D; 1*1 &#x3D; 1.</p>
+<p>Starting with the simplest example: If the first vector is (1,0) and the second vector is (0,1), meaning the two vectors are unit vectors on the X and Y axes respectively, then the parallelogram formed by these two vectors is a square. According to the definition, its area is length multiplied by width = 1*1 = 1.</p>
 <p><img src="https://chatgpt5.oss-rg-china-mainland.aliyuncs.com/image/real_meaning_of_rank/image/real_meaning_of_rank/1720928890761.png" alt="1720928890761"></p>
 <p>Therefore:</p>
-<p>$$<br>\varphi((1,0),(0,1))&#x3D;1<br>$$</p>
-<p>If we “scale” the first vector by a factor of ( a ), the area will correspondingly be ( a ) times the original; if we “scale” the second vector by a factor of ( b ), the area will also become ( b ) times the original. If both vectors are scaled, it is obvious that the area will become ( ab ) times the original area. This shows that the area mapping is linear with respect to the scalar multiplication of its two operands (vectors), as follows:</p>
-<p>$$<br>\begin{aligned}<br>&amp; \varphi(a(1,0),(0,1))&#x3D;a \varphi((1,0),(0,1)) \<br>&amp; \varphi((1,0), b(0,1))&#x3D;b \varphi((1,0),(0,1))<br>\end{aligned} \Rightarrow \varphi(a(1,0), b(0,1))&#x3D;a b \varphi((1,0),(0,1))&#x3D;a b<br>$$</p>
-<p>Finally, we must show that the area mapping is also linear with respect to the vector addition of its operands. Since the operation of vector addition is itself linear, its area mapping should naturally be a linear mapping. Here we intend to illustrate the consequences of the linearity of the mapping’s addition through several practical examples.</p>
+<script type="math/tex; mode=display">
+\varphi((1,0),(0,1))=1</script><p>If we “scale” the first vector by a factor of ( a ), the area will correspondingly be ( a ) times the original; if we “scale” the second vector by a factor of ( b ), the area will also become ( b ) times the original. If both vectors are scaled, it is obvious that the area will become ( ab ) times the original area. This shows that the area mapping is linear with respect to the scalar multiplication of its two operands (vectors), as follows:</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+& \varphi(a(1,0),(0,1))=a \varphi((1,0),(0,1)) \\
+& \varphi((1,0), b(0,1))=b \varphi((1,0),(0,1))
+\end{aligned} \Rightarrow \varphi(a(1,0), b(0,1))=a b \varphi((1,0),(0,1))=a b</script><p>Finally, we must show that the area mapping is also linear with respect to the vector addition of its operands. Since the operation of vector addition is itself linear, its area mapping should naturally be a linear mapping. Here we intend to illustrate the consequences of the linearity of the mapping’s addition through several practical examples.</p>
 <p>It is evident that the parallelogram formed by two collinear vectors is still a line, and therefore the area is zero:</p>
 <p><img src="https://chatgpt5.oss-rg-china-mainland.aliyuncs.com/image/real_meaning_of_rank/image/real_meaning_of_rank/1720928989597.png" alt="1720928989597"></p>
 <p>Which means:</p>
-<p>$$<br>\varphi(a,a)&#x3D;0<br>$$</p>
-<p>Assuming the area mapping is a linear mapping concerning vector addition, we have:</p>
-<p>$$<br>\begin{aligned}<br>\varphi((1,0)+(0,1),(1,0)+(0,1))&#x3D;0 &amp; &#x3D;\varphi((1,0),(0,1))+\varphi((1,0),(1,0))+\varphi((0,1),(0,1))+\varphi((0,1),(1,0)) \<br>&amp; &#x3D;\varphi((1,0),(0,1))+\varphi((0,1),(1,0))<br>\end{aligned}<br>$$</p>
-<p>Thus we get:</p>
-<p>$$<br>\varphi((1,0),(0,1)) &#x3D; -\varphi((0,1),(1,0))<br>$$</p>
-<p>That is to say, exchanging the order of mutually perpendicular operand vectors changes the sign of the area mapping. Which is positive and which is negative depends on the definition. Generally, we place the unit vector on the X-axis first and the unit vector on the Y-axis second, and take the area of the parallelogram formed from the X-axis to the Y-axis as positive.</p>
+<script type="math/tex; mode=display">
+\varphi(a,a)=0</script><p>Assuming the area mapping is a linear mapping concerning vector addition, we have:</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\varphi((1,0)+(0,1),(1,0)+(0,1))=0 & =\varphi((1,0),(0,1))+\varphi((1,0),(1,0))+\varphi((0,1),(0,1))+\varphi((0,1),(1,0)) \\
+& =\varphi((1,0),(0,1))+\varphi((0,1),(1,0))
+\end{aligned}</script><p>Thus we get:</p>
+<script type="math/tex; mode=display">
+\varphi((1,0),(0,1)) = -\varphi((0,1),(1,0))</script><p>That is to say, exchanging the order of mutually perpendicular operand vectors changes the sign of the area mapping. Which is positive and which is negative depends on the definition. Generally, we place the unit vector on the X-axis first and the unit vector on the Y-axis second, and take the area of the parallelogram formed from the X-axis to the Y-axis as positive.</p>
 <p>Thus, we introduce the right-hand rule. Note that the right-hand rule is only valid in three-dimensional space. If we take the positive direction of the X-axis as the head and the positive direction of the Y-axis as the tail, the right-hand rule tells us that the outward direction from the paper is the positive direction of the area; if reversed, the inward direction from the paper is the positive direction of the area, opposite to the defined positive direction, and the sign is negative. The geometric meaning of the area’s sign then becomes apparent.</p>
 <p>It is not difficult to see that the so-called area is the determinant of a 2x2 matrix:</p>
-<p>$$<br>\left|\begin{array}{ll}<br>a &amp; b \<br>c &amp; d<br>\end{array}\right|&#x3D;\left|\begin{array}{ll}<br>a &amp; c \<br>b &amp; d<br>\end{array}\right|&#x3D;a d-b c<br>$$</p>
-<p>As shown below:</p>
+<script type="math/tex; mode=display">
+\left|\begin{array}{ll}
+a & b \\
+c & d
+\end{array}\right|=\left|\begin{array}{ll}
+a & c \\
+b & d
+\end{array}\right|=a d-b c</script><p>As shown below:</p>
 <p><img src="https://chatgpt5.oss-rg-china-mainland.aliyuncs.com/image/real_meaning_of_rank/image/real_meaning_of_rank/1720929547070.png" alt="1720929547070"></p>
 <p>Where the first row is our first row vector ( (a, b) ); the second row is the second row vector ( (c, d) ). Or the first column is the first column vector ( (a, b)^T ), and the second column is the second column vector ( (c, d)^T ). This depends on whether we write the vector as a row vector (the former) or a column vector (the latter).</p>
 <p>From this, we can easily see that the value of the determinant is independent of whether the vectors are written as row vectors or column vectors. This is why we say that rows and columns are equal when calculating determinants. Additionally, note that from the above analysis, exchanging the order of vectors results in the area value taking a negative sign. This explains why exchanging row or column vectors in a determinant changes the sign. Other properties of determinant calculation are also reflected in the linearity of the area mapping.</p>
 <p>Thus, we see that the determinant is a generalization of “area.” It represents the volume of an N-dimensional generalized parallelepiped spanned by N vectors under a given set of bases. This is the essential meaning of the determinant.</p>
 <h2 id="Generalizing-Determinants"><a href="#Generalizing-Determinants" class="headerlink" title="Generalizing Determinants"></a>Generalizing Determinants</h2><p>From the above, we can easily extend to the calculation of three-dimensional volume:</p>
-<p>$$<br>V(\vec{a}, \vec{b}, \vec{c})&#x3D;\left|\begin{array}{c}<br>\vec{a} \<br>\vec{b} \<br>\vec{c}<br>\end{array}\right|&#x3D;\left|\begin{array}{lll}<br>\vec{a} &amp; \vec{b} &amp; \vec{c}<br>\end{array}\right|<br>$$</p>
-<p>Note that the definition of the determinant involves taking the product of elements from different rows and columns, and the sign is related to the so-called parity. Parity has a geometric meaning: after defining a positive direction (such as the sequence 1, 2, 3, 4, 5…N as positive), swapping any pair of numbers changes the sign. We have seen this property in the area function above. In fact, volume and higher-dimensional generalized volumes also have a concept of positive direction, although it is challenging to illustrate using the right-hand rule and cross products. The limitation of the right-hand rule is one motivation for expressing higher-dimensional areas as determinants.</p>
+<script type="math/tex; mode=display">
+V(\vec{a}, \vec{b}, \vec{c})=\left|\begin{array}{c}
+\vec{a} \\
+\vec{b} \\
+\vec{c}
+\end{array}\right|=\left|\begin{array}{lll}
+\vec{a} & \vec{b} & \vec{c}
+\end{array}\right|</script><p>Note that the definition of the determinant involves taking the product of elements from different rows and columns, and the sign is related to the so-called parity. Parity has a geometric meaning: after defining a positive direction (such as the sequence 1, 2, 3, 4, 5…N as positive), swapping any pair of numbers changes the sign. We have seen this property in the area function above. In fact, volume and higher-dimensional generalized volumes also have a concept of positive direction, although it is challenging to illustrate using the right-hand rule and cross products. The limitation of the right-hand rule is one motivation for expressing higher-dimensional areas as determinants.</p>
 <p>This property, where swapping any pair of indices (operands) changes the sign, is called antisymmetric. The reason for taking products of elements from different rows and columns is that if any two elements are from the same row (or column), swapping their column indices leaves the product unchanged but changes the sign, making the product zero, which does not contribute to the determinant’s value.</p>
 <p>The definition of the determinant is complicated because of the antisymmetry of the area mapping. In fact, the area mapping is a 2-form. Extending a 2-form to any R-form, we see that the form and the determinant of an R x R matrix are identical.</p>
 <p>From the above, we can see that a 2-form represents area in a plane; a 3-form represents volume in three-dimensional space; a 4-form represents hypervolume in four-dimensional space, and so on. In reality, by writing these vectors as matrices under a given set of bases (which must be square matrices), the matrix’s determinant corresponds to the area (volume). The proof of this generalization can be found in any specialized textbook on linear algebra (or self-verified if not).</p>
@@ -149,7 +167,7 @@
 <p>Similarly, if three vectors in three-dimensional space are linearly independent, they do not lie in the same plane, so the volume of the parallelepiped they span is not zero.</p>
 <p>Furthermore, we know that in a two-dimensional space, if three vectors are given, they must lie in the same plane (a two-dimensional space cannot have a “volume”), so they must be linearly dependent. Therefore, we can understand why in an N-dimensional space, any set of M vectors (where M &gt; N) must be linearly dependent: because a generalized parallelepiped of dimension greater than the space’s dimension does not exist.</p>
 <p>Thus, we obtain a one-to-one correspondence:</p>
-<p>N linearly independent vectors &#x3D;&#x3D; The volume of the N-dimensional body they span is not zero.</p>
+<p>N linearly independent vectors == The volume of the N-dimensional body they span is not zero.</p>
 <p>Conversely, if N vectors are linearly dependent, the volume of the N-dimensional body they span is zero.</p>
 <p>For example, the parallelogram formed by a pair of collinear vectors degenerates into a line, and its area is obviously zero; the parallelepiped formed by a set of coplanar vectors degenerates into a plane, and its volume is obviously zero.</p>
 <p>Since we already know the relationship between the determinant and the area, we conclude:</p>
@@ -158,13 +176,23 @@
 <p>When we understand the geometric meaning of linear transformations, it becomes clear. We state the following:</p>
 <p>Let the matrix of the linear transformation be ( A ).</p>
 <p>If we write a set of linearly independent vectors in space as column vectors, the volume of the N-dimensional body they span is not zero. According to the above analysis, its value is given by the determinant. After the vectors are transformed by the linear transformation ( A ), the new vectors are:</p>
-<p>$$<br>\vec{a}_i^{\prime}&#x3D;A \vec{a}_i, i \in{1, \ldots, n}<br>$$</p>
-<p>Note that ( A ) is an ( N \times N ) matrix, and the vectors are column vectors.</p>
+<script type="math/tex; mode=display">
+\vec{a}_i^{\prime}=A \vec{a}_i, i \in\{1, \ldots, n\}</script><p>Note that ( A ) is an ( N \times N ) matrix, and the vectors are column vectors.</p>
 <p>Before the transformation, the volume of the N-dimensional body is:</p>
-<p>$$<br>V &#x3D; \left|  \vec{a}_1, \vec{a}_2, …, \vec{a}_n \right|<br>$$</p>
-<p>After the transformation, the volume of the N-dimensional body is (note that the second equation actually explains the geometric meaning of matrix multiplication, i.e., the multiplication of an ( N \times N ) matrix ( A ) with another ( N \times N ) matrix composed of ( N ) column vectors):</p>
-<p>$$<br>\begin{aligned}<br>&amp; V^{\prime}&#x3D;\left|\begin{array}{llll}<br>\vec{a}_1^{\prime} &amp; \vec{a}_2^{\prime} &amp; \ldots &amp; \vec{a}_n^{\prime}<br>\end{array}\right|&#x3D;\left|A \cdot\left(\begin{array}{llll}<br>\vec{a}_1 &amp; \vec{a}_2 &amp; \ldots &amp; \vec{a}_n<br>\end{array}\right)\right| \<br>&amp; &#x3D;|A| \left\lvert, \begin{array}{llll}<br>\vec{a}_1 &amp; \vec{a}_2 &amp; \cdots &amp; \vec{a}_n|&#x3D;| A \mid V<br>\end{array}\right. \<br>&amp;<br>\end{aligned}<br>$$</p>
-<p>If the determinant of ( A ) is not zero, it means that after the transformation, the volume of the N-dimensional body is not null. Combined with the nature of linear independence and volume, we can say:</p>
+<script type="math/tex; mode=display">
+V = \left|  \vec{a}_1, \vec{a}_2, ..., \vec{a}_n \right|</script><p>After the transformation, the volume of the N-dimensional body is (note that the second equation actually explains the geometric meaning of matrix multiplication, i.e., the multiplication of an ( N \times N ) matrix ( A ) with another ( N \times N ) matrix composed of ( N ) column vectors):</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+& V^{\prime}=\left|\begin{array}{llll}
+\vec{a}_1^{\prime} & \vec{a}_2^{\prime} & \ldots & \vec{a}_n^{\prime}
+\end{array}\right|=\left|A \cdot\left(\begin{array}{llll}
+\vec{a}_1 & \vec{a}_2 & \ldots & \vec{a}_n
+\end{array}\right)\right| \\
+& =|A| \left\lvert\, \begin{array}{llll}
+\vec{a}_1 & \vec{a}_2 & \cdots & \vec{a}_n|=| A \mid V
+\end{array}\right. \\
+&
+\end{aligned}</script><p>If the determinant of ( A ) is not zero, it means that after the transformation, the volume of the N-dimensional body is not null. Combined with the nature of linear independence and volume, we can say:</p>
 <p>If the determinant of ( A ) is not zero, then ( A ) can map a set of linearly independent vectors to another set of linearly independent vectors; ( A ) is invertible (a one-to-one mapping, faithful mapping, kernel is {0}).</p>
 <p>If the determinant of ( A ) is zero, then ( A ) will map a set of linearly independent vectors to a set of linearly dependent vectors; ( A ) is not invertible (non-faithful mapping, kernel is not {0}). We can study its cosets.</p>
 <p>If the determinant of ( A ) is negative, ( A ) will change the orientation of the original N-dimensional body’s volume.</p>
@@ -185,15 +213,18 @@
 <h4 id="1-Rank-0-The-Zero-Matrix"><a href="#1-Rank-0-The-Zero-Matrix" class="headerlink" title="1. Rank 0: The Zero Matrix"></a>1. <strong>Rank 0: The Zero Matrix</strong></h4><ul>
 <li><p><strong>Definition</strong>: A matrix $A$ has rank 0 if and only if all its entries are zero.</p>
 </li>
-<li><p><strong>Decomposition</strong>:<br>$$<br>A &#x3D; 0 &#x3D; \mathbf{0} \cdot \mathbf{0}^T<br>$$</p>
-</li>
+<li><p><strong>Decomposition</strong>:</p>
+<script type="math/tex; mode=display">
+A = 0 = \mathbf{0} \cdot \mathbf{0}^T</script></li>
 <li><p><strong>Geometric Interpretation</strong>: The zero matrix maps every vector to the zero vector, effectively collapsing the entire space into a single point.</p>
 </li>
 </ul>
 <h4 id="2-Rank-1-Outer-Product-of-Two-Vectors"><a href="#2-Rank-1-Outer-Product-of-Two-Vectors" class="headerlink" title="2. Rank 1: Outer Product of Two Vectors"></a>2. <strong>Rank 1: Outer Product of Two Vectors</strong></h4><ul>
 <li><p><strong>Definition</strong>: A matrix $A$ has rank 1 if it can be expressed as the outer product of two non-zero vectors.</p>
 </li>
-<li><p><strong>Decomposition</strong>:<br>$$<br>A &#x3D; \mathbf{u} \mathbf{v}^T<br>$$<br>where $\mathbf{u}, \mathbf{v} \in \mathbb{R}^3$.</p>
+<li><p><strong>Decomposition</strong>:</p>
+<script type="math/tex; mode=display">
+A = \mathbf{u} \mathbf{v}^T</script><p>where $\mathbf{u}, \mathbf{v} \in \mathbb{R}^3$.</p>
 </li>
 <li><p><strong>Geometric Interpretation</strong>:</p>
 <ul>
@@ -202,15 +233,17 @@
 <li><strong>Transformation</strong>: $A$ maps any vector $\mathbf{x}$ to a vector in the direction of $\mathbf{u}$, scaled by the projection of $\mathbf{x}$ onto $\mathbf{v}$.</li>
 </ul>
 </li>
-<li><p><strong>Example</strong>:<br>$$<br>A &#x3D; \begin{pmatrix} 2 \ 4 \ 6 \end{pmatrix} \begin{pmatrix} 1 &amp; 0 &amp; -1 \end{pmatrix} &#x3D; \begin{pmatrix} 2 &amp; 0 &amp; -2 \ 4 &amp; 0 &amp; -4 \ 6 &amp; 0 &amp; -6 \end{pmatrix}<br>$$<br>This matrix has rank 1, as all columns are multiples of $\begin{pmatrix} 2 \ 4 \ 6 \end{pmatrix}$.</p>
+<li><p><strong>Example</strong>:</p>
+<script type="math/tex; mode=display">
+A = \begin{pmatrix} 2 \\ 4 \\ 6 \end{pmatrix} \begin{pmatrix} 1 & 0 & -1 \end{pmatrix} = \begin{pmatrix} 2 & 0 & -2 \\ 4 & 0 & -4 \\ 6 & 0 & -6 \end{pmatrix}</script><p>This matrix has rank 1, as all columns are multiples of $\begin{pmatrix} 2 \ 4 \ 6 \end{pmatrix}$.</p>
 </li>
 </ul>
 <h4 id="3-Rank-2-Sum-of-Two-Rank-1-Matrices"><a href="#3-Rank-2-Sum-of-Two-Rank-1-Matrices" class="headerlink" title="3. Rank 2: Sum of Two Rank-1 Matrices"></a>3. <strong>Rank 2: Sum of Two Rank-1 Matrices</strong></h4><ul>
 <li><p><strong>Definition</strong>: A matrix $A$ has rank 2 if it can be expressed as the sum of two rank-1 matrices.</p>
 </li>
 <li><p><strong>Decomposition</strong>:</p>
-<p>$$<br>A &#x3D; \mathbf{a}_1 \mathbf{b}_1^T + \mathbf{a}_2 \mathbf{b}_2^T<br>$$</p>
-<p>where $\mathbf{a}_1, \mathbf{a}_2 \in \mathbb{R}^3$ are linearly independent, and $\mathbf{b}_1, \mathbf{b}_2 \in \mathbb{R}^3$.</p>
+<script type="math/tex; mode=display">
+A = \mathbf{a}_1 \mathbf{b}_1^T + \mathbf{a}_2 \mathbf{b}_2^T</script><p>where $\mathbf{a}_1, \mathbf{a}_2 \in \mathbb{R}^3$ are linearly independent, and $\mathbf{b}_1, \mathbf{b}_2 \in \mathbb{R}^3$.</p>
 </li>
 <li><p><strong>Geometric Interpretation</strong>:</p>
 <ul>
@@ -220,13 +253,16 @@
 </ul>
 </li>
 <li><p><strong>Example</strong>:</p>
-<p>$$<br>A &#x3D; \begin{pmatrix} 1 \ 2 \ 3 \end{pmatrix} \begin{pmatrix} 4 &amp; 5 &amp; 6 \end{pmatrix} + \begin{pmatrix} 7 \ 8 \ 9 \end{pmatrix} \begin{pmatrix} 10 &amp; 11 &amp; 12 \end{pmatrix} &#x3D; \begin{pmatrix} 74 &amp; 82 &amp; 90 \ 88 &amp; 98 &amp; 108 \ 102 &amp; 114 &amp; 126 \end{pmatrix}<br>$$<br>This matrix has rank 2, as it is the sum of two rank-1 matrices with linearly independent column vectors.</p>
 </li>
 </ul>
+<script type="math/tex; mode=display">
+  A = \begin{pmatrix} 1 \\ 2 \\ 3 \end{pmatrix} \begin{pmatrix} 4 & 5 & 6 \end{pmatrix} + \begin{pmatrix} 7 \\ 8 \\ 9 \end{pmatrix} \begin{pmatrix} 10 & 11 & 12 \end{pmatrix} = \begin{pmatrix} 74 & 82 & 90 \\ 88 & 98 & 108 \\ 102 & 114 & 126 \end{pmatrix}</script><p>  This matrix has rank 2, as it is the sum of two rank-1 matrices with linearly independent column vectors.</p>
 <h4 id="4-Rank-3-Full-Rank-Matrix"><a href="#4-Rank-3-Full-Rank-Matrix" class="headerlink" title="4. Rank 3: Full-Rank Matrix"></a>4. <strong>Rank 3: Full-Rank Matrix</strong></h4><ul>
 <li><p><strong>Definition</strong>: A matrix $A$ has rank 3 if it cannot be expressed as the sum of fewer than three rank-1 matrices.</p>
 </li>
-<li><p><strong>Decomposition</strong>:<br>$$<br>A &#x3D; \mathbf{u}_1 \mathbf{v}_1^T + \mathbf{u}_2 \mathbf{v}_2^T + \mathbf{u}_3 \mathbf{v}_3^T<br>$$<br>where $\mathbf{u}_1, \mathbf{u}_2, \mathbf{u}_3 \in \mathbb{R}^3$ are linearly independent, and $\mathbf{v}_1, \mathbf{v}_2, \mathbf{v}_3 \in \mathbb{R}^3$.</p>
+<li><p><strong>Decomposition</strong>:</p>
+<script type="math/tex; mode=display">
+A = \mathbf{u}_1 \mathbf{v}_1^T + \mathbf{u}_2 \mathbf{v}_2^T + \mathbf{u}_3 \mathbf{v}_3^T</script><p>where $\mathbf{u}_1, \mathbf{u}_2, \mathbf{u}_3 \in \mathbb{R}^3$ are linearly independent, and $\mathbf{v}_1, \mathbf{v}_2, \mathbf{v}_3 \in \mathbb{R}^3$.</p>
 </li>
 <li><p><strong>Geometric Interpretation</strong>:</p>
 <ul>
@@ -235,7 +271,9 @@
 <li><strong>Transformation</strong>: $A$ is invertible and maps $\mathbb{R}^3$ onto itself without any loss of dimensionality.</li>
 </ul>
 </li>
-<li><p><strong>Example</strong>:<br>$$<br>A &#x3D; \mathbf{u}_1 \mathbf{v}_1^T + \mathbf{u}_2 \mathbf{v}_2^T + \mathbf{u}_3 \mathbf{v}_3^T<br>$$<br>Where $\mathbf{u}_1, \mathbf{u}_2, \mathbf{u}_3$ and $\mathbf{v}_1, \mathbf{v}_2, \mathbf{v}_3$ are all linearly independent vectors in $\mathbb{R}^3$.</p>
+<li><p><strong>Example</strong>:</p>
+<script type="math/tex; mode=display">
+A = \mathbf{u}_1 \mathbf{v}_1^T + \mathbf{u}_2 \mathbf{v}_2^T + \mathbf{u}_3 \mathbf{v}_3^T</script><p>Where $\mathbf{u}_1, \mathbf{u}_2, \mathbf{u}_3$ and $\mathbf{v}_1, \mathbf{v}_2, \mathbf{v}_3$ are all linearly independent vectors in $\mathbb{R}^3$.</p>
 </li>
 </ul>
 <h3 id="Transformations-into-n-Dimensional-Subspaces"><a href="#Transformations-into-n-Dimensional-Subspaces" class="headerlink" title="Transformations into n-Dimensional Subspaces"></a>Transformations into n-Dimensional Subspaces</h3><p>Matrix decomposition provides a powerful framework for understanding how linear transformations interact with the geometry of space. By decomposing a matrix based on its rank, we can visualize how it projects, rotates, scales, or otherwise transforms vectors within $\mathbb{R}^n$.</p>
@@ -244,7 +282,7 @@
 </li>
 <li><p><strong>Geometric Action</strong>: Every input vector is scaled and directed along the vector $\mathbf{u}$, effectively projecting the entire space onto the line spanned by $\mathbf{u}$.</p>
 </li>
-<li><p><strong>Visualization</strong>: Imagine shining a light perpendicular to the line spanned by $\mathbf{u}$; all shadows (images) of vectors under the transformation $A &#x3D; \mathbf{u} \mathbf{v}^T$ fall onto that line.</p>
+<li><p><strong>Visualization</strong>: Imagine shining a light perpendicular to the line spanned by $\mathbf{u}$; all shadows (images) of vectors under the transformation $A = \mathbf{u} \mathbf{v}^T$ fall onto that line.</p>
 </li>
 </ul>
 <h4 id="2-Rank-2-Transformations-Projection-onto-a-Plane"><a href="#2-Rank-2-Transformations-Projection-onto-a-Plane" class="headerlink" title="2. Rank 2 Transformations: Projection onto a Plane"></a>2. <strong>Rank 2 Transformations: Projection onto a Plane</strong></h4><ul>
@@ -260,12 +298,14 @@
 </li>
 <li><p><strong>Geometric Action</strong>: The transformation maintains the structure within the $k$-dimensional subspace while eliminating components orthogonal to it.</p>
 </li>
-<li><p><strong>Visualization</strong>: For $k &#x3D; 3$, the transformation preserves three-dimensional volume. For higher $k$, it preserves higher-dimensional analogs of volume, such as hypervolumes.</p>
+<li><p><strong>Visualization</strong>: For $k = 3$, the transformation preserves three-dimensional volume. For higher $k$, it preserves higher-dimensional analogs of volume, such as hypervolumes.</p>
 </li>
 </ul>
 <h3 id="Singular-Value-Decomposition-SVD-and-Rank"><a href="#Singular-Value-Decomposition-SVD-and-Rank" class="headerlink" title="Singular Value Decomposition (SVD) and Rank"></a>Singular Value Decomposition (SVD) and Rank</h3><p>One of the most powerful tools for matrix decomposition is the <strong>Singular Value Decomposition (SVD)</strong>. SVD provides a canonical form that reveals the rank and intrinsic geometric properties of a matrix.</p>
 <h4 id="Singular-Value-Decomposition"><a href="#Singular-Value-Decomposition" class="headerlink" title="Singular Value Decomposition"></a><strong>Singular Value Decomposition</strong></h4><ul>
-<li><p><strong>Definition</strong>:<br>$$<br>A &#x3D; U \Sigma V^T<br>$$<br>where:</p>
+<li><p><strong>Definition</strong>:</p>
+<script type="math/tex; mode=display">
+A = U \Sigma V^T</script><p>where:</p>
 <ul>
 <li>$U$ is an $m \times m$ orthogonal matrix.</li>
 <li>$\Sigma$ is an $m \times n$ diagonal matrix with non-negative real numbers on the diagonal (singular values).</li>
@@ -286,7 +326,11 @@
 </ul>
 </li>
 </ul>
-<h4 id="Example-of-SVD"><a href="#Example-of-SVD" class="headerlink" title="Example of SVD"></a><strong>Example of SVD</strong></h4><p>Consider a rank 2 matrix $A$:<br>$$<br>A &#x3D; \mathbf{a}_1 \mathbf{b}_1^T + \mathbf{a}_2 \mathbf{b}_2^T<br>$$<br>Its SVD can be written as:<br>$$<br>A &#x3D; U \Sigma V^T &#x3D; \sigma_1 \mathbf{u}_1 \mathbf{v}_1^T + \sigma_2 \mathbf{u}_2 \mathbf{v}_2^T<br>$$<br>where $\sigma_1, \sigma_2$ are the non-zero singular values, and $\mathbf{u}_1, \mathbf{u}_2$, $\mathbf{v}_1, \mathbf{v}_2$ are the corresponding singular vectors.</p>
+<h4 id="Example-of-SVD"><a href="#Example-of-SVD" class="headerlink" title="Example of SVD"></a><strong>Example of SVD</strong></h4><p>Consider a rank 2 matrix $A$:</p>
+<script type="math/tex; mode=display">
+A = \mathbf{a}_1 \mathbf{b}_1^T + \mathbf{a}_2 \mathbf{b}_2^T</script><p>Its SVD can be written as:</p>
+<script type="math/tex; mode=display">
+A = U \Sigma V^T = \sigma_1 \mathbf{u}_1 \mathbf{v}_1^T + \sigma_2 \mathbf{u}_2 \mathbf{v}_2^T</script><p>where $\sigma_1, \sigma_2$ are the non-zero singular values, and $\mathbf{u}_1, \mathbf{u}_2$, $\mathbf{v}_1, \mathbf{v}_2$ are the corresponding singular vectors.</p>
 <h3 id="Practical-Implications-of-Matrix-Decomposition"><a href="#Practical-Implications-of-Matrix-Decomposition" class="headerlink" title="Practical Implications of Matrix Decomposition"></a>Practical Implications of Matrix Decomposition</h3><p>Understanding matrix decomposition based on rank has profound implications in various fields:</p>
 <h4 id="1-Data-Compression-and-Dimensionality-Reduction"><a href="#1-Data-Compression-and-Dimensionality-Reduction" class="headerlink" title="1. Data Compression and Dimensionality Reduction"></a>1. <strong>Data Compression and Dimensionality Reduction</strong></h4><ul>
 <li><strong>Principal Component Analysis (PCA)</strong>:<ul>

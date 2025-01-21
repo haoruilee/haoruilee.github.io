@@ -120,7 +120,7 @@
 <p><img src="https://xsearchlogo.oss-us-west-1.aliyuncs.com/image%201.png" alt="image.png"></p>
 <p>Markov Decision Theory aims to calculate the optimal strategy for the Agent. If one only focuses on the reward of hanging out (+1), they might avoid attending lectures with a reward of -2 and eventually fail to achieve a higher reward like passing exams (+10).</p>
 <p>The MDP is defined as follows:</p>
-<p>MDP &#x3D; (S, A, P, R, γ)</p>
+<p>MDP = (S, A, P, R, γ)</p>
 <p>Where:</p>
 <ul>
 <li><strong>State Space (S)</strong>: The set of all possible states, covering lecture attendance, hanging out, passing exams, etc.</li>
@@ -130,7 +130,7 @@
 <li><strong>Discount Factor (\( \gamma \))</strong>: Used to discount future rewards, reflecting the degree of emphasis on long-term gains.</li>
 </ul>
 <p>For a specific MDP, an Agent can have a policy \( \pi \), representing the probability of choosing action \( a \) in state \( s \):</p>
-<p>\[ \pi(a | s) &#x3D; P[A_t &#x3D; a | S_t &#x3D; s] \]</p>
+<p>\[ \pi(a | s) = P[A_t = a | S_t = s] \]</p>
 <p>A policy fully defines an individual’s behavior, specifying all possible actions in various states along with their probabilities.</p>
 <p>Given a particular policy \( \pi \), the value of the policy can be calculated using the Bellman equation. The value of each state is:</p>
 <p><img src="https://xsearchlogo.oss-us-west-1.aliyuncs.com/image%202.png" alt="image.png"></p>
@@ -146,13 +146,13 @@
 <p>Degree centrality is intuitive—the more connections, the higher the degree centrality:</p>
 <p><img src="https://xsearchlogo.oss-us-west-1.aliyuncs.com/%25E5%25BA%25A6%25E4%25B8%25AD%25E5%25BF%2583%25E6%2580%25A7.jpg" alt="Degree Centrality.jpg"></p>
 <p>Betweenness centrality is different. It measures the “key intermediary”:</p>
-<p>\[ g(v) &#x3D; \sum_{s \neq v \neq t} \frac{\sigma_{s t}(v)}{\sigma_{s t}} \]</p>
-<p>where \( \sigma_{s t} \) represents the total number of shortest paths between nodes \( s \) and \( t \), and \( \sigma_{s t}(v) \) represents the number of those paths that pass through \( v \).</p>
+<p>\[ g(v) = \sum<em>{s \neq v \neq t} \frac{\sigma</em>{s t}(v)}{\sigma_{s t}} \]</p>
+<p>where \( \sigma<em>{s t} \) represents the total number of shortest paths between nodes \( s \) and \( t \), and \( \sigma</em>{s t}(v) \) represents the number of those paths that pass through \( v \).</p>
 <p><img src="https://xsearchlogo.oss-us-west-1.aliyuncs.com/image%205.png" alt="image.png"></p>
 <p>This means that besides the number of links, another dimension for measuring a node’s importance emphasizes a node’s intermediary role within the network. It evaluates whether information or resources among other people in the network must necessarily pass through you.</p>
 <p>In social circles, instead of adding thousands of friends, it may be more effective to become a “key person” in an intersectional field, acting as a bridge between two or more domains.</p>
 <p>Closeness centrality resembles geometric centrality. It’s calculated based on the shortest path between all node pairs, as well as the sum of distances from each node to all others. This value is then inverted to determine the node’s closeness centrality score:</p>
-<p>\[ C(u) &#x3D; \frac{1}{\sum_{v-1}^{n-1} d(u, v)} \]</p>
+<p>\[ C(u) = \frac{1}{\sum_{v-1}^{n-1} d(u, v)} \]</p>
 <p>This means that if a node has very short shortest-path distances to other nodes, its closeness centrality is high.</p>
 <p>In an organization with a flat reporting structure, the boss would have high closeness centrality, as they are near every node. Conversely, adding layers and departments reduces this value—one reason why NVIDIA’s CEO wants to hear as many reports as possible.</p>
 <p>As for us, it’s challenging to change an entire network structure to make oneself the geometric center. A more achievable strategy might be to pursue a high betweenness centrality score by becoming a “key intermediary” in overlapping fields.</p>
