@@ -1,0 +1,604 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+	<link rel="bookmark"  type="image/x-icon"  href="/img/logo_miccall.webp"/>
+	<link rel="shortcut icon" href="/img/logo_miccall.webp">
+	
+			    <title>
+    Haorui Li
+    </title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="/css/mic_main.css" />
+    <link rel="stylesheet" href="/css/dropdownMenu.css" />
+    <meta name="keywords" content="haoruilee" />
+    
+    <noscript>
+        <link rel="stylesheet" href="/css/noscript.css" />
+    </noscript>
+    <style type="text/css">
+        body:before {
+          content: ' ';
+          position: fixed;
+          top: 0;
+          background: url('https://i.dawnlab.me/e6a2105d63e4438f288e4ae4d97f53f2.webp') center 0 no-repeat;
+          right: 0;
+          bottom: 0;
+          left: 0;
+          background-size: cover; 
+        }
+    </style>
+
+			    
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script async type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+    <script src="https://cdnjs.loli.net/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.loli.net/ajax/libs/jquery.scrollex/0.2.1/jquery.scrollex.min.js"></script>
+    <script src="https://cdnjs.loli.net/ajax/libs/skel/3.0.1/skel.min.js"></script>
+    <script src="/js/util.js"></script>
+    <script src="/js/main.js"></script>
+	
+<meta name="generator" content="Hexo 7.2.0"><link href="https://cdn.bootcss.com/KaTeX/0.11.1/katex.min.css" rel="stylesheet" /></head>
+    
+		
+<!-- Layouts -->
+
+
+
+<!--  代码渲染  -->
+<link rel="stylesheet" href="/css/prism_coy.css" />
+<link rel="stylesheet" href="/css/typo.css" />
+<!-- 文章页 -->
+<body class="is-loading">
+    <!-- Wrapper 外包 s-->
+    <div id="wrapper" class="fade-in">
+        <!-- Intro 头部显示 s -->
+        <!-- Intro 头部显示 e -->
+        <!-- Header 头部logo start -->
+        <header id="header">
+    <a href="mailto:haoruili@seu.edu.cn" class="logo">Mail Me for offical  or Chat with me for fun</a>
+</header>
+        <!-- Nav 导航条 start -->
+        <nav id="nav" class="special" >
+            <ul class="menu links" >
+			<!-- Homepage  主页  --> 
+			<li >
+	            <a href="/" rel="nofollow">Home</a>
+	        </li>
+			<!-- categories_name  分类   --> 
+	        
+	        <!-- archives  归档   --> 
+	        
+	        
+		        <!-- Pages 自定义   -->
+		        
+		        <li>
+		            <a href="/life/" title="CV">
+		                CV
+		            </a>
+		        </li>
+		        
+		        <li>
+		            <a href="/tag/" title="Contact">
+		                Contact
+		            </a>
+		        </li>
+		        
+
+
+            </ul>
+            <!-- icons 图标   -->
+			<ul class="icons">
+                    
+                    <li>
+                        <a title="github" href="https://github.com/haoruilee" target="_blank" rel="noopener">
+                            <i class="icon fa fa-github"></i>
+                        </a>
+                    </li>
+                    
+			</ul>
+</nav>
+
+        <div id="main" >
+            <div class ="post_page_title_img" style="height: 25rem;background-image: url(https://i.dawnlab.me/e18673648dfd364b3246ed1bb6a1ffe9.png);background-position: center; background-repeat:no-repeat; background-size:cover;-moz-background-size:cover;overflow:hidden;" >
+                <a href="#" style="padding: 4rem 4rem 2rem 4rem ;"><h2 >Tensor Parallelism and NCCL</h2></a>
+            </div>
+            <!-- Post -->
+            <div class="typo" style="padding: 3rem;">
+                <h1 id="Tensor-Parallelism-and-NCCL"><a href="#Tensor-Parallelism-and-NCCL" class="headerlink" title="Tensor Parallelism and NCCL"></a>Tensor Parallelism and NCCL</h1><p>Recommend Reading: <a target="_blank" rel="noopener" href="https://uvadlc-notebooks.readthedocs.io/en/latest/tutorial_notebooks/scaling/JAX/tensor_parallel_simple.html">https://uvadlc-notebooks.readthedocs.io/en/latest/tutorial_notebooks/scaling/JAX/tensor_parallel_simple.html</a></p>
+<p><img src="https://i.dawnlab.me/4a24dc4749cd91b6dff2e49afc2db8a5.png" alt="4a24dc4749cd91b6dff2e49afc2db8a5.png"></p>
+<h2 id="1-Transformer-Architecture-Overview"><a href="#1-Transformer-Architecture-Overview" class="headerlink" title="1. Transformer Architecture Overview"></a>1. Transformer Architecture Overview</h2><p><img src="https://i.dawnlab.me/74ebb6441811d7390b0c99e50c4aba3e.png" alt="74ebb6441811d7390b0c99e50c4aba3e.png"></p>
+<p><img src="https://i.dawnlab.me/a5ec1ea975fc16b613fd7ff5ac75c5d6.png" alt="a5ec1ea975fc16b613fd7ff5ac75c5d6.png"></p>
+<ol>
+<li><p><strong>Input Embedding Layer</strong>:</p>
+<ul>
+<li>Converts input tokens (e.g., words) into dense vectors of fixed size.</li>
+<li>Adds positional encoding to incorporate sequential information.</li>
+</ul>
+</li>
+<li><p><strong>Multi-Head Self-Attention</strong>:</p>
+<ul>
+<li>Captures global dependencies between different positions in the sequence.</li>
+</ul>
+</li>
+<li><p><strong>Feed-Forward Network (FFN)</strong>:</p>
+<ul>
+<li>Applies independent transformations to each position in the sequence.</li>
+</ul>
+</li>
+<li><p><strong>Layer Normalization and Residual Connections</strong>:</p>
+<ul>
+<li>Stabilizes training and improves convergence.</li>
+</ul>
+</li>
+<li><p><strong>Output Layer</strong>:</p>
+<ul>
+<li>Maps the processed features into probabilities over the output vocabulary.</li>
+</ul>
+</li>
+</ol>
+<p><strong>Tensor Parallelism</strong> optimizes the computation of large matrix operations in self-attention and FFN layers.</p>
+<hr>
+<h2 id="2-Tensor-Parallelism-in-Transformers"><a href="#2-Tensor-Parallelism-in-Transformers" class="headerlink" title="2. Tensor Parallelism in Transformers"></a>2. Tensor Parallelism in Transformers</h2><h3 id="2-1-Multi-Head-Self-Attention-with-Tensor-Parallelism"><a href="#2-1-Multi-Head-Self-Attention-with-Tensor-Parallelism" class="headerlink" title="2.1 Multi-Head Self-Attention with Tensor Parallelism"></a>2.1 Multi-Head Self-Attention with Tensor Parallelism</h3><p>Self-attention operates as follows:</p>
+<p>$$<br>\text{Attention}(Q, K, V) &#x3D; \text{Softmax}\left(\frac{QK^\top}{\sqrt{d_k}}\right)V<br>$$</p>
+<p>Where:</p>
+<ul>
+<li>$Q$, $K$, $V$ are derived from the input $X$ via weight matrices $W_Q$, $W_K$, and $W_V$:</li>
+</ul>
+<p>$$<br>Q &#x3D; XW_Q, \quad K &#x3D; XW_K, \quad V &#x3D; XW_V<br>$$</p>
+<h4 id="Tensor-Parallelism-Steps"><a href="#Tensor-Parallelism-Steps" class="headerlink" title="Tensor Parallelism Steps:"></a>Tensor Parallelism Steps:</h4><ol>
+<li><p><strong>Weight Matrix Partitioning</strong>:</p>
+<ul>
+<li>Split $W_Q$, $W_K$, $W_V$ across GPUs.</li>
+<li>For example, if $W_Q$ has shape $d_{\text{model}} \times d_{\text{head}}$ and there are 4 GPUs, each GPU stores $d_{\text{model}} \times (d_{\text{head}} &#x2F; 4)$.</li>
+</ul>
+</li>
+<li><p><strong>Parallel Computation</strong>:</p>
+<ul>
+<li><p>Each GPU independently computes its portion of $Q$:</p>
+<p>$$<br>Q_{\text{local}} &#x3D; XW_{Q,\text{local}}<br>$$</p>
+</li>
+</ul>
+</li>
+<li><p><strong>All-Gather Communication</strong>:</p>
+<ul>
+<li>Combine $Q_{\text{local}}$ from all GPUs into the full $Q$ using <strong>All-Gather</strong>.</li>
+</ul>
+</li>
+<li><p><strong>Distributed Matrix Multiplication</strong>:</p>
+<ul>
+<li>Partition $Q$ and $K$ for efficient parallel computation of $QK^\top$.</li>
+<li>Use <strong>Reduce-Scatter</strong> to aggregate partial results.</li>
+</ul>
+</li>
+<li><p><strong>Weighted Sum with $V$</strong>:</p>
+<ul>
+<li>Each GPU computes its part of $V$ and synchronizes the output using <strong>Reduce-Scatter</strong>.</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h3 id="2-2-Feed-Forward-Network-FFN-with-Tensor-Parallelism"><a href="#2-2-Feed-Forward-Network-FFN-with-Tensor-Parallelism" class="headerlink" title="2.2 Feed-Forward Network (FFN) with Tensor Parallelism"></a>2.2 Feed-Forward Network (FFN) with Tensor Parallelism</h3><p>The FFN applies two linear transformations with intermediate activation:<br>$$<br>\text{FFN}(X) &#x3D; \text{ReLU}(XW_1 + b_1)W_2 + b_2<br>$$<br>Where:</p>
+<ul>
+<li>$W_1$: $d_{\text{model}} \times d_{\text{hidden}}$</li>
+<li>$W_2$: $d_{\text{hidden}} \times d_{\text{model}}$</li>
+</ul>
+<h4 id="Tensor-Parallelism-Steps-1"><a href="#Tensor-Parallelism-Steps-1" class="headerlink" title="Tensor Parallelism Steps:"></a>Tensor Parallelism Steps:</h4><ol>
+<li><p><strong>Weight Matrix Partitioning</strong>:</p>
+<ul>
+<li>Split $W_1$ along columns and $W_2$ along rows.</li>
+<li>Each GPU holds:<ul>
+<li>$W_1$: $d_{\text{model}} \times (d_{\text{hidden}} &#x2F; N)$</li>
+<li>$W_2$: $(d_{\text{hidden}} &#x2F; N) \times d_{\text{model}}$</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>Forward Computation</strong>:</p>
+<ul>
+<li>Each GPU computes:<br>$$<br>H_{\text{local}} &#x3D; XW_{1,\text{local}}<br>$$</li>
+</ul>
+</li>
+<li><p><strong>Synchronization</strong>:</p>
+<ul>
+<li>Use <strong>All-Gather</strong> to combine $H_{\text{local}}$ into $H$.</li>
+</ul>
+</li>
+<li><p><strong>Second Linear Transformation</strong>:</p>
+<ul>
+<li>Each GPU computes:<br>$$<br>O_{\text{local}} &#x3D; HW_{2,\text{local}}<br>$$</li>
+</ul>
+</li>
+<li><p><strong>Result Synchronization</strong>:</p>
+<ul>
+<li>Use <strong>Reduce-Scatter</strong> to distribute $O_{\text{local}}$ across GPUs.</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2 id="3-Training-Process-of-Tensor-Parallel-Transformers"><a href="#3-Training-Process-of-Tensor-Parallel-Transformers" class="headerlink" title="3. Training Process of Tensor Parallel Transformers"></a>3. Training Process of Tensor Parallel Transformers</h2><h3 id="3-1-Input-Handling"><a href="#3-1-Input-Handling" class="headerlink" title="3.1 Input Handling"></a>3.1 Input Handling</h3><ul>
+<li>Tokenized input sequences are embedded and distributed among GPUs.</li>
+</ul>
+<h3 id="3-2-Forward-Pass"><a href="#3-2-Forward-Pass" class="headerlink" title="3.2 Forward Pass"></a>3.2 Forward Pass</h3><ol>
+<li><p><strong>Multi-Head Self-Attention</strong>:</p>
+<ul>
+<li>Each GPU computes its part of $Q$, $K$, $V$ using local weights.</li>
+<li>Synchronize results using <strong>All-Gather</strong> and compute attention scores in parallel.</li>
+</ul>
+</li>
+<li><p><strong>Feed-Forward Network</strong>:</p>
+<ul>
+<li>Each GPU performs partitioned linear transformations.</li>
+<li>Use <strong>All-Gather</strong> and <strong>Reduce-Scatter</strong> to synchronize intermediate results.</li>
+</ul>
+</li>
+</ol>
+<h3 id="3-3-Loss-Computation-and-Backward-Pass"><a href="#3-3-Loss-Computation-and-Backward-Pass" class="headerlink" title="3.3 Loss Computation and Backward Pass"></a>3.3 Loss Computation and Backward Pass</h3><ol>
+<li><p><strong>Gradient Computation</strong>:</p>
+<ul>
+<li>Each GPU computes local gradients for its partitioned weights.</li>
+</ul>
+</li>
+<li><p><strong>Gradient Synchronization</strong>:</p>
+<ul>
+<li>Use <strong>All-Reduce</strong> to synchronize gradients across GPUs.</li>
+</ul>
+</li>
+<li><p><strong>Weight Updates</strong>:</p>
+<ul>
+<li>Each GPU updates its local weights using synchronized gradients.</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h1 id="NCCL"><a href="#NCCL" class="headerlink" title="NCCL"></a>NCCL</h1><h3 id="1-All-Reduce"><a href="#1-All-Reduce" class="headerlink" title="1. All-Reduce"></a><strong>1. All-Reduce</strong></h3><ul>
+<li><strong>Function</strong>: Aggregates data from all GPUs (e.g., summation) and broadcasts the result back to all GPUs.</li>
+<li><strong>Topology Used</strong>: <strong>Ring Topology</strong>.</li>
+<li><strong>Communication Process</strong>:  <ol>
+<li>Each GPU sends its data to the next GPU while receiving data from the previous GPU.</li>
+<li>Each communication round performs part of the Reduce operation.</li>
+<li>During the broadcast phase, the final result is synchronized across all GPUs.</li>
+</ol>
+</li>
+</ul>
+<h4 id="ASCII-Diagram"><a href="#ASCII-Diagram" class="headerlink" title="ASCII Diagram"></a><strong>ASCII Diagram</strong></h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">Step 1: Reduce Phase (Ring Summation)</span><br><span class="line">  GPU0 -&gt; GPU1 -&gt; GPU2 -&gt; GPU3</span><br><span class="line">  Data flows in the ring and accumulates:</span><br><span class="line">    GPU0: [1, 2] + GPU1: [3, 4]</span><br><span class="line">    GPU1: [4, 6] -&gt; GPU2: [9, 10] + ...</span><br><span class="line"></span><br><span class="line">Step 2: Broadcast Phase (Ring Broadcast)</span><br><span class="line">  GPU3 -&gt; GPU2 -&gt; GPU1 -&gt; GPU0</span><br><span class="line">  Each GPU receives the final result: [16, 20]</span><br><span class="line"></span><br><span class="line">Ring Topology:</span><br><span class="line">  GPU0 → GPU1 → GPU2 → GPU3</span><br><span class="line">    ↑                     ↓</span><br><span class="line">    ←---------------------←</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="2-Reduce"><a href="#2-Reduce" class="headerlink" title="2. Reduce"></a><strong>2. Reduce</strong></h3><ul>
+<li><strong>Function</strong>: Aggregates data from all GPUs, with the result stored on a specified Root GPU.</li>
+<li><strong>Topology Used</strong>: <strong>Tree Topology</strong>.</li>
+<li><strong>Communication Process</strong>:  <ol>
+<li>Data is progressively aggregated to the Root GPU following a tree structure.</li>
+<li>Each GPU passes its data to its parent and performs the Reduce operation.</li>
+</ol>
+</li>
+</ul>
+<h4 id="ASCII-Diagram-1"><a href="#ASCII-Diagram-1" class="headerlink" title="ASCII Diagram"></a><strong>ASCII Diagram</strong></h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">Tree Topology:</span><br><span class="line">       GPU0 (Root)</span><br><span class="line">       /    \</span><br><span class="line">    GPU1    GPU2</span><br><span class="line">    /          \</span><br><span class="line"> GPU3         GPU4</span><br><span class="line"></span><br><span class="line">Step 1: Each pair of GPUs merges data</span><br><span class="line">  GPU3 + GPU1 → GPU1: [A+B]</span><br><span class="line">  GPU4 + GPU2 → GPU2: [C+D]</span><br><span class="line"></span><br><span class="line">Step 2: Upper levels continue merging</span><br><span class="line">  GPU1 + GPU2 → GPU0: [SUM(A, B, C, D)]</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="3-Broadcast"><a href="#3-Broadcast" class="headerlink" title="3. Broadcast"></a><strong>3. Broadcast</strong></h3><ul>
+<li><strong>Function</strong>: Broadcasts data from the Root GPU to all other GPUs.</li>
+<li><strong>Topology Used</strong>: <strong>Tree Topology</strong>.</li>
+<li><strong>Communication Process</strong>:  <ol>
+<li>The Root GPU transmits data to the next level of GPUs.</li>
+<li>Each GPU forwards the received data to its children until all GPUs are synchronized.</li>
+</ol>
+</li>
+</ul>
+<h4 id="ASCII-Diagram-2"><a href="#ASCII-Diagram-2" class="headerlink" title="ASCII Diagram"></a><strong>ASCII Diagram</strong></h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">Tree Topology:</span><br><span class="line">       GPU0 (Root)</span><br><span class="line">       /    \</span><br><span class="line">    GPU1    GPU2</span><br><span class="line">    /          \</span><br><span class="line"> GPU3         GPU4</span><br><span class="line"></span><br><span class="line">Step 1: Root broadcasts to child nodes</span><br><span class="line">  GPU0 -&gt; GPU1, GPU2: Data synchronized</span><br><span class="line">Step 2: Child nodes broadcast further</span><br><span class="line">  GPU1 -&gt; GPU3, GPU2 -&gt; GPU4</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="4-All-Gather"><a href="#4-All-Gather" class="headerlink" title="4. All-Gather"></a><strong>4. All-Gather</strong></h3><ul>
+<li><strong>Function</strong>: Each GPU gathers data from all other GPUs, resulting in each GPU having complete data.</li>
+<li><strong>Topology Used</strong>: <strong>Ring Topology</strong>.</li>
+<li><strong>Communication Process</strong>:  <ol>
+<li>Each GPU sends its data block to the next GPU and receives data from the previous GPU.</li>
+<li>After ( N-1 ) communication rounds, all GPUs have collected the complete data.</li>
+</ol>
+</li>
+</ul>
+<h4 id="ASCII-Diagram-3"><a href="#ASCII-Diagram-3" class="headerlink" title="ASCII Diagram"></a><strong>ASCII Diagram</strong></h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">Ring Topology:</span><br><span class="line">  GPU0 → GPU1 → GPU2 → GPU3</span><br><span class="line">    ↑                     ↓</span><br><span class="line">    ←---------------------←</span><br><span class="line"></span><br><span class="line">Step 1: Each GPU sends its data</span><br><span class="line">  GPU0 sends [A] to GPU1, GPU1 sends [B] to GPU2...</span><br><span class="line"></span><br><span class="line">Step 2: Data rotates and accumulates</span><br><span class="line">  Each GPU collects one new block per round until all blocks are gathered:</span><br><span class="line">  GPU0 -&gt; [A, B, C, D]</span><br><span class="line">  GPU1 -&gt; [A, B, C, D]</span><br><span class="line">  ...</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="5-Reduce-Scatter"><a href="#5-Reduce-Scatter" class="headerlink" title="5. Reduce-Scatter"></a><strong>5. Reduce-Scatter</strong></h3><ul>
+<li><strong>Function</strong>: Aggregates data across all GPUs in chunks (Reduce) and distributes the aggregated chunks to all GPUs (Scatter).</li>
+<li><strong>Topology Used</strong>: <strong>Ring Topology</strong>.</li>
+<li><strong>Communication Process</strong>:  <ol>
+<li>Each GPU sends and receives data in chunks, performing the Reduce operation on the received data.</li>
+<li>Eventually, each GPU has a chunk of the globally aggregated result.</li>
+</ol>
+</li>
+</ul>
+<h4 id="ASCII-Diagram-4"><a href="#ASCII-Diagram-4" class="headerlink" title="ASCII Diagram"></a><strong>ASCII Diagram</strong></h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">Step 1: Data is divided into chunks</span><br><span class="line">  GPU0: [A0, A1], GPU1: [B0, B1], ...</span><br><span class="line">Step 2: Ring Reduce</span><br><span class="line">  GPU0 sends A1 to GPU1, GPU1 sends B1 to GPU2...</span><br><span class="line">  Aggregated results are distributed in chunks:</span><br><span class="line">  GPU0: [A0+B0+C0+D0]</span><br><span class="line">  GPU1: [A1+B1+C1+D1]</span><br><span class="line"></span><br><span class="line">Ring Topology:</span><br><span class="line">  GPU0 → GPU1 → GPU2 → GPU3</span><br><span class="line">    ↑                     ↓</span><br><span class="line">    ←---------------------←</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="6-Scatter"><a href="#6-Scatter" class="headerlink" title="6. Scatter"></a><strong>6. Scatter</strong></h3><ul>
+<li><strong>Function</strong>: Splits the data on the Root GPU into chunks and distributes them to all GPUs.</li>
+<li><strong>Topology Used</strong>: <strong>Tree Topology</strong>.</li>
+<li><strong>Communication Process</strong>:  <ol>
+<li>The Root GPU splits the data into chunks.</li>
+<li>Each chunk is transmitted to the corresponding GPU following a tree structure.</li>
+</ol>
+</li>
+</ul>
+<h4 id="ASCII-Diagram-5"><a href="#ASCII-Diagram-5" class="headerlink" title="ASCII Diagram"></a><strong>ASCII Diagram</strong></h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">Tree Topology:</span><br><span class="line">       GPU0 (Root)</span><br><span class="line">       /    \</span><br><span class="line">    GPU1    GPU2</span><br><span class="line">    /          \</span><br><span class="line"> GPU3         GPU4</span><br><span class="line"></span><br><span class="line">Step 1: Root splits and distributes data</span><br><span class="line">  GPU0 sends [A] to GPU1, [B] to GPU2</span><br><span class="line">Step 2: Child nodes distribute further</span><br><span class="line">  GPU1 sends [C] to GPU3, GPU2 sends [D] to GPU4</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="7-Gather"><a href="#7-Gather" class="headerlink" title="7. Gather"></a><strong>7. Gather</strong></h3><ul>
+<li><strong>Function</strong>: Collects data from all GPUs and consolidates it on the Root GPU.</li>
+<li><strong>Topology Used</strong>: <strong>Tree Topology</strong>.</li>
+<li><strong>Communication Process</strong>:  <ol>
+<li>Each GPU sends its data to its parent node.</li>
+<li>Data is progressively aggregated and consolidated at the Root GPU.</li>
+</ol>
+</li>
+</ul>
+<h4 id="ASCII-Diagram-6"><a href="#ASCII-Diagram-6" class="headerlink" title="ASCII Diagram"></a><strong>ASCII Diagram</strong></h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">Tree Topology:</span><br><span class="line">       GPU0 (Root)</span><br><span class="line">       /    \</span><br><span class="line">    GPU1    GPU2</span><br><span class="line">    /          \</span><br><span class="line"> GPU3         GPU4</span><br><span class="line"></span><br><span class="line">Step 1: Child nodes send data upwards</span><br><span class="line">  GPU3 sends [A] to GPU1, GPU4 sends [B] to GPU2</span><br><span class="line">Step 2: Parent nodes merge data</span><br><span class="line">  GPU1 + GPU2 -&gt; GPU0</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a><strong>Summary</strong></h3><table>
+<thead>
+<tr>
+<th><strong>Communication Strategy</strong></th>
+<th><strong>Topology</strong></th>
+<th><strong>Features</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>All-Reduce</strong></td>
+<td>Ring Topology</td>
+<td>Global aggregation and broadcast using ring Reduce + Broadcast</td>
+</tr>
+<tr>
+<td><strong>Reduce</strong></td>
+<td>Tree Topology</td>
+<td>Global aggregation to Root GPU</td>
+</tr>
+<tr>
+<td><strong>Broadcast</strong></td>
+<td>Tree Topology</td>
+<td>Data broadcasted from Root to all devices</td>
+</tr>
+<tr>
+<td><strong>All-Gather</strong></td>
+<td>Ring Topology</td>
+<td>All data gathered to each GPU</td>
+</tr>
+<tr>
+<td><strong>Reduce-Scatter</strong></td>
+<td>Ring Topology</td>
+<td>Partial aggregation and scatter</td>
+</tr>
+<tr>
+<td><strong>Scatter</strong></td>
+<td>Tree Topology</td>
+<td>Root data split and distributed</td>
+</tr>
+<tr>
+<td><strong>Gather</strong></td>
+<td>Tree Topology</td>
+<td>Data consolidated at Root GPU</td>
+</tr>
+</tbody></table>
+<p>The choice of strategy depends on the application scenario and data characteristics. Feel free to ask for more details about any specific operation!</p>
+<h1 id="Step-by-Step-Example-of-NCCL"><a href="#Step-by-Step-Example-of-NCCL" class="headerlink" title="Step by Step Example of NCCL"></a>Step by Step Example of NCCL</h1><h3 id="Understanding-Reduce-Scatter-A-Step-by-Step-Guide"><a href="#Understanding-Reduce-Scatter-A-Step-by-Step-Guide" class="headerlink" title="Understanding Reduce-Scatter: A Step-by-Step Guide"></a><strong>Understanding Reduce-Scatter: A Step-by-Step Guide</strong></h3><p>The <strong>Reduce-Scatter</strong> operation combines two main steps:</p>
+<ol>
+<li><strong>Reduce</strong>: Perform a specified operation (e.g., SUM) on corresponding blocks of data across GPUs.</li>
+<li><strong>Scatter</strong>: Distribute the reduced results to specific GPUs.</li>
+</ol>
+<p>The key idea is to efficiently distribute the computation and communication workload, ensuring each GPU holds a unique portion of the reduced global data.</p>
+<hr>
+<h3 id="SUM-Operation-Rule"><a href="#SUM-Operation-Rule" class="headerlink" title="SUM Operation Rule"></a><strong>SUM Operation Rule</strong></h3><p>In <strong>Reduce-Scatter</strong>, the SUM operation applies to <strong>corresponding chunks of data</strong> across GPUs. It’s important to note:</p>
+<ul>
+<li>The SUM operation is not applied to the entire tensor globally. </li>
+<li>Instead, the tensor is divided into chunks, and the SUM is performed locally on each chunk (Reduce). The resulting reduced chunks are then distributed (Scatter) to the GPUs.</li>
+</ul>
+<p>As a result, each GPU contains only a part of the global reduced data, not the sum of the entire tensor.</p>
+<hr>
+<h3 id="Example-Analysis"><a href="#Example-Analysis" class="headerlink" title="Example Analysis"></a><strong>Example Analysis</strong></h3><p>Let’s clarify with an example of <strong>4 GPUs</strong>, where each GPU starts with a tensor of values:</p>
+<ul>
+<li>GPU0: ([1, 2, 3, 4])</li>
+<li>GPU1: ([5, 6, 7, 8])</li>
+<li>GPU2: ([9, 10, 11, 12])</li>
+<li>GPU3: ([13, 14, 15, 16])</li>
+</ul>
+<h4 id="Step-1-Divide-the-Data-into-Chunks"><a href="#Step-1-Divide-the-Data-into-Chunks" class="headerlink" title="Step 1: Divide the Data into Chunks"></a>Step 1: Divide the Data into Chunks</h4><p>Each tensor is evenly divided into <strong>4 chunks</strong>, one for each position:</p>
+<ul>
+<li>GPU0: ([1], [2], [3], [4])</li>
+<li>GPU1: ([5], [6], [7], [8])</li>
+<li>GPU2: ([9], [10], [11], [12])</li>
+<li>GPU3: ([13], [14], [15], [16])</li>
+</ul>
+<h4 id="Step-2-Perform-the-Reduce-Operation-SUM"><a href="#Step-2-Perform-the-Reduce-Operation-SUM" class="headerlink" title="Step 2: Perform the Reduce Operation (SUM)"></a>Step 2: Perform the Reduce Operation (SUM)</h4><p>For each position (i), perform the SUM operation across all GPUs:</p>
+<ul>
+<li><p><strong>Chunk 0</strong> (position 0 across all GPUs):<br>$$<br>R_0 &#x3D; 1 + 5 + 9 + 13 &#x3D; 28<br>$$</p>
+</li>
+<li><p><strong>Chunk 1</strong> (position 1 across all GPUs):<br>$$<br>R_1 &#x3D; 2 + 6 + 10 + 14 &#x3D; 32<br>$$</p>
+</li>
+<li><p><strong>Chunk 2</strong> (position 2 across all GPUs):<br>$$<br>R_2 &#x3D; 3 + 7 + 11 + 15 &#x3D; 36<br>$$</p>
+</li>
+<li><p><strong>Chunk 3</strong> (position 3 across all GPUs):<br>$$<br>R_3 &#x3D; 4 + 8 + 12 + 16 &#x3D; 40<br>$$</p>
+</li>
+</ul>
+<h4 id="Step-3-Scatter-the-Results"><a href="#Step-3-Scatter-the-Results" class="headerlink" title="Step 3: Scatter the Results"></a>Step 3: Scatter the Results</h4><p>Distribute the reduced chunks to the GPUs:</p>
+<ul>
+<li>GPU0 receives (R_0 &#x3D; 28).</li>
+<li>GPU1 receives (R_1 &#x3D; 32).</li>
+<li>GPU2 receives (R_2 &#x3D; 36).</li>
+<li>GPU3 receives (R_3 &#x3D; 40).</li>
+</ul>
+<hr>
+<h3 id="Why-Are-Results-Different-on-Each-GPU"><a href="#Why-Are-Results-Different-on-Each-GPU" class="headerlink" title="Why Are Results Different on Each GPU?"></a><strong>Why Are Results Different on Each GPU?</strong></h3><p>In <strong>Reduce-Scatter</strong>, the goal is not for each GPU to hold the result of the global tensor reduction. Instead, each GPU retains <strong>only the reduced result of the chunk it is responsible for</strong>. This design ensures:</p>
+<ul>
+<li>Each GPU processes a smaller portion of the data.</li>
+<li>Communication overhead is reduced, as GPUs share only the chunks relevant to their tasks.</li>
+</ul>
+<hr>
+<h3 id="Applications-and-Advantages"><a href="#Applications-and-Advantages" class="headerlink" title="Applications and Advantages"></a><strong>Applications and Advantages</strong></h3><ol>
+<li><p><strong>Reducing Communication Overhead</strong>:</p>
+<ul>
+<li>In operations like <strong>All-Reduce</strong>, all GPUs would hold the entire reduced tensor, leading to higher communication costs.</li>
+<li><strong>Reduce-Scatter</strong> minimizes communication by only transferring reduced chunks.</li>
+</ul>
+</li>
+<li><p><strong>Distributed Training</strong>:</p>
+<ul>
+<li>During training, GPUs often require only specific portions of gradients or parameters.</li>
+<li><strong>Reduce-Scatter</strong> ensures that each GPU gets only the data it needs, making training more efficient.</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h3 id="Summary-Rules-and-Concepts"><a href="#Summary-Rules-and-Concepts" class="headerlink" title="Summary: Rules and Concepts"></a><strong>Summary: Rules and Concepts</strong></h3><ol>
+<li><p><strong>Reduce Rule</strong>:</p>
+<ul>
+<li>Divide the tensor into chunks and perform the operation (e.g., SUM) across corresponding chunks on all GPUs.</li>
+<li>For SUM, each reduced chunk is:<br>$$<br>R_i &#x3D; A_{0,i} + A_{1,i} + \cdots + A_{N-1,i}<br>$$</li>
+</ul>
+</li>
+<li><p><strong>Scatter Rule</strong>:</p>
+<ul>
+<li>Distribute each reduced chunk (R_i) to its corresponding GPU.</li>
+</ul>
+</li>
+<li><p><strong>Why GPUs Hold Different Results</strong>:</p>
+<ul>
+<li>Each GPU retains only one part of the global reduced data. This reduces memory and communication costs.</li>
+</ul>
+</li>
+<li><p><strong>Advantages</strong>:</p>
+<ul>
+<li><strong>Efficiency</strong>: Less communication and memory usage.</li>
+<li><strong>Scalability</strong>: Ideal for large-scale distributed systems.</li>
+</ul>
+</li>
+</ol>
+
+            </div>
+
+            <!-- Post Comments -->
+            
+    <!-- 使用 DISQUS_CLICK -->
+<div id="disqus-comment">
+    <div id="disqus_thread"></div>
+
+<!-- add animation -->
+<style>
+	.disqus_click_btn {
+            line-height: 30px;
+            margin: 0;
+            min-width: 50px;
+            padding: 0 14px;
+            display: inline-block;
+            font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+            font-size: 14px;
+            font-weight: 400;
+            text-transform: uppercase;
+            letter-spacing: 0;
+            overflow: hidden;
+            will-change: box-shadow;
+            transition: box-shadow .2s cubic-bezier(.4, 0, 1, 1), background-color .2s cubic-bezier(.4, 0, .2, 1), color .2s cubic-bezier(.4, 0, .2, 1);
+            outline: 0;
+            cursor: pointer;
+            text-decoration: none;
+            text-align: center;
+            vertical-align: middle;
+            border: 0;
+            background: rgba(158, 158, 158, .2);
+            box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14), 0 3px 1px -2px rgba(0, 0, 0, .2), 0 1px 5px 0 rgba(0, 0, 0, .12);
+            color: #fff;
+            background-color: #7EC0EE;
+            text-shadow: 0
+        }
+</style>
+	
+<div class="btn_click_load" id="disqus_bt"> 
+    <button class="disqus_click_btn">点击查看评论</button>
+</div>
+
+<!--
+<script type="text/javascript">
+$('.btn_click_load').click(function() {
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = 'lee'; // required: replace example with your forum shortname
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+
+    document.getElementById('disqus_bt').style.display = "none";
+});
+</script>
+-->
+<script type="text/javascript">
+    var disqus_config = function () {
+        this.page.url = 'https://li_haor.gitee.io/2025/01/22/tp_in_transformer/';  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = 'https://li_haor.gitee.io/2025/01/22/tp_in_transformer/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+</script>
+
+<script type="text/javascript">
+    $('.btn_click_load').click(function() {  //click to load comments
+        (function() { // DON'T EDIT BELOW THIS LINE
+            var d = document;
+            var s = d.createElement('script');
+            s.src = '//lee.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', + new Date());
+            (d.head || d.body).appendChild(s);
+        })();
+        $('.btn_click_load').css('display','none');
+    });
+</script>
+</div>
+<style>
+    #disqus-comment{
+        background-color: #eee;
+        padding: 2pc;
+    }
+</style>
+
+
+        </div>
+        <!-- Copyright 版权 start -->
+                <div id="copyright">
+            <ul>
+                <li>&copy;Powered By <a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/" style="border-bottom: none;">hexo</a></li>
+                <li>Author  <a target="_blank" rel="noopener" href="https://github.com/haoruilee" style="border-bottom: none;">haoruilee</a></li>
+				<li><a target="_blank" rel="noopener" href="https://beian.miit.gov.cn/" style="border-bottom: none;">苏ICP备2020050362号</a></li>
+            </ul>
+            
+				<span id="busuanzi_container_site_pv"> 2025 </span> 
+			
+        </div>
+    </div>
+</body>
+
+
+
+ 	
+</html>

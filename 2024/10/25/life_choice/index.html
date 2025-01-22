@@ -127,12 +127,14 @@
             </div>
             <!-- Post -->
             <div class="typo" style="padding: 3rem;">
-                <h1 id="Mathematical-Models-and-Life-Choices"><a href="#Mathematical-Models-and-Life-Choices" class="headerlink" title="Mathematical Models and Life Choices"></a>Mathematical Models and Life Choices</h1><blockquote>
+                <h1 id="mathematical-models-and-life-choices">Mathematical Models and Life Choices</h1>
+<blockquote>
 <p>It has become a traditional behavior that when leaving Alibaba, employees will send a long post in the Alibaba blog. Here, I have prepared four short stories as a parting gift for Baba as I decided to leave industry and pursue my career in academia.</p>
 </blockquote>
 <p>There are many interesting mathematical models in the world that can, to some extent, offer us a lot of insights.</p>
 <p>Chinese Version: <a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/871793375">https://zhuanlan.zhihu.com/p/871793375</a></p>
-<h1 id="Career-Journey"><a href="#Career-Journey" class="headerlink" title="Career Journey"></a>Career Journey</h1><p><strong>Keywords:</strong> Markov Decision Process</p>
+<h1 id="career-journey">Career Journey</h1>
+<p><strong>Keywords:</strong> Markov Decision Process</p>
 <p>Students who have studied probability theory are likely familiar with the Markov process. In the field of reinforcement learning, this theory is extended to the Markov Decision Process (MDP), where an Agent’s behavior optimization within this process is fascinating and offers valuable insights for our career paths.</p>
 <p>In a classic Markov process, state transitions are random. For example, a student might currently be in a lecture with a 50% chance of transitioning to a “playing on phone” state and a 50% chance of going to the next lecture, represented as follows:</p>
 <p><img src="https://xsearchlogo.oss-us-west-1.aliyuncs.com/image.png" alt="image.png"></p>
@@ -140,17 +142,17 @@
 <p><img src="https://xsearchlogo.oss-us-west-1.aliyuncs.com/image%201.png" alt="image.png"></p>
 <p>Markov Decision Theory aims to calculate the optimal strategy for the Agent. If one only focuses on the reward of hanging out (+1), they might avoid attending lectures with a reward of -2 and eventually fail to achieve a higher reward like passing exams (+10).</p>
 <p>The MDP is defined as follows:</p>
-<p>MDP &#x3D; (S, A, P, R, γ)</p>
+<p>MDP = (S, A, P, R, γ)</p>
 <p>Where:</p>
 <ul>
 <li><strong>State Space (S)</strong>: The set of all possible states, covering lecture attendance, hanging out, passing exams, etc.</li>
 <li><strong>Action Space (A)</strong>: The set of actions available in each state.</li>
-<li><strong>Transition Probability (P)</strong>: The state transition function.</li>
-<li><strong>Reward Function (R)</strong>: The immediate reward obtained after transitioning to another state.</li>
+<li><strong>Transition Probability §</strong>: The state transition function.</li>
+<li><strong>Reward Function ®</strong>: The immediate reward obtained after transitioning to another state.</li>
 <li><strong>Discount Factor (\( \gamma \))</strong>: Used to discount future rewards, reflecting the degree of emphasis on long-term gains.</li>
 </ul>
 <p>For a specific MDP, an Agent can have a policy \( \pi \), representing the probability of choosing action \( a \) in state \( s \):</p>
-<p>\[ \pi(a | s) &#x3D; P[A_t &#x3D; a | S_t &#x3D; s] \]</p>
+<p>\[ \pi(a | s) = P[A_t = a | S_t = s] \]</p>
 <p>A policy fully defines an individual’s behavior, specifying all possible actions in various states along with their probabilities.</p>
 <p>Given a particular policy \( \pi \), the value of the policy can be calculated using the Bellman equation. The value of each state is:</p>
 <p><img src="https://xsearchlogo.oss-us-west-1.aliyuncs.com/image%202.png" alt="image.png"></p>
@@ -159,24 +161,26 @@
 <p>As we can see, the value of each state not only includes its own reward but also the rewards of “all states that can be reached from this state.” The gamma factor determines how much we value future rewards.</p>
 <p>Returning to the student example, let’s assume that in the third lecture, the probabilities of hanging out and studying are both 0.5 (a fixed policy) and the decay factor γ is 1. It turns out that although the reward for attending the third lecture seems like -2, its actual value can be as high as 7.4:</p>
 <p><img src="https://xsearchlogo.oss-us-west-1.aliyuncs.com/image%204.png" alt="image.png"></p>
-<h1 id="Influence"><a href="#Influence" class="headerlink" title="Influence"></a>Influence</h1><p><strong>Keywords:</strong> Social Network</p>
+<h1 id="influence">Influence</h1>
+<p><strong>Keywords:</strong> Social Network</p>
 <p>Some people reach the friend limit on WeChat, while others have only a few friends. A report from a few years ago indicated that 4% of people have over 1000 WeChat friends, while 59% have between 50 and 500 friends. So, does having more WeChat friends equate to greater influence?</p>
 <p>In networks, there’s a concept called “centrality,” which measures a node’s importance within a network. Centrality can be calculated in several ways, but the core idea is to look at the node’s connections. In other words, in a social circle, your value is not determined by you but by how those around you perceive you.</p>
 <p>The three most common methods for calculating centrality are degree centrality, betweenness centrality, and closeness centrality.</p>
 <p>Degree centrality is intuitive—the more connections, the higher the degree centrality:</p>
 <p><img src="https://xsearchlogo.oss-us-west-1.aliyuncs.com/%25E5%25BA%25A6%25E4%25B8%25AD%25E5%25BF%2583%25E6%2580%25A7.jpg" alt="Degree Centrality.jpg"></p>
 <p>Betweenness centrality is different. It measures the “key intermediary”:</p>
-<p>\[ g(v) &#x3D; \sum_{s \neq v \neq t} \frac{\sigma_{s t}(v)}{\sigma_{s t}} \]</p>
+<p>\[ g(v) = \sum_{s \neq v \neq t} \frac{\sigma_{s t}(v)}{\sigma_{s t}} \]</p>
 <p>where \( \sigma_{s t} \) represents the total number of shortest paths between nodes \( s \) and \( t \), and \( \sigma_{s t}(v) \) represents the number of those paths that pass through \( v \).</p>
 <p><img src="https://xsearchlogo.oss-us-west-1.aliyuncs.com/image%205.png" alt="image.png"></p>
 <p>This means that besides the number of links, another dimension for measuring a node’s importance emphasizes a node’s intermediary role within the network. It evaluates whether information or resources among other people in the network must necessarily pass through you.</p>
 <p>In social circles, instead of adding thousands of friends, it may be more effective to become a “key person” in an intersectional field, acting as a bridge between two or more domains.</p>
 <p>Closeness centrality resembles geometric centrality. It’s calculated based on the shortest path between all node pairs, as well as the sum of distances from each node to all others. This value is then inverted to determine the node’s closeness centrality score:</p>
-<p>\[ C(u) &#x3D; \frac{1}{\sum_{v-1}^{n-1} d(u, v)} \]</p>
+<p>\[ C(u) = \frac{1}{\sum_{v-1}^{n-1} d(u, v)} \]</p>
 <p>This means that if a node has very short shortest-path distances to other nodes, its closeness centrality is high.</p>
 <p>In an organization with a flat reporting structure, the boss would have high closeness centrality, as they are near every node. Conversely, adding layers and departments reduces this value—one reason why NVIDIA’s CEO wants to hear as many reports as possible.</p>
 <p>As for us, it’s challenging to change an entire network structure to make oneself the geometric center. A more achievable strategy might be to pursue a high betweenness centrality score by becoming a “key intermediary” in overlapping fields.</p>
-<h1 id="Path-Dependence"><a href="#Path-Dependence" class="headerlink" title="Path Dependence"></a>Path Dependence</h1><p><strong>Keywords:</strong> Stationarity</p>
+<h1 id="path-dependence">Path Dependence</h1>
+<p><strong>Keywords:</strong> Stationarity</p>
 <p>In a box with black and white balls, the more you draw, the better you can estimate their distribution. This is classical probability from centuries ago.</p>
 <p>However, modern mathematics reveals the concept of stationarity. Imagine if, after each draw, a machine in the box produces or destroys black and white balls at random. Regardless of how many draws are taken, you can never estimate the distribution of balls in the box.</p>
 <p>This concept tells us not to rely on “path dependence” in life or trust any calm surface. Real life is far trickier than a ball-drawing game—draw 100 times for white balls, and next might be a golden egg or even a python.</p>
@@ -185,7 +189,8 @@
 <p>True speculators like Soros are unique—they lack path dependence and treat each day as a blank slate. They never assume that the next draw will be a black ball just because the previous one was.</p>
 <p>This approach inspired Rozan to shift from finance to AI, founding Qwant and later DeepL.</p>
 <p>Many people hold on to their beliefs until they reach the grave.</p>
-<h1 id="Asymmetric-Opportunities"><a href="#Asymmetric-Opportunities" class="headerlink" title="Asymmetric Opportunities"></a>Asymmetric Opportunities</h1><p><strong>Keywords:</strong> Skewness</p>
+<h1 id="asymmetric-opportunities">Asymmetric Opportunities</h1>
+<p><strong>Keywords:</strong> Skewness</p>
 <p>There is often debate over bull and bear markets. A bull market is when most stocks likely rise, while a bear market sees most stocks likely fall.</p>
 <p>But a bull market doesn’t necessarily mean buying is optimal, because opportunities are often asymmetric.</p>
 <p>Consider the Peso Problem, a classic issue in economics. The Argentinian Peso remained stable against the dollar for a long time, but historically experienced occasional sharp devaluations.</p>
