@@ -122,12 +122,149 @@
 </nav>
 
         <div id="main" >
-            <div class ="post_page_title_img" style="height: 25rem;background-image: url();background-position: center; background-repeat:no-repeat; background-size:cover;-moz-background-size:cover;overflow:hidden;" >
-                <a href="#" style="padding: 4rem 4rem 2rem 4rem ;"><h2 ></h2></a>
+            <div class ="post_page_title_img" style="height: 25rem;background-image: url(https://i.dawnlab.me/fffe274efb6723c33b55a3bf5354858a.png);background-position: center; background-repeat:no-repeat; background-size:cover;-moz-background-size:cover;overflow:hidden;" >
+                <a href="#" style="padding: 4rem 4rem 2rem 4rem ;"><h2 >Swarm Code Reading</h2></a>
             </div>
             <!-- Post -->
             <div class="typo" style="padding: 3rem;">
-                
+                <h1 id="Swarm-Code-Reading"><a href="#Swarm-Code-Reading" class="headerlink" title="Swarm Code Reading"></a>Swarm Code Reading</h1><p>Source code: <a target="_blank" rel="noopener" href="https://github.com/openai/swarm">https://github.com/openai/swarm</a></p>
+<p>My opensourced demo of how to modify and use swarm: <a target="_blank" rel="noopener" href="https://github.com/haoruilee/huggingface-swarm">https://github.com/haoruilee/huggingface-swarm</a></p>
+<p>TL;DR: Swarm is a LLM multi-agent structure. It warps different LLM into function_calling format and passed them to too_choice to make one agent call another. </p>
+<hr>
+<h4 id="1-Overview-of-Swarm’s-Components"><a href="#1-Overview-of-Swarm’s-Components" class="headerlink" title="1. Overview of Swarm’s Components"></a>1. <strong>Overview of Swarm’s Components</strong></h4><p>Before delving into the <code>core.py</code> file, let’s understand the supporting modules:</p>
+<ol>
+<li><strong><code>types.py</code>:</strong> Defines the core data structures like <code>Agent</code>, <code>Response</code>, and <code>Result</code>, which are used throughout the code.</li>
+<li><strong><code>util.py</code>:</strong> Provides utility functions like <code>debug_print</code>, <code>merge_chunk</code>, and <code>function_to_json</code>, which assist in debugging, merging responses, and converting functions to JSON.</li>
+</ol>
+<hr>
+<h4 id="2-Initialization-of-the-Swarm-Class"><a href="#2-Initialization-of-the-Swarm-Class" class="headerlink" title="2. Initialization of the Swarm Class"></a>2. <strong>Initialization of the Swarm Class</strong></h4><p>The <code>Swarm</code> class is initialized with a client:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Swarm</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, client=<span class="literal">None</span></span>):</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> client:</span><br><span class="line">            client = OpenAI()</span><br><span class="line">        self.client = client</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>Purpose:</strong> This constructor sets up the <code>Swarm</code> object, ensuring it has a client for interacting with the OpenAI API.</li>
+<li><strong>Key Points:</strong><ul>
+<li>If no client is provided, it defaults to creating an <code>OpenAI</code> client instance.</li>
+<li>This client is stored as <code>self.client</code>, which is used in subsequent methods.</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h4 id="3-Method-get-chat-completion"><a href="#3-Method-get-chat-completion" class="headerlink" title="3. Method: get_chat_completion"></a>3. <strong>Method: <code>get_chat_completion</code></strong></h4><p>This method retrieves chat completions from the OpenAI model based on agent instructions and conversation history.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">get_chat_completion</span>(<span class="params">self, agent, history, context_variables, model_override, stream, debug</span>):</span><br><span class="line">    context_variables = defaultdict(<span class="built_in">str</span>, context_variables)</span><br><span class="line">    instructions = (</span><br><span class="line">        agent.instructions(context_variables)</span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">callable</span>(agent.instructions)</span><br><span class="line">        <span class="keyword">else</span> agent.instructions</span><br><span class="line">    )</span><br><span class="line">    messages = [&#123;<span class="string">&quot;role&quot;</span>: <span class="string">&quot;system&quot;</span>, <span class="string">&quot;content&quot;</span>: instructions&#125;] + history</span><br><span class="line">    debug_print(debug, <span class="string">&quot;Getting chat completion for...:&quot;</span>, messages)</span><br><span class="line"></span><br><span class="line">    tools = [function_to_json(f) <span class="keyword">for</span> f <span class="keyword">in</span> agent.functions]</span><br><span class="line">    <span class="keyword">for</span> tool <span class="keyword">in</span> tools:</span><br><span class="line">        params = tool[<span class="string">&quot;function&quot;</span>][<span class="string">&quot;parameters&quot;</span>]</span><br><span class="line">        params[<span class="string">&quot;properties&quot;</span>].pop(__CTX_VARS_NAME__, <span class="literal">None</span>)</span><br><span class="line">        <span class="keyword">if</span> __CTX_VARS_NAME__ <span class="keyword">in</span> params[<span class="string">&quot;required&quot;</span>]:</span><br><span class="line">            params[<span class="string">&quot;required&quot;</span>].remove(__CTX_VARS_NAME__)</span><br><span class="line"></span><br><span class="line">    create_params = &#123;</span><br><span class="line">        <span class="string">&quot;model&quot;</span>: model_override <span class="keyword">or</span> agent.model,</span><br><span class="line">        <span class="string">&quot;messages&quot;</span>: messages,</span><br><span class="line">        <span class="string">&quot;tools&quot;</span>: tools <span class="keyword">or</span> <span class="literal">None</span>,</span><br><span class="line">        <span class="string">&quot;tool_choice&quot;</span>: agent.tool_choice,</span><br><span class="line">        <span class="string">&quot;stream&quot;</span>: stream,</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> tools:</span><br><span class="line">        create_params[<span class="string">&quot;parallel_tool_calls&quot;</span>] = agent.parallel_tool_calls</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> self.client.chat.completions.create(**create_params)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>Steps:</strong><ol>
+<li><strong>Prepare Context Variables:</strong><ul>
+<li>Converts <code>context_variables</code> into a <code>defaultdict</code> to handle missing keys gracefully.</li>
+</ul>
+</li>
+<li><strong>Set Instructions:</strong><ul>
+<li>Determines the agent’s instructions, either by calling it (if it’s a function) or directly using the provided string.</li>
+</ul>
+</li>
+<li><strong>Compose Messages:</strong><ul>
+<li>Starts with a system message (the instructions) and appends the conversation history.</li>
+</ul>
+</li>
+<li><strong>Debugging:</strong><ul>
+<li>If debugging is enabled, prints the current state of messages.</li>
+</ul>
+</li>
+<li><strong>Convert Functions to Tools:</strong><ul>
+<li>Transforms agent functions into JSON-serializable objects using <code>function_to_json</code> from <code>util.py</code>.</li>
+<li>Removes <code>context_variables</code> from the tool’s parameters to avoid exposing internal details.</li>
+</ul>
+</li>
+<li><strong>Create Parameters:</strong><ul>
+<li>Prepares the parameters needed for the OpenAI API call.</li>
+<li>Includes tools, messages, model choice, and whether to use parallel tool calls.</li>
+</ul>
+</li>
+<li><strong>API Call:</strong><ul>
+<li>Sends the request to OpenAI’s API to get the chat completion.</li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+<hr>
+<h4 id="4-Method-handle-function-result"><a href="#4-Method-handle-function-result" class="headerlink" title="4. Method: handle_function_result"></a>4. <strong>Method: <code>handle_function_result</code></strong></h4><p>Handles the result returned by agent functions and ensures it’s properly formatted.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">handle_function_result</span>(<span class="params">self, result, debug</span>):</span><br><span class="line">    <span class="keyword">match</span> result:</span><br><span class="line">        <span class="keyword">case</span> Result() <span class="keyword">as</span> result:</span><br><span class="line">            <span class="keyword">return</span> result</span><br><span class="line"></span><br><span class="line">        <span class="keyword">case</span> Agent() <span class="keyword">as</span> agent:</span><br><span class="line">            <span class="keyword">return</span> Result(</span><br><span class="line">                value=json.dumps(&#123;<span class="string">&quot;assistant&quot;</span>: agent.name&#125;),</span><br><span class="line">                agent=agent,</span><br><span class="line">            )</span><br><span class="line">        <span class="keyword">case</span> _:</span><br><span class="line">            <span class="keyword">try</span>:</span><br><span class="line">                <span class="keyword">return</span> Result(value=<span class="built_in">str</span>(result))</span><br><span class="line">            <span class="keyword">except</span> Exception <span class="keyword">as</span> e:</span><br><span class="line">                error_message = <span class="string">f&quot;Failed to cast response to string: <span class="subst">&#123;result&#125;</span>. Make sure agent functions return a string or Result object. Error: <span class="subst">&#123;<span class="built_in">str</span>(e)&#125;</span>&quot;</span></span><br><span class="line">                debug_print(debug, error_message)</span><br><span class="line">                <span class="keyword">raise</span> TypeError(error_message)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>Steps:</strong><ol>
+<li><strong>Pattern Matching:</strong><ul>
+<li>Matches the type of <code>result</code> using the <code>match</code> statement.</li>
+</ul>
+</li>
+<li><strong>Result Object:</strong><ul>
+<li>If the result is already a <code>Result</code> object, it’s returned as-is.</li>
+</ul>
+</li>
+<li><strong>Agent Object:</strong><ul>
+<li>If the result is an <code>Agent</code>, it’s wrapped in a <code>Result</code> with the agent’s name serialized as JSON.</li>
+</ul>
+</li>
+<li><strong>Fallback:</strong><ul>
+<li>For any other type of result, attempts to convert it to a string.</li>
+<li>If conversion fails, raises a <code>TypeError</code> with a debug message.</li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+<hr>
+<h4 id="5-Method-handle-tool-calls"><a href="#5-Method-handle-tool-calls" class="headerlink" title="5. Method: handle_tool_calls"></a>5. <strong>Method: <code>handle_tool_calls</code></strong></h4><p>Handles the execution of tool calls made by the assistant and returns a partial response.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">handle_tool_calls</span>(<span class="params">self, tool_calls, functions, context_variables, debug</span>):</span><br><span class="line">    function_map = &#123;f.__name__: f <span class="keyword">for</span> f <span class="keyword">in</span> functions&#125;</span><br><span class="line">    partial_response = Response(messages=[], agent=<span class="literal">None</span>, context_variables=&#123;&#125;)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> tool_call <span class="keyword">in</span> tool_calls:</span><br><span class="line">        name = tool_call.function.name</span><br><span class="line">        <span class="keyword">if</span> name <span class="keyword">not</span> <span class="keyword">in</span> function_map:</span><br><span class="line">            debug_print(debug, <span class="string">f&quot;Tool <span class="subst">&#123;name&#125;</span> not found in function map.&quot;</span>)</span><br><span class="line">            partial_response.messages.append(</span><br><span class="line">                &#123;</span><br><span class="line">                    <span class="string">&quot;role&quot;</span>: <span class="string">&quot;tool&quot;</span>,</span><br><span class="line">                    <span class="string">&quot;tool_call_id&quot;</span>: tool_call.<span class="built_in">id</span>,</span><br><span class="line">                    <span class="string">&quot;tool_name&quot;</span>: name,</span><br><span class="line">                    <span class="string">&quot;content&quot;</span>: <span class="string">f&quot;Error: Tool <span class="subst">&#123;name&#125;</span> not found.&quot;</span>,</span><br><span class="line">                &#125;</span><br><span class="line">            )</span><br><span class="line">            <span class="keyword">continue</span></span><br><span class="line">        args = json.loads(tool_call.function.arguments)</span><br><span class="line">        debug_print(debug, <span class="string">f&quot;Processing tool call: <span class="subst">&#123;name&#125;</span> with arguments <span class="subst">&#123;args&#125;</span>&quot;</span>)</span><br><span class="line"></span><br><span class="line">        func = function_map[name]</span><br><span class="line">        <span class="keyword">if</span> __CTX_VARS_NAME__ <span class="keyword">in</span> func.__code__.co_varnames:</span><br><span class="line">            args[__CTX_VARS_NAME__] = context_variables</span><br><span class="line">        raw_result = function_map[name](**args)</span><br><span class="line"></span><br><span class="line">        result: Result = self.handle_function_result(raw_result, debug)</span><br><span class="line">        partial_response.messages.append(</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="string">&quot;role&quot;</span>: <span class="string">&quot;tool&quot;</span>,</span><br><span class="line">                <span class="string">&quot;tool_call_id&quot;</span>: tool_call.<span class="built_in">id</span>,</span><br><span class="line">                <span class="string">&quot;tool_name&quot;</span>: name,</span><br><span class="line">                <span class="string">&quot;content&quot;</span>: result.value,</span><br><span class="line">            &#125;</span><br><span class="line">        )</span><br><span class="line">        partial_response.context_variables.update(result.context_variables)</span><br><span class="line">        <span class="keyword">if</span> result.agent:</span><br><span class="line">            partial_response.agent = result.agent</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> partial_response</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>Steps:</strong><ol>
+<li><strong>Build Function Map:</strong><ul>
+<li>Creates a dictionary mapping function names to their respective implementations.</li>
+</ul>
+</li>
+<li><strong>Iterate Through Tool Calls:</strong><ul>
+<li>For each tool call:<ul>
+<li>Checks if the tool exists in the function map.</li>
+<li>If missing, appends an error message to the response.</li>
+<li>Parses the tool’s arguments and executes the corresponding function.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>Handle Results:</strong><ul>
+<li>Processes the function’s result using <code>handle_function_result</code>.</li>
+<li>Appends the result to the response messages and updates context variables.</li>
+</ul>
+</li>
+<li><strong>Return Partial Response:</strong><ul>
+<li>Returns a <code>Response</code> object containing messages, updated context variables, and any agent changes.</li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+<hr>
+<h4 id="6-Run-and-Stream-Methods"><a href="#6-Run-and-Stream-Methods" class="headerlink" title="6. Run and Stream Methods"></a>6. <strong>Run and Stream Methods</strong></h4><p>The <code>run</code> and <code>run_and_stream</code> methods coordinate the overall conversation flow and tool execution. The <code>run</code> method handles sequential message processing and tool execution in a structured loop until a final response is generated, while the <code>run_and_stream</code> method streams responses in real-time, providing chunks of data as they are processed. These methods ensure that agents interact efficiently and tool calls are executed when needed.</p>
+<p>Below is a simplified workflow diagram for better understanding:<br>The <code>run</code> and <code>run_and_stream</code> methods coordinate the overall conversation flow and tool execution. Below is a simplified workflow diagram for better understanding:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">+----------------+           +--------------------+           +----------------+</span><br><span class="line">| Initial Input  |  ---&gt;     | Get Chat Completion|  ---&gt;     | Handle Tool    |</span><br><span class="line">| (Messages)     |           |   (API Call)       |           | Calls          |</span><br><span class="line">+----------------+           +--------------------+           +----------------+</span><br><span class="line">       |                              |                              |</span><br><span class="line">       v                              v                              v</span><br><span class="line">+----------------+           +--------------------+           +----------------+</span><br><span class="line">|  Process       |  ---&gt;     | Update Context     |  ---&gt;     | Return Final   |</span><br><span class="line">|  Completion    |           | Variables &amp; History|           | Response       |</span><br><span class="line">+----------------+           +--------------------+           +----------------+</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p><strong><code>run</code> Method:</strong></p>
+<ul>
+<li>Calls <code>get_chat_completion</code> to generate a response.</li>
+<li>Executes tool calls if present and updates context variables.</li>
+<li>Iterates until a final response is ready or the max turn limit is reached.</li>
+</ul>
+</li>
+<li><p><strong><code>run_and_stream</code> Method:</strong></p>
+<ul>
+<li>Similar to <code>run</code> but streams responses in real-time.</li>
+<li>Yields chunks of data for immediate processing.</li>
+</ul>
+</li>
+</ul>
+
             </div>
 
             <!-- Post Comments -->
