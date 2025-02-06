@@ -127,26 +127,40 @@
             </div>
             <!-- Post -->
             <div class="typo" style="padding: 3rem;">
-                <h1 id="DeepSeek-R1-Paper-Reading"><a href="#DeepSeek-R1-Paper-Reading" class="headerlink" title="DeepSeek R1 Paper Reading"></a>DeepSeek R1 Paper Reading</h1><p>DSR1 paper <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2501.12948">https://arxiv.org/pdf/2501.12948</a></p>
-<h2 id="Main-Contribution"><a href="#Main-Contribution" class="headerlink" title="Main Contribution"></a>Main Contribution</h2><ul>
+                <h1 id="deepseek-r1-paper-reading">DeepSeek R1 Paper Reading</h1>
+<p>DSR1 paper <a target="_blank" rel="noopener" href="https://arxiv.org/pdf/2501.12948">https://arxiv.org/pdf/2501.12948</a></p>
+<h2 id="main-contribution">Main Contribution</h2>
+<ul>
 <li>Post-Training: RL was directly applied to the base model, resulting in DeepSeek-R1-Zero, which demonstrates capabilities like self-verification and long chain-of-thought (CoT) generation, showing that LLM reasoning can be enhanced purely through RL without supervised fine-tuning (SFT).</li>
 <li>Pipeline for DeepSeek-R1: A pipeline with RL and SFT stages was introduced to improve reasoning and align with human preferences, aiming to create better models for the industry.</li>
 <li>Distillation: Large model reasoning patterns can be distilled into smaller models, which perform better than RL-discovered patterns in smaller models.</li>
 </ul>
-<h2 id="Pipeline"><a href="#Pipeline" class="headerlink" title="Pipeline"></a>Pipeline</h2><p>As we have read the GRPO algo in previous blog <a target="_blank" rel="noopener" href="https://lihaorui.com/2025/02/05/deepseek-math-reading/">https://lihaorui.com/2025/02/05/deepseek-math-reading/</a> here we continue read deepseek r1’s training pipeline.</p>
+<h2 id="pipeline">Pipeline</h2>
+<p>As we have read the GRPO algo in previous blog <a target="_blank" rel="noopener" href="https://lihaorui.com/2025/02/05/deepseek-math-reading/">https://lihaorui.com/2025/02/05/deepseek-math-reading/</a> here we continue read deepseek r1’s training pipeline.</p>
 <p>My drawio source: <a target="_blank" rel="noopener" href="https://drive.google.com/file/d/1ktUdHutP31jZUaRf6fmnAIxeFT_PSuPZ/view?usp=sharing">https://drive.google.com/file/d/1ktUdHutP31jZUaRf6fmnAIxeFT_PSuPZ/view?usp=sharing</a></p>
 <p>Two key points: 1. GRPO RL can get really good model. 2. Generate reliable SFT data from small size to large size</p>
-<p>Step1: RL to get R1-Zero<br>Step2: SFT with R1-Zero generated CoT Data<br>Step3: RL to get checkpoint model<br>Step4: Use checkpoint model and deepseek-v3 to generate massive SFT data then do the SFT<br>Step5: Final RL to get R1</p>
+<p>Step1: RL to get R1-Zero<br>
+Step2: SFT with R1-Zero generated CoT Data<br>
+Step3: RL to get checkpoint model<br>
+Step4: Use checkpoint model and deepseek-v3 to generate massive SFT data then do the SFT<br>
+Step5: Final RL to get R1</p>
 <p><img src="https://i.dawnlab.me/926b46a142e7b86cfb152630ee7970b3.png" alt="926b46a142e7b86cfb152630ee7970b3.png"></p>
 <p><img src="https://i.dawnlab.me/a1c1b92b57ccc2c680dc5d56ad38d77a.png" alt="a1c1b92b57ccc2c680dc5d56ad38d77a.png"></p>
-<h1 id="Insights"><a href="#Insights" class="headerlink" title="Insights"></a>Insights</h1><p>This paper also highlight several insight of model trianing:</p>
-<h2 id="Special-Token-to-summarize"><a href="#Special-Token-to-summarize" class="headerlink" title="Special Token to summarize"></a>Special Token to summarize</h2><p><img src="https://i.dawnlab.me/d9e5472c9f673ea61ef60bcfac349544.png" alt="d9e5472c9f673ea61ef60bcfac349544.png"></p>
-<h2 id="Get-a-big-one-then-distrill"><a href="#Get-a-big-one-then-distrill" class="headerlink" title="Get a big one then distrill"></a>Get a big one then distrill</h2><p>First, distilling more powerful models into smaller ones yields excellent results, whereas smaller models relying on the large-scale RL mentioned in this paper require enormous computational power and may not even achieve the performance of distillation. Second, while distillation strategies are both economical and effective, advancing beyond the boundaries of intelligence may still require more powerful base models and larger scale reinforcement learning</p>
-<h2 id="Process-Reward-Model-PRM"><a href="#Process-Reward-Model-PRM" class="headerlink" title="Process Reward Model (PRM)"></a>Process Reward Model (PRM)</h2><p>Once a model-based PRM is introduced, it inevitably leads to reward hacking</p>
-<h2 id="MonteCarloTreeSearch-MCTS"><a href="#MonteCarloTreeSearch-MCTS" class="headerlink" title="MonteCarloTreeSearch(MCTS)"></a>MonteCarloTreeSearch(MCTS)</h2><p>Token generation presents an exponentially larger search space, not suited</p>
-<h1 id="GRPO-code"><a href="#GRPO-code" class="headerlink" title="GRPO code"></a>GRPO code</h1><p>While reading this paper, I collected some GRPO code, it can be used for efficient fine-tune: <a target="_blank" rel="noopener" href="https://github.com/haoruilee/Awesome-GRPO-training-example">https://github.com/haoruilee/Awesome-GRPO-training-example</a></p>
+<h1 id="insights">Insights</h1>
+<p>This paper also highlight several insight of model trianing:</p>
+<h2 id="special-token-to-summarize">Special Token to summarize</h2>
+<p><img src="https://i.dawnlab.me/d9e5472c9f673ea61ef60bcfac349544.png" alt="d9e5472c9f673ea61ef60bcfac349544.png"></p>
+<h2 id="get-a-big-one-then-distrill">Get a big one then distrill</h2>
+<p>First, distilling more powerful models into smaller ones yields excellent results, whereas smaller models relying on the large-scale RL mentioned in this paper require enormous computational power and may not even achieve the performance of distillation. Second, while distillation strategies are both economical and effective, advancing beyond the boundaries of intelligence may still require more powerful base models and larger scale reinforcement learning</p>
+<h2 id="process-reward-model-prm">Process Reward Model (PRM)</h2>
+<p>Once a model-based PRM is introduced, it inevitably leads to reward hacking</p>
+<h2 id="montecarlotreesearch-mcts">MonteCarloTreeSearch(MCTS)</h2>
+<p>Token generation presents an exponentially larger search space, not suited</p>
+<h1 id="grpo-code">GRPO code</h1>
+<p>While reading this paper, I collected some GRPO code, it can be used for efficient fine-tune: <a target="_blank" rel="noopener" href="https://github.com/haoruilee/Awesome-GRPO-training-example">https://github.com/haoruilee/Awesome-GRPO-training-example</a></p>
 <p>Espically this one: <a target="_blank" rel="noopener" href="https://www.kaggle.com/code/danielphalen/grpotrainer-deepseekr1">https://www.kaggle.com/code/danielphalen/grpotrainer-deepseekr1</a> also provide example dataset</p>
-<h1 id="Open-R1"><a href="#Open-R1" class="headerlink" title="Open R1"></a>Open R1</h1><p>Huggingface also opensourced a reproduction of R1, still reading</p>
+<h1 id="open-r1">Open R1</h1>
+<p>Huggingface also opensourced a reproduction of R1, still reading</p>
 <p><a target="_blank" rel="noopener" href="https://github.com/huggingface/open-r1">https://github.com/huggingface/open-r1</a></p>
 
             </div>
