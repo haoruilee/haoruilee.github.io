@@ -17,6 +17,10 @@
     <noscript>
         <link rel="stylesheet" href="/css/noscript.css" />
     </noscript>
+    <!-- Preload critical images -->
+    <link rel="preload" href="https://i.dawnlab.me/e6a2105d63e4438f288e4ae4d97f53f2.webp" as="image">
+    <link rel="preload" href="/images/pusheencode.gif" as="image">
+
     <style type="text/css">
         body:before {
           content: ' ';
@@ -26,7 +30,7 @@
           right: 0;
           bottom: 0;
           left: 0;
-          background-size: cover; 
+          background-size: cover;
         }
     </style>
 
@@ -128,13 +132,19 @@
         <div id="main" style="background-color: transparent; padding:0;">
         <section class="link_container" style="margin-top: 0; background-color: transparent; ">
             <div class="link_row">
+                <!-- Preload first few post thumbnails -->
+                
+                <link rel="preload" href="https://i.dawnlab.me/ca9c2d058c035cf1fcdb92ef9e3ea82f.png" as="image">
+                
+                <link rel="preload" href="https://i.dawnlab.me/f9846a8f4c5ed6dad29989f5838e9374.png" as="image">
+                
                 <!-- 文章sample  s-->
 
                 
                 <div class="6u 12u(narrower)">
                     <section class="link_box special">
                        <a href="/2024/06/26/ThreadsAndProcesses/">
-                        <div class="page_title" style="background-image: url(https://i.dawnlab.me/ca9c2d058c035cf1fcdb92ef9e3ea82f.png);background-position: center; background-repeat:no-repeat; background-size:cover;-moz-background-size:cover;">
+                        <div class="page_title lazy-bg" data-bg="https://i.dawnlab.me/ca9c2d058c035cf1fcdb92ef9e3ea82f.png" style="background-position: center; background-repeat:no-repeat; background-size:cover;-moz-background-size:cover;">
                             <!--标题-->
                             <h2 class="page_title_text"> Threads and Processes </h2>
                             <!--段落-->
@@ -162,7 +172,7 @@
                 <div class="6u 12u(narrower)">
                     <section class="link_box special">
                        <a href="/2024/06/16/raed-alexnet-in-2024/">
-                        <div class="page_title" style="background-image: url(https://i.dawnlab.me/f9846a8f4c5ed6dad29989f5838e9374.png);background-position: center; background-repeat:no-repeat; background-size:cover;-moz-background-size:cover;">
+                        <div class="page_title lazy-bg" data-bg="https://i.dawnlab.me/f9846a8f4c5ed6dad29989f5838e9374.png" style="background-position: center; background-repeat:no-repeat; background-size:cover;-moz-background-size:cover;">
                             <!--标题-->
                             <h2 class="page_title_text"> Read AlexNet in 2024 </h2>
                             <!--段落-->

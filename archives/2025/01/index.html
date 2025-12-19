@@ -17,6 +17,10 @@
     <noscript>
         <link rel="stylesheet" href="/css/noscript.css" />
     </noscript>
+    <!-- Preload critical images -->
+    <link rel="preload" href="https://i.dawnlab.me/e6a2105d63e4438f288e4ae4d97f53f2.webp" as="image">
+    <link rel="preload" href="/images/pusheencode.gif" as="image">
+
     <style type="text/css">
         body:before {
           content: ' ';
@@ -26,7 +30,7 @@
           right: 0;
           bottom: 0;
           left: 0;
-          background-size: cover; 
+          background-size: cover;
         }
     </style>
 
@@ -128,13 +132,21 @@
         <div id="main" style="background-color: transparent; padding:0;">
         <section class="link_container" style="margin-top: 0; background-color: transparent; ">
             <div class="link_row">
+                <!-- Preload first few post thumbnails -->
+                
+                <link rel="preload" href="https://i.dawnlab.me/8fa1422371165624b6c1548ff383dc5c.png" as="image">
+                
+                <link rel="preload" href="https://i.dawnlab.me/fffe274efb6723c33b55a3bf5354858a.png" as="image">
+                
+                <link rel="preload" href="https://i.dawnlab.me/ebe31a362618c5cad62dfadb3866a4e5.png" as="image">
+                
                 <!-- 文章sample  s-->
 
                 
                 <div class="6u 12u(narrower)">
                     <section class="link_box special">
                        <a href="/2025/01/25/prompt_attack_defense/">
-                        <div class="page_title" style="background-image: url(https://i.dawnlab.me/8fa1422371165624b6c1548ff383dc5c.png);background-position: center; background-repeat:no-repeat; background-size:cover;-moz-background-size:cover;">
+                        <div class="page_title lazy-bg" data-bg="https://i.dawnlab.me/8fa1422371165624b6c1548ff383dc5c.png" style="background-position: center; background-repeat:no-repeat; background-size:cover;-moz-background-size:cover;">
                             <!--标题-->
                             <h2 class="page_title_text"> Prompt Attack Defense </h2>
                             <!--段落-->
@@ -162,7 +174,7 @@
                 <div class="6u 12u(narrower)">
                     <section class="link_box special">
                        <a href="/2025/01/24/agent_struct/">
-                        <div class="page_title" style="background-image: url(https://i.dawnlab.me/fffe274efb6723c33b55a3bf5354858a.png);background-position: center; background-repeat:no-repeat; background-size:cover;-moz-background-size:cover;">
+                        <div class="page_title lazy-bg" data-bg="https://i.dawnlab.me/fffe274efb6723c33b55a3bf5354858a.png" style="background-position: center; background-repeat:no-repeat; background-size:cover;-moz-background-size:cover;">
                             <!--标题-->
                             <h2 class="page_title_text"> Swarm Code Reading </h2>
                             <!--段落-->
@@ -190,7 +202,7 @@
                 <div class="6u 12u(narrower)">
                     <section class="link_box special">
                        <a href="/2025/01/24/MADL_on_chain/">
-                        <div class="page_title" style="background-image: url(https://i.dawnlab.me/ebe31a362618c5cad62dfadb3866a4e5.png);background-position: center; background-repeat:no-repeat; background-size:cover;-moz-background-size:cover;">
+                        <div class="page_title lazy-bg" data-bg="https://i.dawnlab.me/ebe31a362618c5cad62dfadb3866a4e5.png" style="background-position: center; background-repeat:no-repeat; background-size:cover;-moz-background-size:cover;">
                             <!--标题-->
                             <h2 class="page_title_text"> Multi Agent RL &amp; Web3 </h2>
                             <!--段落-->
@@ -218,7 +230,7 @@
                 <div class="6u 12u(narrower)">
                     <section class="link_box special">
                        <a href="/2025/01/22/tp_in_transformer/">
-                        <div class="page_title" style="background-image: url(https://i.dawnlab.me/e18673648dfd364b3246ed1bb6a1ffe9.png);background-position: center; background-repeat:no-repeat; background-size:cover;-moz-background-size:cover;">
+                        <div class="page_title lazy-bg" data-bg="https://i.dawnlab.me/e18673648dfd364b3246ed1bb6a1ffe9.png" style="background-position: center; background-repeat:no-repeat; background-size:cover;-moz-background-size:cover;">
                             <!--标题-->
                             <h2 class="page_title_text"> Tensor Parallelism and NCCL </h2>
                             <!--段落-->
@@ -246,7 +258,7 @@
                 <div class="6u 12u(narrower)">
                     <section class="link_box special">
                        <a href="/2025/01/22/instruction_and_RLHF/">
-                        <div class="page_title" style="background-image: url(https://i.dawnlab.me/2fe1fc912793db3afd36a8823daca1c5.png);background-position: center; background-repeat:no-repeat; background-size:cover;-moz-background-size:cover;">
+                        <div class="page_title lazy-bg" data-bg="https://i.dawnlab.me/2fe1fc912793db3afd36a8823daca1c5.png" style="background-position: center; background-repeat:no-repeat; background-size:cover;-moz-background-size:cover;">
                             <!--标题-->
                             <h2 class="page_title_text"> From RL to RLHF </h2>
                             <!--段落-->
@@ -274,7 +286,7 @@
                 <div class="6u 12u(narrower)">
                     <section class="link_box special">
                        <a href="/2025/01/21/harvey_index/">
-                        <div class="page_title" style="background-image: url(https://i.dawnlab.me/f8294b1fe788abf2502d713dd776e7ca.png);background-position: center; background-repeat:no-repeat; background-size:cover;-moz-background-size:cover;">
+                        <div class="page_title lazy-bg" data-bg="https://i.dawnlab.me/f8294b1fe788abf2502d713dd776e7ca.png" style="background-position: center; background-repeat:no-repeat; background-size:cover;-moz-background-size:cover;">
                             <!--标题-->
                             <h2 class="page_title_text"> Invest Harvey Index </h2>
                             <!--段落-->
@@ -302,7 +314,7 @@
                 <div class="6u 12u(narrower)">
                     <section class="link_box special">
                        <a href="/2025/01/06/decades_are_short/">
-                        <div class="page_title" style="background-image: url(https://i.dawnlab.me/e9326d215e966c99eeb052b69405edc6.png);background-position: center; background-repeat:no-repeat; background-size:cover;-moz-background-size:cover;">
+                        <div class="page_title lazy-bg" data-bg="https://i.dawnlab.me/e9326d215e966c99eeb052b69405edc6.png" style="background-position: center; background-repeat:no-repeat; background-size:cover;-moz-background-size:cover;">
                             <!--标题-->
                             <h2 class="page_title_text"> 一天很漫長 但十年卻很短暫 </h2>
                             <!--段落-->

@@ -12,8 +12,8 @@ var gallery_main = (function($) { var _ = {
 	 */
 	settings: {
 
-		// Preload all images.
-			preload: false,
+		// Preload adjacent images (improved performance).
+			preload: 'adjacent',
 
 		// Slide duration (must match "duration.slide" in _vars.scss).
 			slideDuration: 500,
@@ -639,6 +639,49 @@ var gallery_main = (function($) { var _ = {
 					else
 						window.setTimeout(f, _.settings.slideDuration);
 
+				// Preload adjacent slides for better performance
+				window.setTimeout(function() {
+					_.preloadAdjacentSlides(index);
+				}, _.settings.slideDuration + 200);
+
+	},
+
+	/**
+	 * Preload adjacent slides for better performance.
+	 */
+	preloadAdjacentSlides: function(currentIndex) {
+		if (_.settings.preload !== 'adjacent') return;
+
+		var slides = _.slides;
+		var preloadIndices = [];
+
+		// Preload next slide
+		if (currentIndex < slides.length - 1) {
+			preloadIndices.push(currentIndex + 1);
+		}
+
+		// Preload previous slide
+		if (currentIndex > 0) {
+			preloadIndices.push(currentIndex - 1);
+		}
+
+		// Preload next-next slide (for smoother navigation)
+		if (currentIndex < slides.length - 2) {
+			preloadIndices.push(currentIndex + 2);
+		}
+
+		// Preload actual images
+		preloadIndices.forEach(function(index) {
+			var slide = slides[index];
+			if (slide && !slide.loaded) {
+				var img = new Image();
+				img.onload = function() {
+					slide.loaded = true;
+					slide.$slideImage.css('background-image', 'url(' + slide.url + ')');
+				};
+				img.src = slide.url;
+			}
+		});
 	},
 
 	/**

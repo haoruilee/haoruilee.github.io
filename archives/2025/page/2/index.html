@@ -17,6 +17,10 @@
     <noscript>
         <link rel="stylesheet" href="/css/noscript.css" />
     </noscript>
+    <!-- Preload critical images -->
+    <link rel="preload" href="https://i.dawnlab.me/e6a2105d63e4438f288e4ae4d97f53f2.webp" as="image">
+    <link rel="preload" href="/images/pusheencode.gif" as="image">
+
     <style type="text/css">
         body:before {
           content: ' ';
@@ -26,7 +30,7 @@
           right: 0;
           bottom: 0;
           left: 0;
-          background-size: cover; 
+          background-size: cover;
         }
     </style>
 
@@ -128,13 +132,21 @@
         <div id="main" style="background-color: transparent; padding:0;">
         <section class="link_container" style="margin-top: 0; background-color: transparent; ">
             <div class="link_row">
+                <!-- Preload first few post thumbnails -->
+                
+                <link rel="preload" href="https://i.dawnlab.me/2fe1fc912793db3afd36a8823daca1c5.png" as="image">
+                
+                <link rel="preload" href="https://i.dawnlab.me/f8294b1fe788abf2502d713dd776e7ca.png" as="image">
+                
+                <link rel="preload" href="https://i.dawnlab.me/e9326d215e966c99eeb052b69405edc6.png" as="image">
+                
                 <!-- 文章sample  s-->
 
                 
                 <div class="6u 12u(narrower)">
                     <section class="link_box special">
                        <a href="/2025/01/22/instruction_and_RLHF/">
-                        <div class="page_title" style="background-image: url(https://i.dawnlab.me/2fe1fc912793db3afd36a8823daca1c5.png);background-position: center; background-repeat:no-repeat; background-size:cover;-moz-background-size:cover;">
+                        <div class="page_title lazy-bg" data-bg="https://i.dawnlab.me/2fe1fc912793db3afd36a8823daca1c5.png" style="background-position: center; background-repeat:no-repeat; background-size:cover;-moz-background-size:cover;">
                             <!--标题-->
                             <h2 class="page_title_text"> From RL to RLHF </h2>
                             <!--段落-->
@@ -162,7 +174,7 @@
                 <div class="6u 12u(narrower)">
                     <section class="link_box special">
                        <a href="/2025/01/21/harvey_index/">
-                        <div class="page_title" style="background-image: url(https://i.dawnlab.me/f8294b1fe788abf2502d713dd776e7ca.png);background-position: center; background-repeat:no-repeat; background-size:cover;-moz-background-size:cover;">
+                        <div class="page_title lazy-bg" data-bg="https://i.dawnlab.me/f8294b1fe788abf2502d713dd776e7ca.png" style="background-position: center; background-repeat:no-repeat; background-size:cover;-moz-background-size:cover;">
                             <!--标题-->
                             <h2 class="page_title_text"> Invest Harvey Index </h2>
                             <!--段落-->
@@ -190,7 +202,7 @@
                 <div class="6u 12u(narrower)">
                     <section class="link_box special">
                        <a href="/2025/01/06/decades_are_short/">
-                        <div class="page_title" style="background-image: url(https://i.dawnlab.me/e9326d215e966c99eeb052b69405edc6.png);background-position: center; background-repeat:no-repeat; background-size:cover;-moz-background-size:cover;">
+                        <div class="page_title lazy-bg" data-bg="https://i.dawnlab.me/e9326d215e966c99eeb052b69405edc6.png" style="background-position: center; background-repeat:no-repeat; background-size:cover;-moz-background-size:cover;">
                             <!--标题-->
                             <h2 class="page_title_text"> 一天很漫長 但十年卻很短暫 </h2>
                             <!--段落-->

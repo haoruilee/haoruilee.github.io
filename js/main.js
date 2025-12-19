@@ -193,6 +193,82 @@
 						$navPanel
 							.css('transition', 'none');
 
+		// Lazy load background images
+		function lazyLoadBackgroundImages() {
+			const lazyBgElements = document.querySelectorAll('.lazy-bg');
+
+			if ('IntersectionObserver' in window) {
+				const imageObserver = new IntersectionObserver((entries, observer) => {
+					entries.forEach(entry => {
+						if (entry.isIntersecting) {
+							const element = entry.target;
+							const bgImage = element.getAttribute('data-bg');
+							if (bgImage) {
+								element.style.backgroundImage = `url(${bgImage})`;
+								element.classList.remove('lazy-bg');
+								element.classList.add('lazy-bg-loaded');
+								observer.unobserve(element);
+							}
+						}
+					});
+				}, {
+					rootMargin: '50px 0px',
+					threshold: 0.01
+				});
+
+				lazyBgElements.forEach(element => {
+					imageObserver.observe(element);
+				});
+			} else {
+				// Fallback for browsers without IntersectionObserver
+				lazyBgElements.forEach(element => {
+					const bgImage = element.getAttribute('data-bg');
+					if (bgImage) {
+						element.style.backgroundImage = `url(${bgImage})`;
+						element.classList.remove('lazy-bg');
+						element.classList.add('lazy-bg-loaded');
+					}
+				});
+			}
+		}
+
+		// Lazy load images in post content
+		function lazyLoadPostImages() {
+			const postContent = document.querySelector('.typo');
+			if (!postContent) return;
+
+			const images = postContent.querySelectorAll('img:not([loading])');
+			images.forEach(img => {
+				// Skip images that are already loaded or have loading attribute
+				if (img.complete || img.getAttribute('loading')) return;
+
+				// Add loading="lazy" attribute
+				img.setAttribute('loading', 'lazy');
+
+				// Add a placeholder or blur effect while loading
+				img.style.opacity = '0';
+				img.style.transition = 'opacity 0.3s ease-in-out';
+
+				img.addEventListener('load', function() {
+					this.style.opacity = '1';
+				});
+
+				// Handle load errors
+				img.addEventListener('error', function() {
+					this.style.opacity = '1';
+					this.style.filter = 'grayscale(100%)';
+				});
+			});
+		}
+
+		// Initialize lazy loading after page load
+		$window.on('load', function() {
+			window.setTimeout(function() {
+				lazyLoadBackgroundImages();
+				lazyLoadPostImages();
+			}, 100);
+		});
+
 		// Intro.
 			var $intro = $('#intro');
 
