@@ -1,0 +1,201 @@
+<!DOCTYPE html><html lang="en"> <head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="generator" content="Astro v5.18.1"><meta name="description" content="*Update at 2025.02.08: I write an implement of this idea https://github.com/haoruilee/Principal-Agent-Contract* Recently I read this paper *Principal-Agent Reinforcement Learning: Orchestrating AI …"><title>Multi Agent RL &amp; Web3 · Haorui Li</title><link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/katex.min.css" crossorigin="anonymous"><link rel="stylesheet" href="/_astro/_slug_.BYQNcFiK.css"></head> <body> <header class="site-header"> <div class="site-header__inner"> <a class="site-title" href="/"> <img class="site-title__avatar" src="/_astro/me.DppycCoM.jpg" alt="Haorui Li"> <span>Haorui Li</span> </a> <nav class="nav" aria-label="Primary"> <a href="/">Writing</a> <a href="/blog">Archive</a> <a href="/projects-publications">Projects & Publications</a> <a href="/about">About</a> </nav> </div> </header> <main class="layout-main">  <article> <header class="page-hero page-hero--with-image"> <div class="page-hero__content"> <p class="page-hero__label">Writing</p> <h1 class="page-hero__title">Multi Agent RL &amp; Web3</h1> <p class="page-hero__meta"> January 24, 2025  
+· post </p> </div> <div class="page-hero__media"> <img class="page-hero__image" src="https://i.dawnlab.me/ebe31a362618c5cad62dfadb3866a4e5.png" alt="Multi Agent RL &#38; Web3" loading="eager"> </div> </header> <div class="prose">  <h1 id="multi-agent-rl--web3">Multi Agent RL &#x26; Web3</h1>
+<p><em>Update at 2025.02.08: I write an implement of this idea <a href="https://github.com/haoruilee/Principal-Agent-Contract">https://github.com/haoruilee/Principal-Agent-Contract</a></em></p>
+<p>Recently I read this paper <em>Principal-Agent Reinforcement Learning: Orchestrating AI Agents with Contracts</em> <a href="https://arxiv.org/pdf/2407.18074">https://arxiv.org/pdf/2407.18074</a> and find it interesting. Not only cuz it trying to solve MARL (Multi-Agent Reinforcement Learning) but also cuz it may comes another point that Agent and Web3 come togther.</p>
+<p>Based on this paper’s algo, I proposed this Semi-on-Chain solution struct to solve SSDs (Sequential Social Dilemmas). I havent write the code yet but I may apply it to some Hackathon. If you are interested in this idea, contact me and we can build together!</p>
+<h2 id="introduction-tackling-multi-agent-chaos">Introduction: Tackling Multi-Agent Chaos</h2>
+<p>Have you ever had a group project where everyone <strong>wanted</strong> to get a good grade, but half the team was slacking? Or seen traffic turn into a <strong>jam</strong> because no one wanted to let others pass? In these situations, <strong>individual incentives</strong> (like “I don’t want to do extra work” or “I want to be first!”) can clash with the <strong>greater good</strong>.</p>
+<p>This tension is typical of <strong>multi-agent systems</strong>. Each agent (or participant) acts for itself, yet there’s a bigger system we care about—like a road network, a shared environment, or even an online collaborative platform.</p>
+<p>In <strong>multi-agent reinforcement learning (MARL)</strong>, we try to teach agents how to behave well in a shared environment. But that alone might not guarantee cooperation, especially if agents are purely self-interested. <strong>This is where economics-inspired “contracts” and trustless blockchain execution (Web3) come in.</strong></p>
+<hr>
+<h2 id="section-1-structure-overview">Section 1: Structure Overview</h2>
+<p>Let’s start with a simple Structure diagram that shows all the pieces—<strong>MARL</strong> (our learning approach), <strong>Q-learning</strong> (the algorithm within MARL), <strong>Contracts</strong> (from economics, for incentives), and <strong>Web3</strong> (blockchain-based execution).</p>
+<pre class="astro-code github-light" style="background-color:#fff;color:#24292e; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>          +--------------------------------------------------+</span></span>
+<span class="line"><span>          |            Off-chain RL (Agent &#x26; Principal)      |</span></span>
+<span class="line"><span>          |   (MARL with Q-learning &#x26; Contract Updates)      |</span></span>
+<span class="line"><span>          +-------------^----------------^--------------------+</span></span>
+<span class="line"><span>                           |                |</span></span>
+<span class="line"><span>                           |                | (Contracts, Rewards)</span></span>
+<span class="line"><span>                           v                |</span></span>
+<span class="line"><span>     +----------------------------------------------+</span></span>
+<span class="line"><span>     |    Smart Contract on the Blockchain         |</span></span>
+<span class="line"><span>     |  (Incentives, Payout Rules, Automated)      |</span></span>
+<span class="line"><span>     +----------------------------------------------+</span></span>
+<span class="line"><span>               ^                   |</span></span>
+<span class="line"><span>               |  (Outcome data)   | (Auto payment)</span></span>
+<span class="line"><span>               |                   |</span></span>
+<span class="line"><span>               v                   |</span></span>
+<span class="line"><span>        +-------------------------------+   </span></span>
+<span class="line"><span>        | Multi-Agent Environment (MAE)|</span></span>
+<span class="line"><span>        |  (States, Actions, Rewards)  |</span></span>
+<span class="line"><span>        +-------------------------------+</span></span></code></pre>
+<ul>
+<li><strong>Off-chain RL</strong>: We do the heavy-lifting of training the agents and optimizing the contract offline or in a simulator.</li>
+<li><strong>Smart Contract</strong>: Lives on a blockchain, enforces the final incentive rules automatically (no cheating!).</li>
+<li><strong>Multi-Agent Environment</strong>: Where the actual interactions happen—like a traffic system, a fishery resource, or a game board.</li>
+</ul>
+<hr>
+<h2 id="section-2-background">Section 2: Background</h2>
+<h3 id="21-multi-agent-reinforcement-learning-marl">2.1 Multi-Agent Reinforcement Learning (MARL)</h3>
+<ul>
+<li>
+<p><strong>What is MARL?</strong><br>
+Think of a group of robots in a factory needing to coordinate. Each robot is an agent. They share the workspace but have local goals (like finishing tasks quickly). MARL helps them learn collectively without a single “boss” controlling them.</p>
+</li>
+<li>
+<p><strong>Why is it tricky?</strong><br>
+Agents aren’t just reacting to a static environment. They’re reacting to <strong>each other</strong>. One robot’s path might block another’s route.</p>
+</li>
+</ul>
+<h3 id="22-q-learning-basics">2.2 Q-learning Basics</h3>
+<ul>
+<li>
+<p><strong>Definition</strong>:<br>
+Q-learning is a type of <strong>reinforcement learning</strong> that estimates a “Q-value,” which tells you how good it is to take action <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi></mrow><annotation encoding="application/x-tex">a</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">a</span></span></span></span> in state <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>s</mi></mrow><annotation encoding="application/x-tex">s</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">s</span></span></span></span>, considering future rewards.</p>
+</li>
+<li>
+<p><strong>Simple example</strong>:<br>
+Imagine you’re learning to <strong>park your car</strong>. State <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>s</mi></mrow><annotation encoding="application/x-tex">s</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">s</span></span></span></span> might be your position and orientation, action <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi></mrow><annotation encoding="application/x-tex">a</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">a</span></span></span></span> is turning the wheel left or right, and the reward is how close you get to a perfect park. Over many attempts, you refine your Q-values until you get the hang of it.</p>
+</li>
+</ul>
+<h3 id="23-principal-agent-contracts">2.3 Principal-Agent Contracts</h3>
+<ul>
+<li>
+<p><strong>What is a contract in this context?</strong><br>
+Suppose your boss can’t see how hard you work; they only observe results—like project success. A <strong>contract</strong> might say: “If the project meets quality X, you get Y bonus.” It incentivizes you to aim for X, even if the effort is hidden.</p>
+</li>
+<li>
+<p><strong>Why do we need it here?</strong><br>
+In a multi-agent system, an agent might do actions you can’t monitor directly. So you pay (or punish) them based on an observable <strong>outcome</strong> instead.</p>
+</li>
+</ul>
+<h3 id="24-web3-blockchain--smart-contracts">2.4 Web3 (Blockchain + Smart Contracts)</h3>
+<ul>
+<li>
+<p><strong>Blockchain</strong>:<br>
+A shared ledger that no single entity fully controls. Like a big spreadsheet, but each row is verified by many people (nodes).</p>
+</li>
+<li>
+<p><strong>Smart Contracts</strong>:<br>
+Small pieces of code that automatically run on the blockchain.<br>
+Example: If you have a distributed ridesharing app, you can store “If passenger confirms arrival, automatically pay the driver 10 tokens” in a smart contract. There’s no single company controlling the transaction—it’s automatically executed once the condition (passenger confirmation) is met.</p>
+</li>
+</ul>
+<hr>
+<h2 id="section-3-how-they-all-fit-together">Section 3: How They All Fit Together</h2>
+<p>The big magic here is that <strong>agents</strong> learn (via Q-learning) in an environment, while a <strong>principal</strong> designs a <strong>contract</strong> to shape their behavior. Finally, <strong>Web3</strong> ensures the agreed-upon payments are actually honored in a trustless manner.</p>
+<ol>
+<li>
+<p><strong>Agent’s Perspective</strong>:<br>
+“I want to maximize my total reward, which includes environment rewards (like finishing tasks) <strong>and</strong> any bonus from the contract. So I’ll do Q-learning to figure out which actions yield me the best payoff.”</p>
+</li>
+<li>
+<p><strong>Principal’s Perspective</strong>:<br>
+“I can’t force your hidden actions, but I can pay you if you produce outcomes that help the overall system. Let me figure out the minimal payment that still nudges you to do the right thing.”</p>
+</li>
+<li>
+<p><strong>Blockchain Smart Contract</strong>:<br>
+“Just give me the rule for how to pay or not pay. When I get verifiable data from an oracle about the outcome, I’ll auto-execute the transaction, so no one can renege.”</p>
+</li>
+</ol>
+<hr>
+<h2 id="section-4-more-everyday-examples">Section 4: More Everyday Examples</h2>
+<ol>
+<li>
+<p><strong>Traffic Coordination Example</strong></p>
+<ul>
+<li>Agents = self-driving cars.</li>
+<li>Principal = city’s traffic authority that wants fewer jams.</li>
+<li>Contract = “If you yield at intersections to keep traffic flowing, you get micro-payments.”</li>
+<li>Web3 = A traffic DAO on a blockchain, so every car’s signals (like yield events) get logged, and the smart contract pays them instantly if the yield event was beneficial.</li>
+</ul>
+</li>
+<li>
+<p><strong>Fisheries Management Example</strong></p>
+<ul>
+<li>Agents = fishing boats.</li>
+<li>Principal = a fishery conservation board.</li>
+<li>Contract = “If you stay within a sustainable catch quota (verified by a satellite or port weigh-in), we pay you a bonus.”</li>
+<li>Web3 = The contract is on a public chain, ensuring no fishery officer can do under-the-table deals or that no boat can claim “we didn’t catch that many fish!” if the satellite/oracle data disagrees.</li>
+</ul>
+</li>
+<li>
+<p><strong>Online Marketplace Example</strong></p>
+<ul>
+<li>Agents = sellers on a platform.</li>
+<li>Principal = platform operator wanting high-quality listings.</li>
+<li>Contract = “If your product rating stays above 4.5 with at least 100 reviews, you get a monthly bonus from the platform.”</li>
+<li>Web3 = The bonus is coded into a smart contract, so you can’t manipulate or skip paying. If oracles confirm your rating is 4.5+, the payout is automatic.</li>
+</ul>
+</li>
+</ol>
+<hr>
+<h2 id="section-5-under-the-hood-some-math">Section 5: Under the Hood (Some Math)</h2>
+<p>In the paper <em>Principal-Agent Reinforcement Learning: Orchestrating AI Agents with Contracts</em> <a href="https://arxiv.org/pdf/2407.18074">https://arxiv.org/pdf/2407.18074</a>  you can get clear conductions.</p>
+<p><img src="https://i.dawnlab.me/a673fc6bbe7958c69ac4a41c74376412.png" alt="example.png"></p>
+<p>Let’s get just a little technical here in this blog:</p>
+<h3 id="51-agents-q-function">5.1 Agent’s Q-function</h3>
+<p>When the principal chooses a “contract policy” <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>ρ</mi></mrow><annotation encoding="application/x-tex">\rho</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.1944em;"></span><span class="mord mathnormal">ρ</span></span></span></span> (meaning, how it sets payments in each state), the agent’s Q-value looks like this:</p>
+<span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msup><mi>Q</mi><mo>∗</mo></msup><mo stretchy="false">(</mo><mo stretchy="false">(</mo><mi>s</mi><mo separator="true">,</mo><mi>b</mi><mo stretchy="false">)</mo><mo separator="true">,</mo><mi>a</mi><mo>∣</mo><mi>ρ</mi><mo stretchy="false">)</mo><mtext>  </mtext><mo>=</mo><mtext>  </mtext><munder><munder><mrow><msub><mi mathvariant="double-struck">E</mi><mrow><mi>o</mi><mo>∼</mo><mi mathvariant="script">O</mi><mo stretchy="false">(</mo><mi>s</mi><mo separator="true">,</mo><mi>a</mi><mo stretchy="false">)</mo></mrow></msub><mo stretchy="false">[</mo><mi>b</mi><mo stretchy="false">(</mo><mi>o</mi><mo stretchy="false">)</mo><mo stretchy="false">]</mo></mrow><mo stretchy="true">⏟</mo></munder><mtext>contract payment</mtext></munder><mo>+</mo><munder><munder><mrow><msup><mover accent="true"><mi>Q</mi><mo>ˉ</mo></mover><mo>∗</mo></msup><mo stretchy="false">(</mo><mi>s</mi><mo separator="true">,</mo><mi>a</mi><mo>∣</mo><mi>ρ</mi><mo stretchy="false">)</mo></mrow><mo stretchy="true">⏟</mo></munder><mtext>environment reward</mtext></munder><mi mathvariant="normal">.</mi></mrow><annotation encoding="application/x-tex">Q^*((s,b), a \mid \rho) \;=\; \underbrace{\mathbb{E}_{o \sim \mathcal{O}(s,a)}[b(o)]}_{\text{contract payment}} + \underbrace{\bar{Q}^*(s,a \mid \rho)}_{\text{environment reward}}.</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathnormal">Q</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7387em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mbin mtight">∗</span></span></span></span></span></span></span></span><span class="mopen">((</span><span class="mord mathnormal">s</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">b</span><span class="mclose">)</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">a</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">∣</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">ρ</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:2.5199em;vertical-align:-1.7699em;"></span><span class="minner munder"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.75em;"><span style="top:-1.3662em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">contract payment</span></span></span></span></span><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="minner munder"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.75em;"><span class="svg-align" style="top:-1.9968em;"><span class="pstrut" style="height:3em;"></span><span class="stretchy" style="height:0.548em;min-width:1.6em;"><span class="brace-left" style="height:0.548em;"><svg xmlns="http://www.w3.org/2000/svg" width="400em" height="0.548em" viewBox="0 0 400000 548" preserveAspectRatio="xMinYMin slice"><path d="M0 6l6-6h17c12.688 0 19.313.3 20 1 4 4 7.313 8.3 10 13
+ 35.313 51.3 80.813 93.8 136.5 127.5 55.688 33.7 117.188 55.8 184.5 66.5.688
+ 0 2 .3 4 1 18.688 2.7 76 4.3 172 5h399450v120H429l-6-1c-124.688-8-235-61.7
+-331-161C60.687 138.7 32.312 99.3 7 54L0 41V6z"></path></svg></span><span class="brace-center" style="height:0.548em;"><svg xmlns="http://www.w3.org/2000/svg" width="400em" height="0.548em" viewBox="0 0 400000 548" preserveAspectRatio="xMidYMin slice"><path d="M199572 214
+c100.7 8.3 195.3 44 280 108 55.3 42 101.7 93 139 153l9 14c2.7-4 5.7-8.7 9-14
+ 53.3-86.7 123.7-153 211-199 66.7-36 137.3-56.3 212-62h199568v120H200432c-178.3
+ 11.7-311.7 78.3-403 201-6 8-9.7 12-11 12-.7.7-6.7 1-18 1s-17.3-.3-18-1c-1.3 0
+-5-4-11-12-44.7-59.3-101.3-106.3-170-141s-145.3-54.3-229-60H0V214z"></path></svg></span><span class="brace-right" style="height:0.548em;"><svg xmlns="http://www.w3.org/2000/svg" width="400em" height="0.548em" viewBox="0 0 400000 548" preserveAspectRatio="xMaxYMin slice"><path d="M399994 0l6 6v35l-6 11c-56 104-135.3 181.3-238 232-57.3
+ 28.7-117 45-179 50H-300V214h399897c43.3-7 81-15 113-26 100.7-33 179.7-91 237
+-174 2.7-5 6-9 10-13 .7-1 7.3-1 20-1h17z"></path></svg></span></span></span><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord mathbb">E</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3448em;"><span style="top:-2.5198em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">o</span><span class="mrel mtight">∼</span><span class="mord mathcal mtight" style="margin-right:0.0278em;">O</span><span class="mopen mtight">(</span><span class="mord mathnormal mtight">s</span><span class="mpunct mtight">,</span><span class="mord mathnormal mtight">a</span><span class="mclose mtight">)</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.3552em;"><span></span></span></span></span></span></span><span class="mopen">[</span><span class="mord mathnormal">b</span><span class="mopen">(</span><span class="mord mathnormal">o</span><span class="mclose">)]</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.0032em;"><span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.7699em;"><span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:2.4042em;vertical-align:-1.5841em;"></span><span class="minner munder"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8201em;"><span style="top:-1.4159em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord text mtight"><span class="mord mtight">environment reward</span></span></span></span></span><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="minner munder"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8201em;"><span class="svg-align" style="top:-2.102em;"><span class="pstrut" style="height:3em;"></span><span class="stretchy" style="height:0.548em;min-width:1.6em;"><span class="brace-left" style="height:0.548em;"><svg xmlns="http://www.w3.org/2000/svg" width="400em" height="0.548em" viewBox="0 0 400000 548" preserveAspectRatio="xMinYMin slice"><path d="M0 6l6-6h17c12.688 0 19.313.3 20 1 4 4 7.313 8.3 10 13
+ 35.313 51.3 80.813 93.8 136.5 127.5 55.688 33.7 117.188 55.8 184.5 66.5.688
+ 0 2 .3 4 1 18.688 2.7 76 4.3 172 5h399450v120H429l-6-1c-124.688-8-235-61.7
+-331-161C60.687 138.7 32.312 99.3 7 54L0 41V6z"></path></svg></span><span class="brace-center" style="height:0.548em;"><svg xmlns="http://www.w3.org/2000/svg" width="400em" height="0.548em" viewBox="0 0 400000 548" preserveAspectRatio="xMidYMin slice"><path d="M199572 214
+c100.7 8.3 195.3 44 280 108 55.3 42 101.7 93 139 153l9 14c2.7-4 5.7-8.7 9-14
+ 53.3-86.7 123.7-153 211-199 66.7-36 137.3-56.3 212-62h199568v120H200432c-178.3
+ 11.7-311.7 78.3-403 201-6 8-9.7 12-11 12-.7.7-6.7 1-18 1s-17.3-.3-18-1c-1.3 0
+-5-4-11-12-44.7-59.3-101.3-106.3-170-141s-145.3-54.3-229-60H0V214z"></path></svg></span><span class="brace-right" style="height:0.548em;"><svg xmlns="http://www.w3.org/2000/svg" width="400em" height="0.548em" viewBox="0 0 400000 548" preserveAspectRatio="xMaxYMin slice"><path d="M399994 0l6 6v35l-6 11c-56 104-135.3 181.3-238 232-57.3
+ 28.7-117 45-179 50H-300V214h399897c43.3-7 81-15 113-26 100.7-33 179.7-91 237
+-174 2.7-5 6-9 10-13 .7-1 7.3-1 20-1h17z"></path></svg></span></span></span><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord accent"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8201em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord mathnormal">Q</span></span><span style="top:-3.2523em;"><span class="pstrut" style="height:3em;"></span><span class="accent-body" style="left:-0.1667em;"><span class="mord">ˉ</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.1944em;"><span></span></span></span></span></span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7387em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mbin mtight">∗</span></span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathnormal">s</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">a</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">∣</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mord mathnormal">ρ</span><span class="mclose">)</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.898em;"><span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.5841em;"><span></span></span></span></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">.</span></span></span></span></span>
+<ul>
+<li>The agent picks <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>a</mi></mrow><annotation encoding="application/x-tex">a</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">a</span></span></span></span> that maximizes both the <strong>immediate payment</strong> from <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>b</mi><mo stretchy="false">(</mo><mi>o</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">b(o)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">b</span><span class="mopen">(</span><span class="mord mathnormal">o</span><span class="mclose">)</span></span></span></span> <strong>plus</strong> the environment-based cumulative reward.</li>
+</ul>
+<h3 id="52-principals-optimization">5.2 Principal’s Optimization</h3>
+<p>The principal tries to set contract <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>b</mi><mo stretchy="false">(</mo><mo>⋅</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">b(\cdot)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">b</span><span class="mopen">(</span><span class="mord">⋅</span><span class="mclose">)</span></span></span></span> so that the agent’s best action in each state aligns with the principal’s goal. Usually, we write something like:</p>
+<span class="katex-display"><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><munder><mrow><mi>max</mi><mo>⁡</mo></mrow><mrow><mi>b</mi><mo>∈</mo><mi>B</mi></mrow></munder><mspace width="1em"></mspace><mi mathvariant="double-struck">E</mi><mo fence="true" stretchy="true" minsize="1.2em" maxsize="1.2em">[</mo><msup><mi>r</mi><mi>p</mi></msup><mo stretchy="false">(</mo><mi>s</mi><mo separator="true">,</mo><mi>o</mi><mo stretchy="false">)</mo><mo>−</mo><mi>b</mi><mo stretchy="false">(</mo><mi>o</mi><mo stretchy="false">)</mo><mo fence="true" stretchy="true" minsize="1.2em" maxsize="1.2em">]</mo></mrow><annotation encoding="application/x-tex">\max_{b \in B}\quad \mathbb{E}\bigl[r^p(s,o) - b(o)\bigr] </annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.6295em;vertical-align:-0.7795em;"></span><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.4306em;"><span style="top:-2.3479em;margin-left:0em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">b</span><span class="mrel mtight">∈</span><span class="mord mathnormal mtight" style="margin-right:0.0502em;">B</span></span></span></span><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span><span class="mop">max</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.7795em;"><span></span></span></span></span></span><span class="mspace" style="margin-right:1em;"></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathbb">E</span><span class="mopen"><span class="delimsizing size1">[</span></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.0278em;">r</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7144em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">p</span></span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathnormal">s</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">o</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1.2em;vertical-align:-0.35em;"></span><span class="mord mathnormal">b</span><span class="mopen">(</span><span class="mord mathnormal">o</span><span class="mclose">)</span><span class="mclose"><span class="delimsizing size1">]</span></span></span></span></span></span>
+<p>subject to the constraint that the agent’s best response is the “good” action.</p>
+<h3 id="53-convergence">5.3 Convergence</h3>
+<p>If we keep iterating:</p>
+<ol>
+<li><strong>Agent</strong> updates its Q-values to respond to the contract.</li>
+<li><strong>Principal</strong> updates the contract once the agent’s new best responses are known.</li>
+</ol>
+<p>We can often converge to a stable <strong>subgame-perfect equilibrium</strong> (SPE) if the horizon is finite or certain conditions hold.</p>
+<hr>
+<h2 id="section-6-putting-it-together">Section 6: Putting It together</h2>
+<ul>
+<li>
+<p><strong>Off-chain</strong>:<br>
+We do big computations (like Q-learning, large neural network updates) offline or in a private server.</p>
+</li>
+<li>
+<p><strong>On-chain</strong>:<br>
+We store the final “contract function.” For instance, something that says: “If outcome is <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>o</mi></mrow><annotation encoding="application/x-tex">o</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathnormal">o</span></span></span></span>, pay agent X tokens.” Payments happen automatically, removing the need for a central admin.</p>
+</li>
+</ul>
+<pre class="astro-code github-light" style="background-color:#fff;color:#24292e; overflow-x: auto;" tabindex="0" data-language="plaintext"><code><span class="line"><span>+---------------- Off-chain RL (Principal &#x26; Agents) ------------------+</span></span>
+<span class="line"><span>|  Principal designs b(o); Agents do Q-learning to find best actions  |</span></span>
+<span class="line"><span>+---------------------+--------------------+--------------------------+</span></span>
+<span class="line"><span>                      |                   |</span></span>
+<span class="line"><span>                      v                   |</span></span>
+<span class="line"><span>              (Publish or update)   (Agent outcome)</span></span>
+<span class="line"><span>                      |                   |</span></span>
+<span class="line"><span>             +--------+--------+      +---+------------------+</span></span>
+<span class="line"><span>             |  Blockchain SC  |&#x3C;----|        Oracle        |</span></span>
+<span class="line"><span>             |  (stores b(o))  |     |  (verifies outcome)  |</span></span>
+<span class="line"><span>             +-----------------+      +----------------------+</span></span>
+<span class="line"><span>                      |</span></span>
+<span class="line"><span>                      v (if outcome is validated)</span></span>
+<span class="line"><span>                  Automatic Payment</span></span></code></pre>  </div> </article>  </main> <footer class="site-footer"> <p class="site-footer__line">
+GitHub:
+<a href="https://github.com/haoruilee">https://github.com/haoruilee</a> </p> <p class="site-footer__line">
+Email:
+<a href="mailto:haoruileee@gmail.com">haoruileee@gmail.com</a> </p> <p class="site-footer__meta">© 2026</p> </footer> </body></html>
