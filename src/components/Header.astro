@@ -1,12 +1,11 @@
 ---
 const { siteTitle = 'Haorui Li' } = Astro.props;
-import meImage from '../../themes/miccall/source/img/me.jpg';
 ---
 
 <header class="site-header">
   <div class="site-header__inner">
     <a class="site-title" href="/">
-      <img class="site-title__avatar" src={meImage.src} alt={siteTitle} />
+      <img class="site-title__avatar" src="/me.jpg" alt={siteTitle} />
       <span>{siteTitle}</span>
     </a>
     <nav class="nav" aria-label="Primary">
