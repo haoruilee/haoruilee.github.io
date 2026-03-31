@@ -1,0 +1,58 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+const posts = (await getCollection('blog')).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
+const latest = posts.slice(0, 12);
+---
+
+<BaseLayout
+  title="Haorui Li"
+  description="MindSpace of the world biggest dreamer, persistent doer, awful sleeper"
+>
+  <section class="home-hero">
+    <h1 class="home-hero__title">This is<br />Lee&apos;s MindSpace</h1>
+    <p class="home-hero__subtitle">
+      Biggest dreamer, persistent doer, awful sleeper
+    </p>
+  </section>
+
+  <section class="home-section">
+    <div class="section-heading">
+      <p class="section-label">Latest writing</p>
+    </div>
+    <table class="writing-index">
+      <thead>
+        <tr>
+          <th scope="col">Date</th>
+          <th scope="col">Title</th>
+        </tr>
+      </thead>
+      <tbody>
+        {
+          latest.map((post) => (
+            <tr>
+              <td>
+                {post.data.pubDate.toLocaleDateString('en-US', {
+                  year: 'numeric',
+                  month: 'short',
+                  day: 'numeric',
+                })}
+              </td>
+              <td>
+                <a class="title-link" href={`/blog/${post.slug}`}>
+                  {post.data.title}
+                </a>
+                {post.data.description && (
+                  <span class="excerpt">{post.data.description}</span>
+                )}
+              </td>
+            </tr>
+          ))
+        }
+      </tbody>
+    </table>
+  </section>
+</BaseLayout>

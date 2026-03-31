@@ -1,0 +1,20 @@
+# 项目1
+English CV:
+      link: /life/index.html
+      avatar: https://chatgpt5.oss-rg-china-mainland.aliyuncs.com/share_me.jpg
+      descr: Career-en
+# 项目2
+中文简历:
+      link: /life/zh/index.html
+      avatar: https://chatgpt5.oss-rg-china-mainland.aliyuncs.com/share_me.jpg
+      descr: Career-zh
+# 项目3
+Short Descrition:
+      link: /proj/index.html
+      avatar: https://chatgpt5.oss-rg-china-mainland.aliyuncs.com/share_article4.jpg
+      descr: Get to know me in 10s
+#项目4
+Contact:
+      link: /tag/index.html   
+      avatar: https://chatgpt5.oss-rg-china-mainland.aliyuncs.com/share_article2.jpg
+      descr: Conatct me

@@ -1,0 +1,24 @@
+{
+  "name": "blog-astro",
+  "type": "module",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "sync:content": "node ./scripts/sync-legacy-content.mjs",
+    "dev": "npm run sync:content && astro dev",
+    "build": "npm run sync:content && astro build",
+    "preview": "npm run sync:content && astro preview",
+    "check": "npm run sync:content && astro check"
+  },
+  "dependencies": {
+    "astro": "^5.7.0",
+    "katex": "^0.16.22",
+    "rehype-katex": "^7.0.1",
+    "remark-math": "^6.0.0",
+    "yaml": "^2.7.1"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.4",
+    "typescript": "^5.8.2"
+  }
+}

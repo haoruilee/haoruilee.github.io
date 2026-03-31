@@ -1,0 +1,79 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { showcaseItems } from '../data/projectsPublications';
+
+const projects = showcaseItems.filter((item) => item.kind === 'project');
+const publications = showcaseItems.filter((item) => item.kind === 'publication');
+---
+
+<BaseLayout
+  title="Projects & Publications · Haorui Li"
+  description="Projects, repositories, and publications by Haorui Li"
+>
+  <header class="page-hero">
+    <p class="page-hero__label">Selected work</p>
+    <h1 class="page-hero__title">Projects & Publications</h1>
+    <p class="page-hero__meta">A small, editable list of things I am building and writing.</p>
+  </header>
+
+  <section class="showcase-section">
+    <div class="section-heading">
+      <p class="section-label">Projects</p>
+    </div>
+    <div class="showcase-list">
+      {
+        projects.map((item) => (
+          <article class="showcase-card">
+            <div class="showcase-card__top">
+              <h2 class="showcase-card__title">
+                {item.href ? (
+                  <a href={item.href} target="_blank" rel="noreferrer">{item.title}</a>
+                ) : (
+                  item.title
+                )}
+              </h2>
+              <span class="showcase-card__pill">Project</span>
+            </div>
+            <p class="showcase-card__desc">{item.description}</p>
+          </article>
+        ))
+      }
+    </div>
+  </section>
+
+  <section class="showcase-section">
+    <div class="section-heading">
+      <p class="section-label">Publications</p>
+    </div>
+    <div class="showcase-list">
+      {
+        publications.map((item) => (
+          <article class="showcase-card">
+            <div class="showcase-card__top">
+              <h2 class="showcase-card__title">
+                {item.href ? (
+                  <a href={item.href} target="_blank" rel="noreferrer">{item.title}</a>
+                ) : (
+                  item.title
+                )}
+              </h2>
+              <span class="showcase-card__pill">
+                {item.status ?? 'Publication'}
+              </span>
+            </div>
+            {(item.authors || item.venue || item.year) && (
+              <p class="showcase-card__meta">
+                {item.authors && <span>{item.authors}</span>}
+                {item.authors && (item.venue || item.year) && <span> · </span>}
+                {item.venue && <span>{item.venue}</span>}
+                {item.venue && item.year && <span> · </span>}
+                {item.year && <span>{item.year}</span>}
+              </p>
+            )}
+            <p class="showcase-card__desc">{item.description}</p>
+          </article>
+        ))
+      }
+    </div>
+  </section>
+</BaseLayout>
