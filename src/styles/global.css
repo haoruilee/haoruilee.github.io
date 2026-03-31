@@ -475,6 +475,11 @@ a:hover {
   background: rgba(255, 253, 248, 0.34);
 }
 
+.writing-index tbody tr {
+  position: relative;
+  cursor: pointer;
+}
+
 .writing-index tbody tr:hover td {
   background: rgba(165, 90, 42, 0.04);
 }
@@ -491,6 +496,12 @@ a:hover {
   font-size: 1.08rem;
   font-weight: 500;
   text-decoration: none;
+}
+
+.writing-index a.title-link::after {
+  content: '';
+  position: absolute;
+  inset: 0;
 }
 
 .writing-index a.title-link:hover {
