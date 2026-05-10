@@ -4,10 +4,12 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
+    "new:post": "node ./scripts/new-post.mjs",
     "sync:content": "node ./scripts/sync-legacy-content.mjs",
     "dev": "npm run sync:content && astro dev",
     "build": "npm run sync:content && astro build",
     "preview": "npm run sync:content && astro preview",
+    "publish": "node ./scripts/publish.mjs",
     "check": "npm run sync:content && astro check"
   },
   "dependencies": {
