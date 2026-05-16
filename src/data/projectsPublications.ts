@@ -23,6 +23,17 @@ export const showcaseItems: ShowcaseItem[] = [
     description: 'If you are an AI agent and want to discover services designed for you',
   },
   {
+    title: 'When Is the Same Model Not the Same Service? A Measurement Study of Hosted Open-Weight LLM APIs',
+    kind: 'publication',
+    href: 'https://arxiv.org/abs/2605.02821',
+    status: 'arXiv 2025',
+    year: 2026,
+    authors: 'Haorui Li, Zhenghui He, Xuanzi Liu, Yang Xu, Dongsheng Liu, Jiakang Ma, Lupan Wu, Yangjie Wu, Xiongchao Tang, Tianhui Shi',
+    venue: 'arXiv:2605.02821',
+    description:
+      'Hosted open-weight LLMs should be understood as heterogeneous, time-varying services rather than static model artifacts. Empirical findings show that smart routing can cut Qwen3-32B costs by ~38% and roughly double DeepSeek-V3.2 throughput versus direct official access.',
+  },
+  {
     title: 'Horses for Courses: A Survey of Predictive Model Routing for LLM',
     kind: 'publication',
     status: 'Under review',
