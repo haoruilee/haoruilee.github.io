@@ -8,6 +8,7 @@ const newsItems = [
     title: 'GenAICon 2026 终极议程公布，清程极智受邀参会演讲',
     description: '2026中国生成式AI大会（北京）公布终极议程，清程极智技术专家李浩瑞受邀在大会AI智能体专题论坛发表演讲，清程极智联合创始人师天麾在开幕式主题演讲。',
     url: 'https://www.163.com/dy/article/KQKUALOC05118RLD.html',
+    url2: 'https://mp.weixin.qq.com/s/TRzHbtjoeUXaVa8w54o0_A',
   },
   {
     date: '2025-04-02',
@@ -51,13 +52,6 @@ const newsItems = [
     description: '报道东南大学至善讲解团在2021年第七届"寻找全国大学生百强暑期实践团队"活动中荣获"最佳实践团队"（全国仅10个），李浩瑞为团队成员，团队四年来累计接待近万名参观者。',
     url: 'https://mp.weixin.qq.com/s/8221OM3PYNKos2qGqs4yvA',
   },
-  {
-    date: '2020-11-01',
-    source: '东南大学吴健雄学院（微信公众号）',
-    title: '东南大学超算团队冲刺ASC21，李浩瑞接受采访分享参赛心得',
-    description: '报道东南大学超算战队备战ASC21的历程，李浩瑞在采访中表示"真的不难，快来玩吧"，向学弟学妹推介超算竞赛，介绍从Linux、C++编译到CUDA并行计算的入门路径。',
-    url: 'https://mp.weixin.qq.com/s/TRzHbtjoeUXaVa8w54o0_A',
-  },
 ];
 ---
 
@@ -89,6 +83,9 @@ const newsItems = [
               <a class="title-link" href={item.url} target="_blank" rel="noreferrer">
                 {item.title}
               </a>
+              {item.url2 && (
+                <a class="title-link" href={item.url2} target="_blank" rel="noreferrer" style="margin-left:0.5em; font-size:0.85em; opacity:0.7">[微信版]</a>
+              )}
               <span class="excerpt">{item.source} — {item.description}</span>
             </td>
           </tr>
