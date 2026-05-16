@@ -11,6 +11,12 @@ export type ShowcaseItem = {
 
 export const showcaseItems: ShowcaseItem[] = [
   {
+    title: 'ReleaseLog',
+    kind: 'project',
+    href: 'https://releaselog.site/',
+    description: 'A verified AI release tracking calendar — logs product launches and platform updates from Anthropic, OpenAI, DeepSeek, Google and more, sourced exclusively from official changelogs and announcements. News is auto-updated via Claude Code running in a TTY pipeline.',
+  },
+  {
     title: 'ASC Wiki',
     kind: 'project',
     href: 'http://asc-wiki.com/',
