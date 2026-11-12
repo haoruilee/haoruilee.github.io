@@ -9,7 +9,7 @@ thumbnail: https://chatgpt5.oss-rg-china-mainland.aliyuncs.com/share_motto.png
 
 # Career
 
-**[Click here for 中文版本](./zh/index.html)*
+**[Click here for 中文版本](/life/zh/)*
 
 Last Update: 2022/03/15 00:00 UTC +08:00
 

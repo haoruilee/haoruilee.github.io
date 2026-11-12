@@ -10,6 +10,8 @@ interface Props {
 
 const { title, description } = Astro.props;
 const fullTitle = title.includes('Haorui') ? title : `${title} · Haorui Li`;
+const canonicalPath = Astro.url.pathname.replace(/\/index\.html$/, '/').replace(/\/?$/, '/');
+const canonical = new URL(canonicalPath, Astro.site);
 ---
 
 <!doctype html>
@@ -20,6 +22,7 @@ const fullTitle = title.includes('Haorui') ? title : `${title} · Haorui Li`;
     <meta name="generator" content={Astro.generator} />
     {description && <meta name="description" content={description} />}
     <title>{fullTitle}</title>
+    <link rel="canonical" href={canonical} />
     <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
     <link
       rel="stylesheet"

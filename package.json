@@ -10,7 +10,8 @@
     "build": "npm run sync:content && astro build",
     "preview": "npm run sync:content && astro preview",
     "publish": "node ./scripts/publish.mjs",
-    "check": "npm run sync:content && astro check"
+    "check": "npm run sync:content && astro check",
+    "check:seo": "node scripts/check-seo.mjs"
   },
   "dependencies": {
     "astro": "^5.7.0",

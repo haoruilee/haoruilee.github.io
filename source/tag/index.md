@@ -24,9 +24,9 @@ Mail:
 
 Website:
 
-(Chinese mainland server) [hrlee.cn](hrlee.cn)
+(Chinese mainland server) [hrlee.cn](https://hrlee.cn)
 
-(Overseas server) [haoruili.work](haoruili.work)
+(Overseas server) [haoruili.work](https://haoruili.work)
 
 Blog:
 

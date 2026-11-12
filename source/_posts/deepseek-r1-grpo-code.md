@@ -21,7 +21,7 @@ DSR1 paper https://arxiv.org/pdf/2501.12948
 
 ## Pipeline
 
-As we have read the GRPO algo in previous blog https://lihaorui.com/2025/02/05/deepseek-math-reading/ here we continue read deepseek r1's training pipeline.
+As we have read the GRPO algo in previous blog https://lihaorui.com/blog/deepseek-math-reading/ here we continue read deepseek r1's training pipeline.
 
 My drawio source: https://drive.google.com/file/d/1ktUdHutP31jZUaRf6fmnAIxeFT_PSuPZ/view?usp=sharing
 

@@ -9,9 +9,9 @@ thumbnail: https://i.dawnlab.me/7fdf55aac402c58c8982bffd00a10f66.webp
 
 This is my resume site, read ``/Menu/CV/`` or click ``MENU/NAVIGATION/Card links`` to jump.
 
-**[🔗English RÉSUMÉ](../../../../life/index.html)**
+**[🔗English RÉSUMÉ](/life/)**
 
-**[🔗中文简历](../../../../life/zh/index.html)**
+**[🔗中文简历](/life/zh/)**
 
 If the webpages load slowly, consider switching the server:
 
